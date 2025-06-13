@@ -1,13 +1,16 @@
 import './App.css';
+import Home from './pages/Home/Home'
+import Navbar from "./components/Navbar/Navbar";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          FlowSoft tuntikirjaus
-        </p>
-      </header>
+      <Navbar />
+      <div className="main-content-area">
+        <Sidebar />
+        <Home />
+      </div>
     </div>
   );
 }

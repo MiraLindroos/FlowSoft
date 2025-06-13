@@ -1,0 +1,21 @@
+.navbar {
+  background-color: #013746;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-left {
+  background-color: #2cb92c;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+}
+
+.navbar-left p {
+  padding: 2px;
+}
+
+.logo {
+  margin-left: 8px;
+  color: white;
+}
