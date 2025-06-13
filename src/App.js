@@ -5,6 +5,8 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import { Routes, Route } from "react-router-dom";
 import TimeManagement from "./pages/TimeManagement/TimeManagement";
 import Projects from "./pages/Projects/Projects";
+import Settings from './pages/Settings/Settings';
+import Profile from './pages/Profile/Profile';
 
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
           <Route path="/Etusivu" element={<Home />} />
           <Route path="/Ajanhallinta" element={<TimeManagement />} />
           <Route path="/Projektit" element={<Projects />} />
+          <Route path="/Asetukset" element={<Settings />} />
+          <Route path="/Profiili" element={<Profile />} />
         </Routes>
       </div>
     </div>

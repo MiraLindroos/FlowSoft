@@ -2,17 +2,19 @@
   background-color: #013746;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .navbar-left {
-  background-color: #2cb92c;
   display: flex;
-  justify-content: space-between;
-  color: white;
+  margin-right: 5px;
 }
 
-.navbar-left p {
-  padding: 2px;
+.navbar-left svg {
+  color: white;
+  font-size: 28px;
+  padding: 5px;
+  margin: 0px 10px;
 }
 
 .logo {
