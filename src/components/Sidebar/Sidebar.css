@@ -1,7 +1,24 @@
 .sidebar {
-  background-color: #2cb92c;
   width: 20%;
+  border-right: 1px solid #e3e1e1;
+}
+
+.sidebar-items {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  margin-top: 6px;
+  text-align: left;
 }
+
+.item {
+  padding: 20px;
+  text-decoration: none;
+  color: #013746;
+  border-bottom: 0.5px solid #e3e1e1;
+}
+
+/* @media (max-width: 600px) {
+  .sidebar {
+    display: none;
+  }
+} */
