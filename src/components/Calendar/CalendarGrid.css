@@ -1,0 +1,10 @@
+.grid {
+  background-color: blue;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  gap: 5px;
+}
+
+.grid-square {
+  background-color: green;
+}

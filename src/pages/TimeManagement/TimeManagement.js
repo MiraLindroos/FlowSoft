@@ -1,7 +1,9 @@
+import Calendar from "../../components/Calendar/Calendar"
+
 const TimeManagement = () => {
   return (
     <div>
-      <p>ajanhallinta</p>
+      <Calendar />
     </div>
   )
 }
