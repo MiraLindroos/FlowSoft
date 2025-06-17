@@ -1,4 +1,4 @@
-import "./CalendarGrid.css"
+import "./Calendar.css"
 
 const CalendarGrid = (props) => {
   const currentDate = props.currentDate

@@ -3,3 +3,17 @@
   padding: 10px;
   margin: 20px 10px;
 }
+
+/* CalendarGrid.js styling */
+.grid {
+  background-color: blue;
+  display: grid;
+  /* every fraction takes up the same amount of space */
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 5px;
+}
+
+.grid-square {
+  background-color: green;
+  overflow: hidden;
+}
