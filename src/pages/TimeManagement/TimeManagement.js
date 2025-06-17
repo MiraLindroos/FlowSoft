@@ -1,8 +1,9 @@
 import Calendar from "../../components/Calendar/Calendar"
+import "./TimeManagement.css"
 
 const TimeManagement = () => {
   return (
-    <div>
+    <div className="timemanagement">
       <Calendar />
     </div>
   )

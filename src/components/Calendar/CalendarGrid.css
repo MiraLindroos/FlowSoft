@@ -1,10 +1,12 @@
 .grid {
   background-color: blue;
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto;
+  /* every fraction takes up the same amount of space */
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 5px;
 }
 
 .grid-square {
   background-color: green;
+  overflow: hidden;
 }

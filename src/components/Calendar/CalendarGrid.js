@@ -6,8 +6,10 @@ const CalendarGrid = () => {
     const currentDay = new Date().getDay()
     const currentMonth = new Date().getMonth()
     const currentYear = new Date().getFullYear()
-    const daysInAMonth = new Date(currentYear, currentMonth+1, 0).getDate() //0 tarkoittaa edellisen kuukauden vika päivä, siksi month+1
-    const viikonpaiva = new Date(currentYear, currentMonth, 1).getDay() //tämän kuukauden eka päivä
+    // Get the number of days in the current month: move to next month and take the last day of the previous month
+    const daysInAMonth = new Date(currentYear, currentMonth+1, 0).getDate()
+    // Find out which weekday is the first day of the current month
+    const viikonpaiva = new Date(currentYear, currentMonth, 1).getDay()
     console.log(currentDate)
     console.log(currentDay)
     console.log(currentMonth)
@@ -19,17 +21,15 @@ const CalendarGrid = () => {
     if (viikonpaiva > 1) {
       for (let i=1; i<viikonpaiva; i++) {
         days.push(<div>tyhjä</div>)
-        console.log('täällä ' + i)
       }
     }
     if (viikonpaiva === 0) {
       for (let i=6; i>viikonpaiva; i--) {
         days.push(<div>tyhjä</div>)
-        console.log('täällä ' + i)
       }
     }
     for (let i = 1; i <= daysInAMonth; i++) {
-      days.push(<div className="grid-square">päivä nro {i}</div>)
+      days.push(<div key={i} className="grid-square"><p>päivä nro {i}</p></div>)
     }
     return days;
   };
