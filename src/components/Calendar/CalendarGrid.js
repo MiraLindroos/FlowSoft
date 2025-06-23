@@ -7,10 +7,11 @@ const CalendarGrid = (props) => {
   const click = () => {
     console.log('päivää klikattu')
   }
-
-  const showDays = daysInAMonth.map((day, index) => {
-    return <div key={index} className="grid-square" onClick={click}><p>{day}</p></div>
-  })
+  const showDays = daysInAMonth.map((day, index) => (
+  <div key={index} className="grid-square" onClick={click}>
+    <span className="grid-day">{day}</span>
+  </div>
+));
 
   return (
     <div className="grid">

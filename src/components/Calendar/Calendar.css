@@ -3,7 +3,7 @@
   border: 2px solid #013746;
   border-radius: 15px;
   padding: 15px;
-  background: #f7f6f6;
+  background: #fff;
 }
 
 /* CalendarGrid.js styling */
@@ -13,19 +13,28 @@
   grid-template-columns: repeat(7, 1fr);
   gap: 8px;
   padding: 10px 0;
+  align-items: stretch;
 }
 
 .grid-square {
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 6px;
   border: 1px solid #013746;
-  min-height: 48px;
-  background-color: #fff;
+  background: #fff;
   border-radius: 10px;
+  min-height: 48px;
 }
 
 .grid-square:hover {
   background: #e3f2fd;
   cursor: pointer;
+}
+
+.grid-day {
+  margin-bottom: 4px;
+  color: #013746;
 }
 
 /* CalendarHeader.js styling */
