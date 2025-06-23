@@ -1,21 +1,31 @@
 .calendar {
-  background-color: red;
-  padding: 10px;
   margin: 20px 10px;
+  border: 2px solid #013746;
+  border-radius: 15px;
+  padding: 15px;
+  background: #f7f6f6;
 }
 
 /* CalendarGrid.js styling */
 .grid {
-  background-color: blue;
   display: grid;
   /* every fraction takes up the same amount of space */
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  gap: 5px;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  padding: 10px 0;
 }
 
 .grid-square {
-  background-color: green;
   overflow: hidden;
+  border: 1px solid #013746;
+  min-height: 48px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.grid-square:hover {
+  background: #e3f2fd;
+  cursor: pointer;
 }
 
 /* CalendarHeader.js styling */
@@ -23,8 +33,23 @@
 .calendar-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  background: #013746;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
 .header-button {
+  background: #fff;
+  color: #013746;
+  border: none;
+  border-radius: 4px;
+  margin: 0 8px;
+  padding: 6px 16px;
+}
 
+.header-button:hover {
+  background: #e3f2fd;
 }
