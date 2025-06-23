@@ -25,11 +25,23 @@ const useCalendar = () => {
     daysInAMonth.push(i)
   }
 
+  const nextMonth = () => {
+    // prev is the latest currentDate
+    // let's create a new Date object for the 1st day of the next month
+    setCurrentDate(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1))
+  }
+
+  const previousMonth = () => {
+    // prev is the latest currentDate
+    // let's create a new Date object for the 1st day of the previous month
+    setCurrentDate(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
+  }
+
   return {
     currentDate,
-    currentMonth,
-    currentYear,
     daysInAMonth,
+    nextMonth,
+    previousMonth,
   }
 }
 

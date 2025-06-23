@@ -17,3 +17,14 @@
   background-color: green;
   overflow: hidden;
 }
+
+/* CalendarHeader.js styling */
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-button {
+
+}

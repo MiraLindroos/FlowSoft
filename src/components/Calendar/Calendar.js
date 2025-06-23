@@ -6,13 +6,13 @@ import useCalendar from "./useCalendar";
 const Calendar = () => {
   const {
     currentDate,
-    currentMonth,
-    currentYear,
     daysInAMonth,
+    nextMonth,
+    previousMonth,
   } = useCalendar();
   return (
     <div className="calendar">
-      <CalendarHeader />
+      <CalendarHeader nextMonth={nextMonth} previousMonth={previousMonth} currentDate={currentDate}/>
       <CalendarGrid
         currentDate={currentDate}
         daysInAMonth={daysInAMonth}
