@@ -1,21 +1,23 @@
 import "./Calendar.css"
+import DayCell from "./DayCell";
 
 const CalendarGrid = (props) => {
   const currentDate = props.currentDate
   const daysInAMonth = props.daysInAMonth
 
-  const click = () => {
-    console.log('päivää klikattu')
-  }
-  const showDays = daysInAMonth.map((day, index) => (
-  <div key={index} className="grid-square" onClick={click}>
-    <span className="grid-day">{day}</span>
-  </div>
-));
+  const click = (day) => {
+    console.log(`Klikattiin päivää: ${day}`);
+  };
 
   return (
     <div className="grid">
-      {showDays}
+      {daysInAMonth.map((day, index) => (
+        <DayCell
+          key={index}
+          day={day}
+          onClick={() => click(day)}
+        />
+      ))}
     </div>
   );
 };

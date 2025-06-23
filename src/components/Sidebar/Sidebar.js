@@ -1,6 +1,6 @@
 import "./Sidebar.css"
 import { Link } from "react-router-dom";
-import { FiCalendar, FiHome, FiFolder } from "react-icons/fi";
+import { FiCalendar, FiHome, FiFolder, FiBriefcase } from "react-icons/fi";
 
 const Sidebar = () => {
 
@@ -8,6 +8,7 @@ const Sidebar = () => {
     { name: "Etusivu", path: "/Etusivu", IconName: <FiHome /> },
     { name: "Ajanhallinta", path: "/Ajanhallinta", IconName: <FiCalendar /> },
     { name: "Projektit", path: "/Projektit", IconName: <FiFolder /> },
+    { name: "Matkat", path: "/Matkat", IconName: <FiBriefcase /> },
   ]
 
   return (

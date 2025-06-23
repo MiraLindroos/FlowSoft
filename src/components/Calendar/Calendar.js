@@ -1,7 +1,7 @@
 import CalendarGrid from "./CalendarGrid";
 import CalendarHeader from "./CalendarHeader";
 import "./Calendar.css"
-import useCalendar from "./useCalendar";
+import useCalendarView from "../../hooks/useCalendarView";
 
 const Calendar = () => {
   const {
@@ -9,7 +9,7 @@ const Calendar = () => {
     daysInAMonth,
     nextMonth,
     previousMonth,
-  } = useCalendar();
+  } = useCalendarView();
   return (
     <div className="calendar">
       <CalendarHeader nextMonth={nextMonth} previousMonth={previousMonth} currentDate={currentDate}/>
