@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react"
 import './App.css';
 import Home from './pages/Home/Home'
 import Navbar from "./components/Navbar/Navbar";
@@ -11,11 +12,20 @@ import Travel from './pages/Travel/Travel';
 
 
 function App() {
+  const [isSidebarOpen, setSidebarOpen] = useState(true);
+
+  useEffect(() => {
+    const deviceWidth = window.innerWidth;
+    if (deviceWidth < 768) {
+      setSidebarOpen(false);
+    }
+    console.log(deviceWidth)
+  }, [])
   return (
     <div className="App">
-      <Navbar />
+      <Navbar setIsSidebarOpen={setSidebarOpen}/>
       <div className="main-content-area">
-        <Sidebar />
+        {isSidebarOpen && <Sidebar isSidebarOpen={isSidebarOpen}/>}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Etusivu" element={<Home />} />
