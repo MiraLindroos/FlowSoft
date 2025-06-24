@@ -7,6 +7,7 @@ import TimeManagement from "./pages/TimeManagement/TimeManagement";
 import Projects from "./pages/Projects/Projects";
 import Settings from './pages/Settings/Settings';
 import Profile from './pages/Profile/Profile';
+import Travel from './pages/Travel/Travel';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/Projektit" element={<Projects />} />
           <Route path="/Asetukset" element={<Settings />} />
           <Route path="/Profiili" element={<Profile />} />
+          <Route path="/Matkat" element={<Travel />} />
         </Routes>
       </div>
     </div>
