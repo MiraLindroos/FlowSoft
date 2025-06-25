@@ -12,19 +12,28 @@ import Travel from './pages/Travel/Travel';
 
 
 function App() {
-  const [isSidebarOpen, setSidebarOpen] = useState(true);
+  // If screen width is 898px or wider, set isSidebarOpen to true
+  const [isSidebarOpen, setSidebarOpen] = useState(() => window.innerWidth >= 898);
 
   useEffect(() => {
-    const deviceWidth = window.innerWidth;
-    if (deviceWidth < 768) {
-      setSidebarOpen(false);
+    // Check window width and update sidebar state
+    const handleResize = () => {
+      // If screen width is 898 or bigger, set isSidebarOpen to true, otherwise it's false
+      setSidebarOpen(window.innerWidth >= 898);
     }
-    console.log(deviceWidth)
+    // Add a listener to run handleResize whenever the window is resized
+    window.addEventListener('resize', handleResize);
+    // Call handleResize to set the correct initial state
+    handleResize();
+    // Remove the event listener when component unmounts
+    return () => window.removeEventListener('resize', handleResize)
   }, [])
+
   return (
     <div className="App">
       <Navbar setIsSidebarOpen={setSidebarOpen}/>
       <div className="main-content-area">
+        {/* If isSidebarOpen is true, show the sidebar */}
         {isSidebarOpen && <Sidebar isSidebarOpen={isSidebarOpen}/>}
         <Routes>
           <Route path="/" element={<Home />} />
