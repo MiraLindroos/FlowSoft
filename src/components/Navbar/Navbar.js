@@ -9,7 +9,7 @@ const Navbar = (props) => {
     { name: 'asetukset', path: 'Asetukset', iconName: <FiSettings /> },
     { name: 'profiili', path: 'Profiili', iconName: <FiUser /> }
   ]
-  console.log(isSidebarOpen)
+
   return (
     <div className="navbar">
       <p className="logo">FlowSoft</p>
