@@ -1,9 +1,7 @@
 import "./Calendar.css"
 import DayCell from "./DayCell";
 
-const CalendarGrid = (props) => {
-  const currentDate = props.currentDate
-  const daysInAMonth = props.daysInAMonth
+const CalendarGrid = ({daysInAMonth}) => {
 
   const click = (day) => {
     console.log(`Klikattiin päivää: ${day}`);

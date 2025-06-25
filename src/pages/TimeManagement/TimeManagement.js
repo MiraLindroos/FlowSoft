@@ -5,7 +5,6 @@ const TimeManagement = () => {
   return (
     <div className="timemanagement">
       <Calendar />
-      <Calendar />
     </div>
   )
 }
