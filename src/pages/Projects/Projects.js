@@ -1,7 +1,19 @@
+import ProjectsList from "../../components/Projects/ProjectsList.js"
+import useProjectsList from "../../hooks/useProjectsList.js"
+import "./Projects.css"
+
 const Projects = () => {
+  const {
+    projects
+  } = useProjectsList();
   return (
-    <div>
-      <p>projektit</p>
+    <div className="projects">
+      <div className="buttons">
+        <button className="add-project">LISÄÄ UUSI</button>
+      </div>
+      <div className="projects-list">
+        <ProjectsList projects={projects}/>
+      </div>
     </div>
   )
 }

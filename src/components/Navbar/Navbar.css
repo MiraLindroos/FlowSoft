@@ -24,6 +24,7 @@
 .logo {
   margin-left: 10px;
   color: white;
+  text-decoration: none;
 }
 
 @media (min-width: 425px) {

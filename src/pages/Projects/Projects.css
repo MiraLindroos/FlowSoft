@@ -1,0 +1,27 @@
+.projects {
+  margin: 20px 5px;
+}
+
+.buttons {
+  text-align: end;
+  margin-bottom: 15px;
+}
+
+.add-project {
+  background: #013746;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  margin: 0 6px;
+  padding: 7px;
+}
+
+.add-project:hover {
+  background: #296d80;
+  cursor: pointer;
+}
+
+.projects-list {
+  background: #fff;
+}
+
