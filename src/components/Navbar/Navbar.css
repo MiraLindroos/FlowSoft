@@ -7,17 +7,47 @@
 
 .navbar-left {
   display: flex;
-  margin-right: 5px;
+  margin-right: 2px;
 }
 
 .navbar-left svg {
   color: white;
-  font-size: 26px;
-  padding: 5px;
-  margin: 0px 10px;
+  font-size: 22px;
+  padding: 2px;
+  margin: 0px 6px;
 }
 
 .logo {
-  margin-left: 20px;
+  margin-left: 10px;
   color: white;
+}
+
+@media (min-width: 425px) {
+  .navbar-left {
+    margin-right: 4px;
+  }
+
+  .navbar-left svg {
+    padding: 4px;
+  }
+
+  .logo {
+    margin-left: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-left {
+    margin-right: 5px;
+  }
+
+  .navbar-left svg {
+    font-size: 26px;
+    padding: 5px;
+    margin: 0px 10px;
+  }
+
+  .logo {
+    margin-left: 18px;
+  }
 }

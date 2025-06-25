@@ -31,7 +31,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar setIsSidebarOpen={setSidebarOpen}/>
+      <Navbar setSidebarOpen={setSidebarOpen} isSidebarOpen={isSidebarOpen}/>
       <div className="main-content-area">
         {/* If isSidebarOpen is true, show the sidebar */}
         {isSidebarOpen && <Sidebar isSidebarOpen={isSidebarOpen}/>}
