@@ -49,7 +49,23 @@
     border-left: none;
     border-right: 1px solid #e3e1e1;
     z-index: 0;
-    top: 50px; /* Navbar height is 50px high so we have to position the sidebar under the navbar */
-    height: calc(100vh - 50px); /* Set sidebar to the full viewport height - the navbar height */
+    top: 60px; /* Navbar height is 50px high so we have to position the sidebar under the navbar */
+    height: calc(100vh - 60px); /* Set sidebar to the full viewport height - the navbar height */
+  }
+
+  .sidebar-items {
+    text-align: left;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sidebar-items {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .sidebar-items {
+    font-size: 1.2rem;
   }
 }

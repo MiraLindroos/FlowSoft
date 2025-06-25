@@ -41,6 +41,10 @@
 }
 
 @media (min-width: 768px) {
+  .navbar {
+    height: 60px;
+  }
+
   .navbar-left {
     margin-right: 5px;
   }
@@ -53,5 +57,25 @@
 
   .logo {
     margin-left: 18px;
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .navbar {
+    height: 65px;
+  }
+
+  .navbar-left {
+    margin-right: 8px;
+  }
+
+  .navbar-left svg {
+    font-size: 28px;
+  }
+
+  .logo {
+    margin-left: 20px;
+    font-size: 1.3rem;
   }
 }
