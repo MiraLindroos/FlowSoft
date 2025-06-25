@@ -14,14 +14,14 @@ import Travel from './pages/Travel/Travel';
 function App() {
   // If screen width is 898px or wider, set isSidebarOpen to true
   const [isSidebarOpen, setSidebarOpen] = useState(() => window.innerWidth >= 898);
-  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768)
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 898)
 
   useEffect(() => {
     // Check window width and update sidebar state
     const handleResize = () => {
       // If screen width is 898 or bigger, set isSidebarOpen to true, otherwise it's false
       setSidebarOpen(window.innerWidth >= 898);
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth < 898);
     }
     // Add a listener to run handleResize whenever the window is resized
     window.addEventListener('resize', handleResize);
@@ -33,19 +33,21 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar setSidebarOpen={setSidebarOpen} isSidebarOpen={isSidebarOpen}/>
+      <Navbar setSidebarOpen={setSidebarOpen} isMobile={isMobile}/>
       <div className="main-content-area">
         {/* If isSidebarOpen is true, show the sidebar */}
         {isSidebarOpen && <Sidebar setSidebarOpen={setSidebarOpen} isMobile={isMobile}/>}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Etusivu" element={<Home />} />
-          <Route path="/Ajanhallinta" element={<TimeManagement />} />
-          <Route path="/Projektit" element={<Projects />} />
-          <Route path="/Asetukset" element={<Settings />} />
-          <Route path="/Profiili" element={<Profile />} />
-          <Route path="/Matkat" element={<Travel />} />
-        </Routes>
+        <main className="page-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/Etusivu" element={<Home />} />
+            <Route path="/Ajanhallinta" element={<TimeManagement />} />
+            <Route path="/Projektit" element={<Projects />} />
+            <Route path="/Asetukset" element={<Settings />} />
+            <Route path="/Profiili" element={<Profile />} />
+            <Route path="/Matkat" element={<Travel />} />
+          </Routes>
+        </main>
       </div>
     </div>
   );

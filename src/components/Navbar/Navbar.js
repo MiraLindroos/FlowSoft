@@ -2,9 +2,8 @@ import './Navbar.css'
 import { Link } from "react-router-dom";
 import { FiUser, FiSettings, FiMenu } from "react-icons/fi";
 
-const Navbar = (props) => {
-  const setSidebarOpen = props.setSidebarOpen
-  const isSidebarOpen = props.isSidebarOpen
+const Navbar = ({setSidebarOpen, isMobile}) => {
+  // Array of items to show in navbar
   const items = [
     { name: 'asetukset', path: 'Asetukset', iconName: <FiSettings /> },
     { name: 'profiili', path: 'Profiili', iconName: <FiUser /> }
@@ -14,7 +13,11 @@ const Navbar = (props) => {
     <div className="navbar">
       <p className="logo">FlowSoft</p>
       <div className="navbar-left">
-        {isSidebarOpen ? items.map((item, index) => (
+        {/* If isMobile is false aka the window width is over 897px
+            we will show settings and profile icons on the navbar
+            otherwise we show a menu icon that opens the sidebar menu
+        */}
+        {!isMobile ? items.map((item, index) => (
           <Link key={index} to={item.path}>{item.iconName}</Link>
         )) : <Link onClick={() => setSidebarOpen(true)}><FiMenu/></Link>}
       </div>
