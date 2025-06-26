@@ -8,7 +8,7 @@
 }
 
 .add-project {
-  background: #013746;
+  background-color: #013746;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -16,12 +16,12 @@
 }
 
 .add-project:hover {
-  background: #296d80;
+  background-color: #296d80;
   cursor: pointer;
 }
 
 .projects-list {
-  background: #fff;
+  background-color: #fff;
 }
 
 @media (min-width: 768px) {

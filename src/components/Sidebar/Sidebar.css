@@ -23,7 +23,7 @@
 }
 
 .item:hover {
-  background: rgb(218, 229, 229);
+  background-color: rgb(218, 229, 229);
 }
 
 .icon {
@@ -33,7 +33,7 @@
 
 .close-icon {
   border: none;
-  background: #013746;
+  background-color: #013746;
   color: #fff;
   font-size: 20px;
   border-radius: 4px;

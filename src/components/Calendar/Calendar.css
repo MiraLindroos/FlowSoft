@@ -3,7 +3,7 @@
   border: 2px solid #013746;
   border-radius: 15px;
   padding: 8px;
-  background: #fff;
+  background-color: #fff;
 }
 
 /* CalendarGrid.js styling */
@@ -22,13 +22,13 @@
   align-items: flex-start;
   padding: 6px;
   border: 1px solid #013746;
-  background: #fff;
+  background-color: #fff;
   border-radius: 10px;
   min-height: 50px;
 }
 
 .grid-square:hover {
-  background: rgb(218, 229, 229);
+  background-color: rgb(218, 229, 229);
   cursor: pointer;
 }
 
@@ -44,14 +44,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #013746;
+  background-color: #013746;
   color: #fff;
   border-radius: 10px;
   font-weight: 500;
 }
 
 .header-button {
-  background: #fff;
+  background-color: #fff;
   color: #013746;
   border: none;
   border-radius: 5px;
@@ -60,7 +60,7 @@
 }
 
 .header-button:hover {
-  background: rgb(218, 229, 229);
+  background-color: rgb(218, 229, 229);
 }
 
 .calendar-weekdays {
