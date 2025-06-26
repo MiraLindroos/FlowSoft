@@ -1,11 +1,16 @@
 import "./Projects.css"
+import { Link } from "react-router-dom";
+import { FiEdit } from "react-icons/fi"
 
 const ProjectsList = ({projects}) => {
   console.log(projects)
   return (
     <div className="projects-list">
       {projects.map((project, index) => (
-        <p key={index} className="project-item">{project.name}</p>
+        <div className="project-row">
+          <Link key={index} className="project-item">{project.name}</Link>
+          <button className="edit"><FiEdit /></button>
+        </div>
       ))}
     </div>
   )
