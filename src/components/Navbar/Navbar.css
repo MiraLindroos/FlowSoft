@@ -21,6 +21,11 @@
   margin: 0px 6px;
 }
 
+.navbar-left svg:hover {
+  background: #296d80;
+  border-radius: 5px;
+}
+
 .logo {
   margin-left: 10px;
   color: white;
