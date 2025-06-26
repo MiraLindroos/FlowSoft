@@ -72,10 +72,6 @@
   .sidebar {
     width: 15%;
   }
-
-  .sidebar-items {
-    font-size: 1.2rem;
-  }
 }
 
 @media (min-width: 1600px) {

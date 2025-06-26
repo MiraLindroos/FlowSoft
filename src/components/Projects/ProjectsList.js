@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FiEdit } from "react-icons/fi"
 
 const ProjectsList = ({projects}) => {
-  console.log(projects)
+
   return (
     <div className="projects-list">
       {projects.map((project, index) => (
