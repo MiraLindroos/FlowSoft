@@ -28,7 +28,7 @@
 }
 
 .grid-square:hover {
-  background: #e3f2fd;
+  background: rgb(218, 229, 229);
   cursor: pointer;
 }
 
@@ -60,7 +60,7 @@
 }
 
 .header-button:hover {
-  background: #e3f2fd;
+  background: rgb(218, 229, 229);
 }
 
 .calendar-weekdays {
