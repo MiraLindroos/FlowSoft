@@ -5,7 +5,7 @@ import "./Projects.css"
 const Projects = () => {
   const {
     projects
-  } = useProjectsList();
+  } = useProjectsList()
   return (
     <div className="projects">
       <div className="buttons">

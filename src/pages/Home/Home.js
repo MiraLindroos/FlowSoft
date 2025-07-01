@@ -3,22 +3,26 @@ import HoursThisMonth from "../../components/Statistics/HoursThisMonth.js"
 import ActiveProjects from "../../components/Statistics/ActiveProjects.js"
 import TravelsThisMonth from "../../components/Statistics/TravelsThisMonth.js"
 import useStatistics from "../../hooks/useStatistics.js"
+import Login from "../Login/Login.js"
 
 const Home = () => {
-  const {
-    data
-  } = useStatistics();
+  // const {
+  //   data
+  // } = useStatistics();
+  // return (
+  //   <div className="home">
+  //     <div className="left-side">
+  //       <HoursThisMonth data={data}/>
+  //     </div>
+  //     <div className="right-side">
+  //       <ActiveProjects />
+  //       <TravelsThisMonth />
+  //     </div>
+  //   </div>
+  // );
   return (
-    <div className="home">
-      <div className="left-side">
-        <HoursThisMonth data={data}/>
-      </div>
-      <div className="right-side">
-        <ActiveProjects />
-        <TravelsThisMonth />
-      </div>
-    </div>
-  );
+    <Login />
+  )
 }
 
 export default Home
