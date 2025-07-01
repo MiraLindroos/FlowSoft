@@ -11,4 +11,4 @@ const useProjectsList = () => {
   }
 }
 
-export default useProjectsList;
+export default useProjectsList

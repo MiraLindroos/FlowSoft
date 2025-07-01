@@ -1,6 +1,6 @@
 import './Navbar.css'
-import { Link } from "react-router-dom";
-import { FiUser, FiSettings, FiMenu } from "react-icons/fi";
+import { Link } from "react-router-dom"
+import { FiUser, FiSettings, FiMenu } from "react-icons/fi"
 
 const Navbar = ({setSidebarOpen, isMobile}) => {
   // Array of items to show in navbar
@@ -25,4 +25,4 @@ const Navbar = ({setSidebarOpen, isMobile}) => {
   )
 }
 
-export default Navbar;
+export default Navbar

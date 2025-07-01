@@ -12,7 +12,7 @@ const CalendarHeader = (props) => {
     nextMonth()
   }
 
-  const weekdays = ['ma', 'ti', 'ke', 'to', 'pe', 'la', 'su'];
+  const weekdays = ['ma', 'ti', 'ke', 'to', 'pe', 'la', 'su']
 
   return (
     <>
@@ -27,7 +27,7 @@ const CalendarHeader = (props) => {
         ))}
       </div>
     </>
-  );
+  )
 }
 
-export default CalendarHeader;
+export default CalendarHeader

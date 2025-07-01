@@ -1,6 +1,6 @@
 import "./Sidebar.css"
-import { Link } from "react-router-dom";
-import * as Fi from "react-icons/fi";
+import { Link } from "react-router-dom"
+import * as Fi from "react-icons/fi"
 
 const Sidebar = ({setSidebarOpen, isMobile}) => {
   // Array of routes that are always shown (both mobile and desktop)
@@ -16,7 +16,7 @@ const Sidebar = ({setSidebarOpen, isMobile}) => {
     { name: 'Profiili', path: 'Profiili', IconName: <Fi.FiUser /> }
   ]
   // If isMobile is true, show both routes + extraMobileRoutes
-  const visibleRoutes = isMobile ? [...routes, ...extraMobileRoutes] : routes;
+  const visibleRoutes = isMobile ? [...routes, ...extraMobileRoutes] : routes
 
   return (
     <div className="sidebar">

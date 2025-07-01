@@ -25,7 +25,7 @@ const Statistics = () => {
       dateRange: '29.–30.6.',
       tunnit: 9,
     },
-  ];
+  ]
 
 
   return {
@@ -33,4 +33,4 @@ const Statistics = () => {
   }
 }
 
-export default Statistics;
+export default Statistics

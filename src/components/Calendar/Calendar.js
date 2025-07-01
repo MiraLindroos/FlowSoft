@@ -1,7 +1,7 @@
-import CalendarGrid from "./CalendarGrid";
-import CalendarHeader from "./CalendarHeader";
+import CalendarGrid from "./CalendarGrid"
+import CalendarHeader from "./CalendarHeader"
 import "./Calendar.css"
-import useCalendarView from "../../hooks/useCalendarView";
+import useCalendarView from "../../hooks/useCalendarView"
 
 const Calendar = () => {
   const {

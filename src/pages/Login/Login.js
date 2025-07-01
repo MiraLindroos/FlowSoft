@@ -3,10 +3,9 @@ import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth"
 import { useState } from "react"
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  console.log(email)
-  console.log(password)
+
   const signIn = (e) => {
     e.preventDefault() // Prevents the page from loading again
     signInWithEmailAndPassword(auth, email, password)
@@ -22,7 +21,7 @@ const Login = () => {
         console.log(errorCode)
         console.log(errorMessage)
       })
-  };
+  }
 
   return (
     <form onSubmit={signIn}>
@@ -44,4 +43,4 @@ const Login = () => {
   )
 }
 
-export default Login;
+export default Login

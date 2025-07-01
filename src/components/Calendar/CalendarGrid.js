@@ -1,11 +1,11 @@
 import "./Calendar.css"
-import DayCell from "./DayCell";
+import DayCell from "./DayCell"
 
 const CalendarGrid = ({daysInAMonth}) => {
 
   const click = (day) => {
-    console.log(`Klikattiin päivää: ${day}`);
-  };
+    console.log(`Klikattiin päivää: ${day}`)
+  }
 
   return (
     <div className="grid">
@@ -17,7 +17,7 @@ const CalendarGrid = ({daysInAMonth}) => {
         />
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default CalendarGrid;
+export default CalendarGrid

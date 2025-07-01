@@ -1,5 +1,5 @@
-import "./Statistics.css";
-import { BarChart, Bar, Rectangle, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import "./Statistics.css"
+import { BarChart, Bar, Rectangle, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
 const HoursThisMonth = ({data}) => {
 
@@ -29,4 +29,4 @@ const HoursThisMonth = ({data}) => {
   )
 }
 
-export default HoursThisMonth;
+export default HoursThisMonth

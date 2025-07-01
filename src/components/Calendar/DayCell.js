@@ -8,7 +8,7 @@ const DayCell = (props) => {
     <div className="grid-square" onClick={click}>
       <span className="grid-day">{day}</span>
     </div>
-  );
-};
+  )
+}
 
-export default DayCell;
+export default DayCell

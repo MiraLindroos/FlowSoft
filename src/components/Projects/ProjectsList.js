@@ -1,5 +1,5 @@
 import "./Projects.css"
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 import { FiEdit } from "react-icons/fi"
 
 const ProjectsList = ({projects}) => {
@@ -16,4 +16,4 @@ const ProjectsList = ({projects}) => {
   )
 }
 
-export default ProjectsList;
+export default ProjectsList
