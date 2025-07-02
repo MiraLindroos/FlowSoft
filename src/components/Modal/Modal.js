@@ -6,8 +6,8 @@ const Modal = ({message, onConfirm, onCancel}) => {
       <div className="modal-content">
         <p>{message}</p>
         <div className="buttons">
-          <button onClick={onCancel}>sulje</button>
-          <button onClick={onConfirm}>vahvista</button>
+          <button onClick={onCancel}>Sulje</button>
+          <button onClick={onConfirm}>Vahvista</button>
         </div>
       </div>
     </div>
