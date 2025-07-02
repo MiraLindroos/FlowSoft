@@ -1,10 +1,10 @@
 import "./Home.css"
-import HoursThisMonth from "../../components/Statistics/HoursThisMonth.js"
-import ActiveProjects from "../../components/Statistics/ActiveProjects.js"
-import TravelsThisMonth from "../../components/Statistics/TravelsThisMonth.js"
-import useStatistics from "../../hooks/useStatistics.js"
+import HoursThisMonth from "../../components/Statistics/HoursThisMonth"
+import ActiveProjects from "../../components/Statistics/ActiveProjects"
+import TravelsThisMonth from "../../components/Statistics/TravelsThisMonth"
+import useStatistics from "../../hooks/useStatistics"
 
-const Home = ({setIsLoggedIn}) => {
+const Home = () => {
   const {
     data
   } = useStatistics();

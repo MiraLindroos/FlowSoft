@@ -1,6 +1,6 @@
 import './Navbar.css'
 import { Link } from "react-router-dom"
-import { FiUser, FiSettings, FiMenu } from "react-icons/fi"
+import { FiUser, FiSettings, FiMenu, FiLogOut } from "react-icons/fi"
 
 const Navbar = ({setSidebarOpen, isMobile}) => {
   // Array of items to show in navbar
@@ -17,9 +17,9 @@ const Navbar = ({setSidebarOpen, isMobile}) => {
             we will show settings and profile icons on the navbar
             otherwise we show a menu icon that opens the sidebar menu
         */}
-        {!isMobile ? items.map((item, index) => (
+        {!isMobile ? <>{items.map((item, index) => (
           <Link key={index} to={item.path}>{item.iconName}</Link>
-        )) : <Link onClick={() => setSidebarOpen(true)}><FiMenu/></Link>}
+        ))} <FiLogOut onClick={() => console.log('ulos')}/></>: <Link onClick={() => setSidebarOpen(true)}><FiMenu/></Link>}
       </div>
     </div>
   )
