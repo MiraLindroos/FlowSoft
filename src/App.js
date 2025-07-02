@@ -1,20 +1,21 @@
 import { useState, useEffect } from "react"
 import './App.css'
-import Home from './pages/Home/Home'
 import Navbar from "./components/Navbar/Navbar"
 import Sidebar from "./components/Sidebar/Sidebar"
-import { Routes, Route } from "react-router-dom"
-import TimeManagement from "./pages/TimeManagement/TimeManagement"
-import Projects from "./pages/Projects/Projects"
-import Settings from './pages/Settings/Settings'
-import Profile from './pages/Profile/Profile'
-import Travel from './pages/Travel/Travel'
+import AppRoutes from "./AppRoutes"
+import { Routes, Route, Navigate } from "react-router-dom"
+import Login from './pages/Login/Login'
+import { auth } from "./firebase/index.js"
+import { onAuthStateChanged } from "firebase/auth"
+
 
 
 function App() {
   // If screen width is 898px or wider, set isSidebarOpen to true
   const [isSidebarOpen, setSidebarOpen] = useState(() => window.innerWidth >= 898)
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 898)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [authChecked, setAuthChecked] = useState(false)
 
   useEffect(() => {
     // Check window width and update sidebar state
@@ -27,28 +28,54 @@ function App() {
     window.addEventListener('resize', handleResize)
     // Call handleResize to set the correct initial state
     handleResize()
-    // Remove the event listener when component unmounts
-    return () => window.removeEventListener('resize', handleResize)
+
+    // Subscribe to Firebase auth state changes to track user login status
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, setIsLogged in to true
+        const uid = user.uid
+        setIsLoggedIn(true)
+        setAuthChecked(true)
+      } else {
+        // User is signed out, set isLoggedIn to false
+        setIsLoggedIn(false)
+        setAuthChecked(true)
+      }
+    });
+    // Remove the resize listener and unsubscribe from auth changes on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      unsubscribe()
+    }
   }, [])
+
+  console.log(isLoggedIn)
+  if (!authChecked) {
+    return (
+      <div>loading...</div>
+    )
+  }
 
   return (
     <div className="App">
-      <Navbar setSidebarOpen={setSidebarOpen} isMobile={isMobile}/>
-      <div className="main-content-area">
-        {/* If isSidebarOpen is true, show the sidebar */}
-        {isSidebarOpen && <Sidebar setSidebarOpen={setSidebarOpen} isMobile={isMobile}/>}
-        <main className="page-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/Etusivu" element={<Home />} />
-            <Route path="/Ajanhallinta" element={<TimeManagement />} />
-            <Route path="/Projektit" element={<Projects />} />
-            <Route path="/Asetukset" element={<Settings />} />
-            <Route path="/Profiili" element={<Profile />} />
-            <Route path="/Matkat" element={<Travel />} />
-          </Routes>
-        </main>
-      </div>
+      {/* If user has not logged in, show login page */}
+      {!isLoggedIn ? (
+        <Routes>
+          <Route path="/Kirjaudu" element={<Login setIsLoggedIn={setIsLoggedIn}/>} />
+          <Route path="*" element={<Navigate to="/Kirjaudu" />} />
+        </Routes>
+      ) : (
+        <>
+          <Navbar setSidebarOpen={setSidebarOpen} isMobile={isMobile}/>
+          <div className="main-content-area">
+            {/* If isSidebarOpen is true, show the sidebar */}
+            {isSidebarOpen && <Sidebar setSidebarOpen={setSidebarOpen} isMobile={isMobile}/>}
+            <main className="page-content">
+              <AppRoutes setIsLoggedIn={setIsLoggedIn}/>
+            </main>
+          </div>
+        </>
+      )}
     </div>
   )
 }

@@ -1,8 +1,8 @@
 import { auth } from "../../firebase/index.js"
-import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth"
+import { signInWithEmailAndPassword, signOut } from "firebase/auth"
 import { useState } from "react"
 
-const Login = () => {
+const Login = ({setIsLoggedIn}) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
@@ -22,24 +22,39 @@ const Login = () => {
         console.log(errorMessage)
       })
   }
+  const logOut = () => {
+    signOut(auth)
+      .then(() => {
+        console.log('logattu ulos')
+      })
+      .catch((error) => {
+        const errorCode = error.code
+        const errorMessage = error.message
+        console.log(errorCode)
+        console.log(errorMessage)
+      })
+  }
 
   return (
-    <form onSubmit={signIn}>
-      <h1>Kirjaudu sisään</h1>
-      <input
-        placeholder="sähköposti"
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        placeholder="salasana"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit">Login</button>
-    </form>
+    <>
+      <form onSubmit={signIn}>
+        <h1>Kirjaudu sisään</h1>
+        <input
+          placeholder="sähköposti"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          placeholder="salasana"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">Login</button>
+      </form>
+      <button onClick={logOut}>kirjaudu ulos</button>
+    </>
   )
 }
 
