@@ -2,7 +2,7 @@ import './Navbar.css'
 import { Link } from "react-router-dom"
 import { FiUser, FiSettings, FiMenu, FiLogOut } from "react-icons/fi"
 
-const Navbar = ({setSidebarOpen, isMobile}) => {
+const Navbar = ({setSidebarOpen, isMobile, onLogOutClick}) => {
   // Array of items to show in navbar
   const items = [
     { name: 'asetukset', path: 'Asetukset', iconName: <FiSettings /> },
@@ -19,7 +19,7 @@ const Navbar = ({setSidebarOpen, isMobile}) => {
         */}
         {!isMobile ? <>{items.map((item, index) => (
           <Link key={index} to={item.path}>{item.iconName}</Link>
-        ))} <FiLogOut onClick={() => console.log('ulos')}/></>: <Link onClick={() => setSidebarOpen(true)}><FiMenu/></Link>}
+        ))} <FiLogOut onClick={onLogOutClick}/></>: <Link onClick={() => setSidebarOpen(true)}><FiMenu/></Link>}
       </div>
     </div>
   )

@@ -6,7 +6,9 @@ import AppRoutes from "./AppRoutes"
 import { Routes, Route, Navigate } from "react-router-dom"
 import Login from './pages/Login/Login'
 import { auth } from "./firebase/index.js"
-import { onAuthStateChanged } from "firebase/auth"
+import { onAuthStateChanged, signOut } from "firebase/auth"
+import useModal from "./hooks/useModal"
+import Modal from "./components/Modal/Modal"
 
 
 
@@ -16,6 +18,8 @@ function App() {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 898)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [authChecked, setAuthChecked] = useState(false)
+
+  const { showModal, modalContent, openModal, closeModal } = useModal()
 
   useEffect(() => {
     // Check window width and update sidebar state
@@ -56,6 +60,26 @@ function App() {
     )
   }
 
+  const handleLogOut = () => {
+    openModal({
+      message: "Haluatko kirjautua ulos?",
+      onConfirm: () => {
+        signOut(auth)
+          .then(() => {
+            console.log('logattu ulos')
+          })
+          .catch((error) => {
+            const errorCode = error.code
+            const errorMessage = error.message
+            console.log(errorCode)
+            console.log(errorMessage)
+          })
+      },
+      onCancel: closeModal
+    })
+  }
+  console.log(modalContent)
+
   return (
     <div className="App">
       {/* If user has not logged in, show login page */}
@@ -66,12 +90,19 @@ function App() {
         </Routes>
       ) : (
         <>
-          <Navbar setSidebarOpen={setSidebarOpen} isMobile={isMobile}/>
+          <Navbar setSidebarOpen={setSidebarOpen} isMobile={isMobile} onLogOutClick={handleLogOut}/>
           <div className="main-content-area">
             {/* If isSidebarOpen is true, show the sidebar */}
             {isSidebarOpen && <Sidebar setSidebarOpen={setSidebarOpen} isMobile={isMobile}/>}
             <main className="page-content">
               <AppRoutes setIsLoggedIn={setIsLoggedIn}/>
+              {showModal &&
+                <Modal
+                  message={modalContent.message}
+                  onConfirm={modalContent.onConfirm}
+                  onCancel={modalContent.onCancel}
+                />
+              }
             </main>
           </div>
         </>
