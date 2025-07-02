@@ -1,4 +1,37 @@
 .modal {
-  z-index: 1000;
-  background-color: red;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 20% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #e3e1e1;
+  width: 65%;
+}
+
+.modal-content p {
+  margin: 0 0 18px;
+  padding: 5px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 3px;
+}
+
+.buttons button {
+  background-color: #013746;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 7px;
 }

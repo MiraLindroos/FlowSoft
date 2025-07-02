@@ -52,7 +52,7 @@
     border-left: none;
     border-right: 1px solid #e3e1e1;
     z-index: 0;
-    top: 60px; /* Navbar height is 50px high so we have to position the sidebar under the navbar */
+    top: 60px; /* Navbar height is 60px high so we have to position the sidebar under the navbar */
     height: calc(100vh - 60px); /* Set sidebar to the full viewport height - the navbar height */
   }
 

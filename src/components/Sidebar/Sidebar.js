@@ -36,7 +36,7 @@ const Sidebar = ({setSidebarOpen, isMobile, onLogOutClick}) => {
             style={{backgroundColor: "white", border: "none"}}
             onClick={() => {
               route.onClick()
-              if (isMobile) setSidebarOpen(false)
+              // if (isMobile) setSidebarOpen(false)
             }}
           >
             <span className="icon">{route.IconName}</span>{route.name}
