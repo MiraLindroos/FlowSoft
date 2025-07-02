@@ -93,7 +93,7 @@ function App() {
           <Navbar setSidebarOpen={setSidebarOpen} isMobile={isMobile} onLogOutClick={handleLogOut}/>
           <div className="main-content-area">
             {/* If isSidebarOpen is true, show the sidebar */}
-            {isSidebarOpen && <Sidebar setSidebarOpen={setSidebarOpen} isMobile={isMobile}/>}
+            {isSidebarOpen && <Sidebar setSidebarOpen={setSidebarOpen} isMobile={isMobile} onLogOutClick={handleLogOut}/>}
             <main className="page-content">
               <AppRoutes setIsLoggedIn={setIsLoggedIn}/>
               {showModal &&
