@@ -30,6 +30,8 @@
   margin-left: 10px;
   color: white;
   text-decoration: none;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 550;
 }
 
 @media (min-width: 425px) {

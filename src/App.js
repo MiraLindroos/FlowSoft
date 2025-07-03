@@ -5,7 +5,7 @@ import Sidebar from "./components/Sidebar/Sidebar"
 import AppRoutes from "./AppRoutes"
 import { Routes, Route, Navigate } from "react-router-dom"
 import Login from './pages/Login/Login'
-import { auth } from "./firebase/index.js"
+import { auth } from "./firebase/index"
 import { onAuthStateChanged, signOut } from "firebase/auth"
 import useModal from "./hooks/useModal"
 import Modal from "./components/Modal/Modal"

@@ -1,5 +1,5 @@
-import ProjectsList from "../../components/Projects/ProjectsList.js"
-import useProjectsList from "../../hooks/useProjectsList.js"
+import ProjectsList from "../../components/Projects/ProjectsList"
+import useProjectsList from "../../hooks/useProjectsList"
 import "./Projects.css"
 
 const Projects = () => {
