@@ -7,40 +7,78 @@
 .statistics {
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
 }
 
-.left-side {
-  background-color: rgb(224, 233, 233);
-  margin: 15px 15px 0;
-  border-radius: 8px;
-}
-
-.right-side {
-  margin: 15px;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-.right-side-item {
+.statistics-card {
   background-color: rgb(224, 233, 233);
   border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(1,55,70,0.08);
+  margin: 15px 15px 5px;
   padding: 15px 0;
 }
 
-.right-side-item:not(:last-child) {
-  margin-bottom: 15px;
+@media (min-width: 768px) {
+  .statistics-card {
+    margin: 20px 45px 10px;
+  }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .statistics {
-    flex-direction: row;
+    display: grid;
+    grid-template-areas:
+      "a a"
+      "b c";
+    gap: 10px 40px;
   }
-
-  .left-side {
-    width: 55%;
+  .statistics-card.a {
+    grid-area: a;
+    margin: 20px 60px 10px;
   }
+  .statistics-card.b {
+    grid-area: b;
+    margin: 0 0 10px 60px;
+  }
+  .statistics-card.c {
+    grid-area: c;
+    margin:0 60px 10px 0;
+  }
+}
 
-  .right-side {
-    width: 45%;
+@media (min-width: 1440px) {
+  .statistics {
+    gap: 20px 50px;
+  }
+  .statistics-card.a {
+    margin: 20px 80px 20px;
+  }
+  .statistics-card.b {
+    margin: 0 0 10px 80px;
+  }
+  .statistics-card.c {
+    margin: 0 80px 10px 0;
+  }
+}
+
+@media (min-width: 1600px) {
+  .statistics {
+    gap: 40px;
+    grid-template-areas: "a b c";
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 80px auto;
+    padding: 0 40px;
+  }
+  .statistics-card.a,
+  .statistics-card.b,
+  .statistics-card.c {
+    margin: 0;
+  }
+}
+
+@media (min-width: 1920px) {
+  .statistics {
+    padding: 0 60px;
+    max-width: 1800px;
   }
 }

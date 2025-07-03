@@ -12,16 +12,14 @@ const Home = () => {
     <div className="home">
       <h3>Kuukauden yhteenveto</h3>
       <div className="statistics">
-        <div className="left-side">
+        <div className="statistics-card a">
           <HoursThisMonth data={data}/>
         </div>
-        <div className="right-side">
-          <div className="right-side-item">
-            <ActiveProjects />
-          </div>
-          <div className="right-side-item">
-            <TravelsThisMonth />
-          </div>
+        <div className="statistics-card b">
+          <ActiveProjects />
+        </div>
+        <div className="statistics-card c">
+          <TravelsThisMonth />
         </div>
       </div>
     </div>
