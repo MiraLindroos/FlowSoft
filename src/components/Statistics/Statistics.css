@@ -16,9 +16,3 @@
 .card-info h3 {
   margin: 0;
 }
-
-@media (min-width: 768px) {
-  .statistics-card {
-    margin: 12px 25px 10px;
-  }
-}
