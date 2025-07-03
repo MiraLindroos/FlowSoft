@@ -28,7 +28,7 @@ const Home = () => {
           <StatisticsCard
             icon={'⌚️'}
             title={'Tunnit'}
-            description={'Kuukauden tunnit'}
+            description={'Tarkastele kuukauden tunteja'}
           > <HoursThisMonth data={data}/>
           </StatisticsCard>
         </div>
@@ -37,7 +37,7 @@ const Home = () => {
           <StatisticsCard
             icon={'📂'}
             title={'Projektit'}
-            description={'Avoimet projektit'}
+            description={'Aktiiviset projektit'}
           > <ActiveProjects />
           </StatisticsCard>
         </div>
@@ -46,7 +46,7 @@ const Home = () => {
           <StatisticsCard
             icon={'🚙'}
             title={'Matkat'}
-            description={'Kuukauden matkat'}
+            description={'Tarkastele kuukauden matkoja'}
           > <TravelsThisMonth />
           </StatisticsCard>
         </div>
