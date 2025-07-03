@@ -1,5 +1,5 @@
 .login-page {
-  background-color: #F7F9FA; /* vaalea tausta */
+  background-image: linear-gradient(to bottom right, #fff, #aec2c8, #1a404a);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -44,4 +44,48 @@
   border: none;
   border-radius: 5px;
   font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+  .login-page {
+    background-image: linear-gradient(to bottom right, #fff, #1a404a);
+  }
+
+  .login-form {
+    width: 60%;
+  }
+
+  .login-form input, .login-form button {
+    margin: 15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .login-form {
+    width: 50%;
+  }
+
+  .login-form input, .login-form button {
+    margin: 20px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .login-form {
+    width: 35%;
+  }
+
+  .login-form input, .login-form button {
+    margin: 20px 30px;
+  }
+
+  .login-page h2 {
+    margin: 25px 25px 40px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .login-form {
+    width: 30%;
+  }
 }
