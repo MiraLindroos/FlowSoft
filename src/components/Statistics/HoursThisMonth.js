@@ -4,7 +4,7 @@ import { BarChart, Bar, Rectangle, XAxis, YAxis, Tooltip, Legend, ResponsiveCont
 const HoursThisMonth = ({data}) => {
 
   return (
-    <div className="hours">
+    <div>
       Tunnit tässä kuussa
       <ResponsiveContainer width="100%" height={300}>
         <BarChart
