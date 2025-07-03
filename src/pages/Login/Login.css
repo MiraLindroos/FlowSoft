@@ -1,0 +1,47 @@
+.login-page {
+  background-color: #F7F9FA; /* vaalea tausta */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-page h2 {
+  color: #013746;
+  margin: 20px 15px 40px;
+  align-self: flex-start;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.login-form {
+  background-color: #fff;
+  border: 1px solid #D1D5D8;
+  border-radius: 8px;
+  margin-top: 50px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 16px;
+}
+
+.login-form h3 {
+  margin: 0 0 15px;
+  color: #013746;
+}
+
+.login-form input {
+  border: 1px solid #D1D5D8;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.login-form button {
+  padding: 10px;
+  margin: 10px;
+  background-color: #013746;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}

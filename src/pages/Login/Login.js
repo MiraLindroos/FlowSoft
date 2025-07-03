@@ -1,8 +1,9 @@
-import { auth } from "../../firebase/index.js"
-import { signInWithEmailAndPassword, signOut } from "firebase/auth"
+import { auth } from "../../firebase/index"
+import { signInWithEmailAndPassword } from "firebase/auth"
 import { useState } from "react"
+import "./Login.css"
 
-const Login = ({setIsLoggedIn}) => {
+const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
@@ -22,23 +23,12 @@ const Login = ({setIsLoggedIn}) => {
         console.log(errorMessage)
       })
   }
-  const logOut = () => {
-    signOut(auth)
-      .then(() => {
-        console.log('logattu ulos')
-      })
-      .catch((error) => {
-        const errorCode = error.code
-        const errorMessage = error.message
-        console.log(errorCode)
-        console.log(errorMessage)
-      })
-  }
 
   return (
-    <>
-      <form onSubmit={signIn}>
-        <h1>Kirjaudu sisään</h1>
+    <div className="login-page">
+      <h2>FlowSoft</h2>
+      <form onSubmit={signIn} className="login-form">
+        <h3>Kirjaudu sisään</h3>
         <input
           placeholder="sähköposti"
           type="email"
@@ -51,10 +41,9 @@ const Login = ({setIsLoggedIn}) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Login</button>
+        <button type="submit">Kirjaudu</button>
       </form>
-      <button onClick={logOut}>kirjaudu ulos</button>
-    </>
+    </div>
   )
 }
 
