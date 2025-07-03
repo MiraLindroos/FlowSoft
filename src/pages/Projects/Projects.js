@@ -7,8 +7,8 @@ const Projects = () => {
     projects
   } = useProjectsList()
   return (
-    <div className="projects">
-      <div className="buttons">
+    <div className="projects-view">
+      <div className="project-buttons">
         <button className="add-project">LISÄÄ UUSI</button>
       </div>
       <div className="projects-list">

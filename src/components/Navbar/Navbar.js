@@ -11,7 +11,7 @@ const Navbar = ({setSidebarOpen, isMobile, onLogOutClick}) => {
 
   return (
     <div className="navbar">
-      <Link className="logo" to={'/'}>FlowSoft</Link>
+      <Link className="navbar-logo" to={'/'}>FlowSoft</Link>
       <div className="navbar-left">
         {/* If isMobile is false aka the window width is over 897px
             we will show settings and profile icons on the navbar

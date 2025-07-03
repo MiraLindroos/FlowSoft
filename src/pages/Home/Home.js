@@ -24,26 +24,33 @@ const Home = () => {
         </div>
       </div> */}
       <div className="statistics">
-        <StatisticsCard
-          icon={'⌚️'}
-          title={'Tunnit'}
-          description={'Kuukauden tunnit'}
-        > <HoursThisMonth data={data}/>
-        </StatisticsCard>
+        <div className="statistics hours">
+          <StatisticsCard
+            icon={'⌚️'}
+            title={'Tunnit'}
+            description={'Kuukauden tunnit'}
+          > <HoursThisMonth data={data}/>
+          </StatisticsCard>
+        </div>
 
-        <StatisticsCard
-          icon={'📂'}
-          title={'Projektit'}
-          description={'Avoimet projektit'}
-        > <ActiveProjects />
-        </StatisticsCard>
+        <div className="statistics projects">
+          <StatisticsCard
+            icon={'📂'}
+            title={'Projektit'}
+            description={'Avoimet projektit'}
+          > <ActiveProjects />
+          </StatisticsCard>
+        </div>
+        
+        <div className="statistics travels">
+          <StatisticsCard
+            icon={'🚙'}
+            title={'Matkat'}
+            description={'Kuukauden matkat'}
+          > <TravelsThisMonth />
+          </StatisticsCard>
+        </div>
 
-        <StatisticsCard
-          icon={'🚙'}
-          title={'Matkat'}
-          description={'Kuukauden matkat'}
-        > <TravelsThisMonth />
-        </StatisticsCard>
       </div>
 
     </div>

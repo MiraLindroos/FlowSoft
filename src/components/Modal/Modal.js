@@ -5,7 +5,7 @@ const Modal = ({message, onConfirm, onCancel}) => {
     <div className="modal">
       <div className="modal-content">
         <p>{message}</p>
-        <div className="buttons">
+        <div className="modal-buttons">
           <button onClick={onCancel}>Sulje</button>
           <button onClick={onConfirm}>Vahvista</button>
         </div>

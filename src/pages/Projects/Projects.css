@@ -1,8 +1,8 @@
-.projects {
+.projects-view {
   margin: 20px 8px;
 }
 
-.buttons {
+.project-buttons {
   text-align: end;
   margin-bottom: 15px;
 }
@@ -25,13 +25,13 @@
 }
 
 @media (min-width: 768px) {
-  .projects {
+  .projects-view {
     margin: 22px 16px;
   }
 }
 
 @media (min-width: 1024px) {
-  .projects {
+  .projects-view {
     margin: 26px 22px;
   }
 
@@ -42,13 +42,13 @@
 }
 
 @media (min-width: 1440px) {
-  .projects {
+  .projects-view {
     margin: 30px 40px;
   }
 }
 
 @media (min-width: 1600px) {
-  .projects {
+  .projects-view {
     margin: 35px 50px;
   }
 }

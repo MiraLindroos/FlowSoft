@@ -14,11 +14,8 @@
   margin-bottom: 30px;
 }
 
-
 @media (min-width: 768px) {
-  .statistics-card {
-    margin: 20px 45px 10px;
-  }
+
 }
 
 @media (min-width: 1024px) {
@@ -29,15 +26,15 @@
       "b c";
     gap: 10px 40px;
   }
-  .statistics-card.a {
+  .statistics.hours {
     grid-area: a;
     margin: 20px 60px 10px;
   }
-  .statistics-card.b {
+  .statistics.projects {
     grid-area: b;
     margin: 0 0 10px 60px;
   }
-  .statistics-card.c {
+  .statistics.travels {
     grid-area: c;
     margin:0 60px 10px 0;
   }
@@ -47,13 +44,13 @@
   .statistics {
     gap: 20px 50px;
   }
-  .statistics-card.a {
+  .statistics.hours {
     margin: 20px 80px 20px;
   }
-  .statistics-card.b {
+  .statistics.projects {
     margin: 0 0 10px 80px;
   }
-  .statistics-card.c {
+  .statistics.travels {
     margin: 0 80px 10px 0;
   }
 }
@@ -66,9 +63,9 @@
     margin: 80px auto;
     padding: 0 40px;
   }
-  .statistics-card.a,
-  .statistics-card.b,
-  .statistics-card.c {
+  .statistics.hours,
+  .statistics.projects,
+  .statistics.travels {
     margin: 0;
   }
 }

@@ -26,7 +26,7 @@
   border-radius: 5px;
 }
 
-.logo {
+.navbar-logo {
   margin-left: 10px;
   color: white;
   text-decoration: none;
@@ -43,7 +43,7 @@
     padding: 4px;
   }
 
-  .logo {
+  .navbar-logo {
     margin-left: 12px;
   }
 }
@@ -63,7 +63,7 @@
     margin: 0px 10px;
   }
 
-  .logo {
+  .navbar-logo {
     margin-left: 18px;
     font-size: 1.2rem;
   }
@@ -82,7 +82,7 @@
     font-size: 28px;
   }
 
-  .logo {
+  .navbar-logo {
     margin-left: 20px;
     font-size: 1.3rem;
   }

@@ -21,14 +21,14 @@
   padding: 5px;
 }
 
-.buttons {
+.modal-buttons {
   display: flex;
   justify-content: space-between;
   margin: 0;
   padding: 3px;
 }
 
-.buttons button {
+.modal-buttons button {
   background-color: #013746;
   color: #fff;
   border: none;
