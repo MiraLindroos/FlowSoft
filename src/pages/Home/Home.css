@@ -2,20 +2,37 @@
   width: 100%;
   overflow: hidden;
   background-color: #f7f6f6;
+}
+
+.statistics {
   display: flex;
   flex-direction: column;
 }
 
 .left-side {
-  background-color: rgb(218, 229, 229);
+  background-color: rgb(224, 233, 233);
+  margin: 15px 15px 0;
+  border-radius: 8px;
 }
 
 .right-side {
-  background-color: rgb(133, 111, 111);
+  margin: 15px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.right-side-item {
+  background-color: rgb(224, 233, 233);
+  border-radius: 8px;
+  padding: 15px 0;
+}
+
+.right-side-item:not(:last-child) {
+  margin-bottom: 15px;
 }
 
 @media (min-width: 768px) {
-  .home {
+  .statistics {
     flex-direction: row;
   }
 

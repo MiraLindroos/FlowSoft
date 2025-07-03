@@ -10,12 +10,19 @@ const Home = () => {
   } = useStatistics();
   return (
     <div className="home">
-      <div className="left-side">
-        <HoursThisMonth data={data}/>
-      </div>
-      <div className="right-side">
-        <ActiveProjects />
-        <TravelsThisMonth />
+      <h3>Kuukauden yhteenveto</h3>
+      <div className="statistics">
+        <div className="left-side">
+          <HoursThisMonth data={data}/>
+        </div>
+        <div className="right-side">
+          <div className="right-side-item">
+            <ActiveProjects />
+          </div>
+          <div className="right-side-item">
+            <TravelsThisMonth />
+          </div>
+        </div>
       </div>
     </div>
   );

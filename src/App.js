@@ -10,8 +10,6 @@ import { onAuthStateChanged, signOut } from "firebase/auth"
 import useModal from "./hooks/useModal"
 import Modal from "./components/Modal/Modal"
 
-
-
 function App() {
   // If screen width is 898px or wider, set isSidebarOpen to true
   const [isSidebarOpen, setSidebarOpen] = useState(() => window.innerWidth >= 898)
@@ -53,7 +51,6 @@ function App() {
     }
   }, [])
 
-  console.log(isLoggedIn)
   if (!authChecked) {
     return (
       <div>loading...</div>
@@ -78,7 +75,6 @@ function App() {
       onCancel: closeModal
     })
   }
-  console.log(modalContent)
 
   return (
     <div className="App">
