@@ -4,7 +4,7 @@
   background-color: #f7f6f6;
 }
 
-.home h3 {
+.home-title {
   margin-top: 30px
 }
 
@@ -14,14 +14,6 @@
   margin-bottom: 30px;
 }
 
-.statistics-card {
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(1,55,70,0.08);
-  margin: 10px 15px 5px;
-  padding: 15px 0;
-  background-color: #e0f0f3;
-  border-left: 4px solid #013746;
-}
 
 @media (min-width: 768px) {
   .statistics-card {

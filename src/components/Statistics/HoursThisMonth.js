@@ -4,26 +4,23 @@ import { BarChart, Bar, Rectangle, XAxis, YAxis, Tooltip, Legend, ResponsiveCont
 const HoursThisMonth = ({data}) => {
 
   return (
-    <div>
-      Tunnit tässä kuussa
-      <ResponsiveContainer width="100%" height={300}>
-        <BarChart
-          data={data}
-          margin={{
-            top: 5,
-            right: 25,
-            left: -20,
-            bottom: 5,
-          }}
-        >
-          <XAxis dataKey="dateRange" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="tunnit" fill="#013746" activeBar={<Rectangle />}/>
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
+    <ResponsiveContainer width="100%" height={300}>
+      <BarChart
+        data={data}
+        margin={{
+          top: 5,
+          right: 25,
+          left: -20,
+          bottom: 5,
+        }}
+      >
+        <XAxis dataKey="dateRange" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="tunnit" fill="#013746" activeBar={<Rectangle />}/>
+      </BarChart>
+    </ResponsiveContainer>
   )
 }
 

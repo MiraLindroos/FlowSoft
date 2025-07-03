@@ -15,26 +15,23 @@ const TravelsThisMonth = () => {
     },
   ]
   return (
-    <div>
-      Matkat tässä kuussa
-      <ResponsiveContainer width="100%" height={150}>
-        <BarChart
-          data={data}
-          margin={{
-            top: 5,
-            right: 25,
-            left: -20,
-            bottom: 5,
-          }}
-        >
-          <XAxis dataKey="dateRange" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="tunnit" fill="#013746" activeBar={<Rectangle />}/>
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
+    <ResponsiveContainer width="100%" height={150}>
+      <BarChart
+        data={data}
+        margin={{
+          top: 5,
+          right: 25,
+          left: -20,
+          bottom: 5,
+        }}
+      >
+        <XAxis dataKey="dateRange" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="tunnit" fill="#013746" activeBar={<Rectangle />}/>
+      </BarChart>
+    </ResponsiveContainer>
   )
 }
 
