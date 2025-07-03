@@ -85,8 +85,9 @@ function App() {
       {/* If user has not logged in, show login page */}
       {!isLoggedIn ? (
         <Routes>
-          <Route path="/Kirjaudu" element={<Login setIsLoggedIn={setIsLoggedIn}/>} />
-          <Route path="*" element={<Navigate to="/Kirjaudu" />} />
+          <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path="/Kirjaudu" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       ) : (
         <>
