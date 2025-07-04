@@ -6,31 +6,21 @@ import AppRoutes from "./AppRoutes"
 import { Routes, Route, Navigate } from "react-router-dom"
 import Login from './pages/Login/Login'
 import { auth } from "./firebase/index"
-import { onAuthStateChanged, signOut } from "firebase/auth"
+import { onAuthStateChanged } from "firebase/auth"
 import useModal from "./hooks/useModal"
+import useSidebarAndNavbar from "./hooks/useSidebarAndNavbar"
+import useAuth from "./hooks/useAuth"
 import Modal from "./components/Modal/Modal"
 
 function App() {
-  // If screen width is 898px or wider, set isSidebarOpen to true
-  const [isSidebarOpen, setSidebarOpen] = useState(() => window.innerWidth >= 898)
-  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 898)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [authChecked, setAuthChecked] = useState(false)
 
   const { showModal, modalContent, openModal, closeModal } = useModal()
+  const { handleLogOut } = useAuth(openModal, closeModal)
+  const { isSidebarOpen, setSidebarOpen, isMobile, navbarItems, sidebarVisibleRoutes } = useSidebarAndNavbar(handleLogOut)
 
   useEffect(() => {
-    // Check window width and update sidebar state
-    const handleResize = () => {
-      // If screen width is 898 or bigger, set isSidebarOpen to true, otherwise it's false
-      setSidebarOpen(window.innerWidth >= 898)
-      setIsMobile(window.innerWidth < 898)
-    }
-    // Add a listener to run handleResize whenever the window is resized
-    window.addEventListener('resize', handleResize)
-    // Call handleResize to set the correct initial state
-    handleResize()
-
     // Subscribe to Firebase auth state changes to track user login status
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -44,9 +34,8 @@ function App() {
         setAuthChecked(true)
       }
     });
-    // Remove the resize listener and unsubscribe from auth changes on component unmount
+    // Unsubscribe from auth changes on component unmount
     return () => {
-      window.removeEventListener('resize', handleResize)
       unsubscribe()
     }
   }, [])
@@ -56,26 +45,7 @@ function App() {
       <div>loading...</div>
     )
   }
-
-  const handleLogOut = () => {
-    openModal({
-      message: "Haluatko kirjautua ulos?",
-      onConfirm: () => {
-        signOut(auth)
-          .then(() => {
-            console.log('logattu ulos')
-          })
-          .catch((error) => {
-            const errorCode = error.code
-            const errorMessage = error.message
-            console.log(errorCode)
-            console.log(errorMessage)
-          })
-      },
-      onCancel: closeModal
-    })
-  }
-
+  console.log(showModal)
   return (
     <div className="App">
       {/* If user has not logged in, show login page */}
@@ -87,10 +57,10 @@ function App() {
         </Routes>
       ) : (
         <>
-          <Navbar setSidebarOpen={setSidebarOpen} isMobile={isMobile} onLogOutClick={handleLogOut}/>
+          <Navbar setSidebarOpen={setSidebarOpen} isMobile={isMobile} onLogOutClick={handleLogOut} items={navbarItems}/>
           <div className="main-content-area">
             {/* If isSidebarOpen is true, show the sidebar */}
-            {isSidebarOpen && <Sidebar setSidebarOpen={setSidebarOpen} isMobile={isMobile} onLogOutClick={handleLogOut}/>}
+            {isSidebarOpen && <Sidebar setSidebarOpen={setSidebarOpen} isMobile={isMobile} onLogOutClick={handleLogOut} visibleRoutes={sidebarVisibleRoutes}/>}
             <main className="page-content">
               <AppRoutes setIsLoggedIn={setIsLoggedIn}/>
               {showModal &&

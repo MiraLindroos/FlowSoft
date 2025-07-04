@@ -2,12 +2,7 @@ import './Navbar.css'
 import { Link } from "react-router-dom"
 import { FiUser, FiSettings, FiMenu, FiLogOut } from "react-icons/fi"
 
-const Navbar = ({setSidebarOpen, isMobile, onLogOutClick}) => {
-  // Array of items to show in navbar
-  const items = [
-    { name: 'asetukset', path: 'Asetukset', iconName: <FiSettings /> },
-    { name: 'profiili', path: 'Profiili', iconName: <FiUser /> }
-  ]
+const Navbar = ({setSidebarOpen, isMobile, onLogOutClick, items}) => {
 
   return (
     <div className="navbar">

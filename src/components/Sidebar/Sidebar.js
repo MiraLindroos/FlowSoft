@@ -2,23 +2,7 @@ import "./Sidebar.css"
 import { Link } from "react-router-dom"
 import * as Fi from "react-icons/fi"
 
-const Sidebar = ({setSidebarOpen, isMobile, onLogOutClick}) => {
-  // Array of routes that are always shown (both mobile and desktop)
-  const routes = [
-    { name: "Etusivu", path: "/Etusivu", IconName: <Fi.FiHome /> },
-    { name: "Ajanhallinta", path: "/Ajanhallinta", IconName: <Fi.FiCalendar /> },
-    { name: "Projektit", path: "/Projektit", IconName: <Fi.FiFolder /> },
-    { name: "Matkat", path: "/Matkat", IconName: <Fi.FiBriefcase /> },
-  ]
-  // Array of routes that are shown only on mobile view
-  const extraMobileRoutes = [
-    { name: 'Asetukset', path: 'Asetukset', IconName: <Fi.FiSettings /> },
-    { name: 'Profiili', path: 'Profiili', IconName: <Fi.FiUser /> },
-    { name: 'Kirjaudu ulos', onClick: onLogOutClick, IconName: <Fi.FiLogOut />},
-  ]
-  // If isMobile is true, show both routes + extraMobileRoutes
-  const visibleRoutes = isMobile ? [...routes, ...extraMobileRoutes] : routes
-
+const Sidebar = ({setSidebarOpen, isMobile, onLogOutClick, visibleRoutes}) => {
   return (
     <div className="sidebar">
       <div className="sidebar-items">
@@ -32,6 +16,7 @@ const Sidebar = ({setSidebarOpen, isMobile, onLogOutClick}) => {
             </Link>
           ) : (
           <button
+            key={index}
             className="item"
             style={{backgroundColor: "white", border: "none"}}
             onClick={() => {
