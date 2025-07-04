@@ -1,13 +1,13 @@
 import "./Sidebar.css"
 import { Link } from "react-router-dom"
-import * as Fi from "react-icons/fi"
+import { FiX } from "react-icons/fi"
 
-const Sidebar = ({setSidebarOpen, isMobile, onLogOutClick, visibleRoutes}) => {
+const Sidebar = ({setSidebarOpen, isMobile, visibleRoutes}) => {
   return (
     <div className="sidebar">
       <div className="sidebar-items">
         {/* If isMobile is true, show a close icon on the sidebar */}
-        {isMobile && <button className="close-icon" onClick={() => setSidebarOpen(false)}><Fi.FiX /></button>}
+        {isMobile && <button className="close-icon" onClick={() => setSidebarOpen(false)}><FiX /></button>}
         {visibleRoutes.map((route, index) =>
           route.path ? (
             // Close the sidebar on mobile when a navigation link is clicked

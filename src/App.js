@@ -45,7 +45,7 @@ function App() {
       <div>loading...</div>
     )
   }
-  console.log(showModal)
+
   return (
     <div className="App">
       {/* If user has not logged in, show login page */}
@@ -57,10 +57,22 @@ function App() {
         </Routes>
       ) : (
         <>
-          <Navbar setSidebarOpen={setSidebarOpen} isMobile={isMobile} onLogOutClick={handleLogOut} items={navbarItems}/>
+          <Navbar
+            setSidebarOpen={setSidebarOpen}
+            isMobile={isMobile}
+            onLogOutClick={handleLogOut}
+            items={navbarItems}
+          />
           <div className="main-content-area">
             {/* If isSidebarOpen is true, show the sidebar */}
-            {isSidebarOpen && <Sidebar setSidebarOpen={setSidebarOpen} isMobile={isMobile} onLogOutClick={handleLogOut} visibleRoutes={sidebarVisibleRoutes}/>}
+            {isSidebarOpen &&
+              <Sidebar
+                setSidebarOpen={setSidebarOpen}
+                isMobile={isMobile}
+                onLogOutClick={handleLogOut}
+                visibleRoutes={sidebarVisibleRoutes}
+              />
+            }
             <main className="page-content">
               <AppRoutes setIsLoggedIn={setIsLoggedIn}/>
               {showModal &&

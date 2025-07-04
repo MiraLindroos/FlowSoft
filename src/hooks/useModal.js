@@ -9,10 +9,8 @@ const useModal = () => {
   })
 
   const openModal = ({message, onConfirm, onCancel}) => {
-    console.log('open')
     setModalContent({message, onConfirm, onCancel})
     setShowModal(true)
-    console.log(showModal)
   }
 
   const closeModal = () => {

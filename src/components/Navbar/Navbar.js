@@ -1,6 +1,6 @@
 import './Navbar.css'
 import { Link } from "react-router-dom"
-import { FiUser, FiSettings, FiMenu, FiLogOut } from "react-icons/fi"
+import { FiMenu, FiLogOut } from "react-icons/fi"
 
 const Navbar = ({setSidebarOpen, isMobile, onLogOutClick, items}) => {
 

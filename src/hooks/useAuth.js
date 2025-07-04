@@ -3,7 +3,6 @@ import { auth } from "../firebase/index"
 
 const useAuth = (openModal, closeModal) => {
   const handleLogOut = () => {
-    console.log('kklikattu')
     openModal({
       message: "Haluatko kirjautua ulos?",
       onConfirm: () => {
