@@ -16,6 +16,14 @@
   overflow-y: auto;
 }
 
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  animation:forwards;
+}
+
 @media (min-width: 768px) {
   .main-content-area {
     height: calc(100vh - 60px); /* Start the content right under the navbar */

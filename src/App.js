@@ -28,7 +28,7 @@ function App() {
 
   if (!authChecked) {
     return (
-      <div>loading...</div>
+      <div className='loading'>Ladataan...</div>
     )
   }
 

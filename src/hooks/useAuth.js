@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 
 const useAuth = (openModal, closeModal) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [authChecked, setAuthChecked] = useState(false)
+  const [authChecked, setAuthChecked] = useState(null)
 
   useEffect(() => {
     // Subscribe to Firebase auth state changes to track user login status
@@ -13,12 +13,11 @@ const useAuth = (openModal, closeModal) => {
         // User is signed in, setIsLogged in to true
         const uid = user.uid
         setIsLoggedIn(true)
-        setAuthChecked(true)
       } else {
         // User is signed out, set isLoggedIn to false
         setIsLoggedIn(false)
-        setAuthChecked(true)
       }
+      setAuthChecked(true)
     });
     // Unsubscribe from auth changes on component unmount
     return () => {
