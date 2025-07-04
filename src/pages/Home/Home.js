@@ -3,7 +3,7 @@ import HoursThisMonth from "../../components/Statistics/HoursThisMonth"
 import ActiveProjects from "../../components/Statistics/ActiveProjects"
 import TravelsThisMonth from "../../components/Statistics/TravelsThisMonth"
 import useStatistics from "../../hooks/useStatistics"
-import StatisticsCard from "../../components/Statistics/StatisticsCard"
+import Card from "../../components/Card/Card"
 
 const Home = () => {
   const {
@@ -12,43 +12,32 @@ const Home = () => {
   return (
     <div className="home">
       <h3 className="home-title">Kuukauden yhteenveto</h3>
-      {/* <div className="statistics">
-        <div className="statistics-card a">
-          <HoursThisMonth data={data}/>
-        </div>
-        <div className="statistics-card b">
-          <ActiveProjects />
-        </div>
-        <div className="statistics-card c">
-          <TravelsThisMonth />
-        </div>
-      </div> */}
       <div className="statistics">
         <div className="statistics hours">
-          <StatisticsCard
+          <Card
             icon={'⌚️'}
             title={'Tunnit'}
             description={'Tarkastele kuukauden tunteja'}
           > <HoursThisMonth data={data}/>
-          </StatisticsCard>
+          </Card>
         </div>
 
         <div className="statistics projects">
-          <StatisticsCard
+          <Card
             icon={'📂'}
             title={'Projektit'}
             description={'Aktiiviset projektit'}
           > <ActiveProjects />
-          </StatisticsCard>
+          </Card>
         </div>
         
         <div className="statistics travels">
-          <StatisticsCard
+          <Card
             icon={'🚙'}
             title={'Matkat'}
             description={'Tarkastele kuukauden matkoja'}
           > <TravelsThisMonth />
-          </StatisticsCard>
+          </Card>
         </div>
 
       </div>

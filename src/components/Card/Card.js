@@ -1,8 +1,8 @@
-import './Statistics.css'
+import './Card.css'
 
-const StatisticsCard = ({icon, title, description, children}) => {
+const Card = ({icon, title, description, children}) => {
   return (
-    <div className='statistics-card'>
+    <div className='card'>
     <div className='card-info'>
       <h3>{icon} {title}</h3>
       <small>{description}</small>
@@ -12,4 +12,4 @@ const StatisticsCard = ({icon, title, description, children}) => {
   )
 }
 
-export default StatisticsCard
+export default Card
