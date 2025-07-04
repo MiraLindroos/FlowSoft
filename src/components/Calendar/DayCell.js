@@ -1,11 +1,8 @@
 import "./Calendar.css"
 
-const DayCell = (props) => {
-  const day = props.day
-  const click = props.onClick
-
+const DayCell = ({day, onClick}) => {
   return (
-    <div className="grid-square" onClick={click}>
+    <div className="grid-square" onClick={onClick}>
       <span className="grid-day">{day}</span>
     </div>
   )

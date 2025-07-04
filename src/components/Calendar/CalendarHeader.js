@@ -1,8 +1,6 @@
-const CalendarHeader = (props) => {
-  const nextMonth = props.nextMonth
-  const previousMonth = props.previousMonth
+const CalendarHeader = ({nextMonth, previousMonth, currentDate}) => {
+
   const getMonth = () => {
-    const currentDate = props.currentDate
     return <p>{currentDate.toLocaleString('default', {month: 'long'})}</p>
   }
   const clickLeft = () => {
