@@ -1,44 +1,30 @@
-import { useState, useEffect } from "react"
 import './App.css'
 import Navbar from "./components/Navbar/Navbar"
 import Sidebar from "./components/Sidebar/Sidebar"
 import AppRoutes from "./AppRoutes"
 import { Routes, Route, Navigate } from "react-router-dom"
 import Login from './pages/Login/Login'
-import { auth } from "./firebase/index"
-import { onAuthStateChanged } from "firebase/auth"
 import useModal from "./hooks/useModal"
 import useSidebarAndNavbar from "./hooks/useSidebarAndNavbar"
 import useAuth from "./hooks/useAuth"
 import Modal from "./components/Modal/Modal"
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [authChecked, setAuthChecked] = useState(false)
-
   const { showModal, modalContent, openModal, closeModal } = useModal()
-  const { handleLogOut } = useAuth(openModal, closeModal)
-  const { isSidebarOpen, setSidebarOpen, isMobile, navbarItems, sidebarVisibleRoutes } = useSidebarAndNavbar(handleLogOut)
 
-  useEffect(() => {
-    // Subscribe to Firebase auth state changes to track user login status
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, setIsLogged in to true
-        const uid = user.uid
-        setIsLoggedIn(true)
-        setAuthChecked(true)
-      } else {
-        // User is signed out, set isLoggedIn to false
-        setIsLoggedIn(false)
-        setAuthChecked(true)
-      }
-    });
-    // Unsubscribe from auth changes on component unmount
-    return () => {
-      unsubscribe()
-    }
-  }, [])
+  const {
+    isLoggedIn,
+    setIsLoggedIn,
+    authChecked,
+    handleLogOut
+  } = useAuth(openModal, closeModal)
+
+  const {
+    isSidebarOpen,
+    setSidebarOpen,
+    isMobile, navbarItems,
+    sidebarVisibleRoutes
+  } = useSidebarAndNavbar(handleLogOut)
 
   if (!authChecked) {
     return (
@@ -62,6 +48,7 @@ function App() {
             isMobile={isMobile}
             onLogOutClick={handleLogOut}
             items={navbarItems}
+            logo='FlowSoft'
           />
           <div className="main-content-area">
             {/* If isSidebarOpen is true, show the sidebar */}
