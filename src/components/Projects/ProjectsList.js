@@ -6,9 +6,9 @@ const ProjectsList = ({projects}) => {
 
   return (
     <div className="projects-list">
-      {projects.map((project, index) => (
-        <div className="project-row">
-          <Link key={index} to={`/Projekti/${project.id}`} className="project-item">{project.name}</Link>
+      {projects.map((project) => (
+        <div className="project-row" key={project.id}>
+          <Link to={`/Projekti/${project.id}`} className="project-item">{project.name}</Link>
           <button className="edit"><FiEdit /></button>
         </div>
       ))}

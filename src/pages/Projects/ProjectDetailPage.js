@@ -5,9 +5,8 @@ import useProjectDetail from "../../hooks/useProjectDetail"
 
 const ProjectDetailPage = () => {
   const {id} = useParams()
-
   const { project } = useProjectDetail(id)
-  console.log(project)
+
   if (!project) {
     return <div>Ladataan projektia...</div>;
   }
