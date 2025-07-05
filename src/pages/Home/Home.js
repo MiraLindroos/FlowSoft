@@ -18,6 +18,7 @@ const Home = () => {
             icon={'⌚️'}
             title={'Tunnit'}
             description={'Tarkastele kuukauden tunteja'}
+            style={{ backgroundColor: "#e0f0f3", borderLeft: "4px solid #013746"}}
           > <HoursThisMonth data={data}/>
           </Card>
         </div>
@@ -27,6 +28,7 @@ const Home = () => {
             icon={'📂'}
             title={'Projektit'}
             description={'Aktiiviset projektit'}
+            style={{ backgroundColor: "#e0f3e6", borderLeft: "4px solid #014639"}}
           > <ActiveProjects />
           </Card>
         </div>
@@ -36,6 +38,7 @@ const Home = () => {
             icon={'🚙'}
             title={'Matkat'}
             description={'Tarkastele kuukauden matkoja'}
+            style={{ backgroundColor: "#e8e0f3", borderLeft: "4px solid #1a0146"}}
           > <TravelsThisMonth />
           </Card>
         </div>

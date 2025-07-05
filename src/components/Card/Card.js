@@ -1,8 +1,8 @@
 import './Card.css'
 
-const Card = ({icon, title, description, children}) => {
+const Card = ({icon, title, description, children, style}) => {
   return (
-    <div className='card'>
+    <div className='card' style={style}>
       <div className='card-info'>
         <h3>{icon} {title}</h3>
         <small>{description}</small>
