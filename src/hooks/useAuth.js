@@ -12,6 +12,7 @@ const useAuth = (openModal, closeModal) => {
       if (user) {
         // User is signed in, setIsLogged in to true
         const uid = user.uid
+        console.log(uid)
         setIsLoggedIn(true)
       } else {
         // User is signed out, set isLoggedIn to false

@@ -8,7 +8,7 @@ const ProjectsList = ({projects}) => {
     <div className="projects-list">
       {projects.map((project, index) => (
         <div className="project-row">
-          <Link key={index} to={project.path} className="project-item">{project.name}</Link>
+          <Link key={index} to={`/Projekti/${project.id}`} className="project-item">{project.name}</Link>
           <button className="edit"><FiEdit /></button>
         </div>
       ))}

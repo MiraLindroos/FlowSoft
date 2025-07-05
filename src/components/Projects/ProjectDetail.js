@@ -1,12 +1,11 @@
 import Card from "../Card/Card"
 import ProjectInfo from "./ProjectInfo"
 
-const ProjectCard = () => {
+const ProjectDetail = () => {
   return (
     <div>
       <Card
         title='projektin tiedot'
-        description='infoo'
       > <ProjectInfo />
       </Card>
       <Card
@@ -21,4 +20,4 @@ const ProjectCard = () => {
   )
 }
 
-export default ProjectCard
+export default ProjectDetail
