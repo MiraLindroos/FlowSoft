@@ -11,7 +11,10 @@ const ProjectDetailPage = () => {
     return <div>Ladataan projektia...</div>;
   }
   return (
-    <ProjectDetail project={project}/>
+    <div>
+      <h3>Projekti: {project.name}</h3>
+      <ProjectDetail project={project}/>
+    </div>
   )
 }
 

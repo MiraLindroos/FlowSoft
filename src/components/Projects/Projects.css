@@ -26,6 +26,10 @@
   font-size: 0.9rem;
 }
 
+.project-detail {
+  margin: 0 0 20px;
+}
+
 @media (min-width: 768px) {
   .edit {
     font-size: 1rem;
@@ -35,5 +39,35 @@
 @media (min-width: 1024px) {
   .edit {
     font-size: 1.1rem;
+  }
+
+  .project-detail {
+    display: grid;
+    grid-template-areas:
+      "a b"
+      "a c";
+    margin: 0 10px 20px;
+  }
+  .project-detail.info {
+    grid-area: a;
+    background-color: green;
+  }
+
+  .project-detail.hours {
+    grid-area: b;
+    background-color: blue;
+  }
+
+  .project-detail.else {
+    grid-area: c;
+    background-color: red;
+  }
+
+  .project-detail.info,
+  .project-detail.hours,
+  .project-detail.else {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
 }

@@ -41,24 +41,35 @@
 
 @media (min-width: 1440px) {
   .statistics {
+    grid-template-areas:
+    "a b"
+    "a c";
     margin: 0 30px 35px;
-  }
-}
-
-/* @media (min-width: 1600px) {
-  .statistics {
-    grid-template-areas: "a b c";
+    gap: 5px;
   }
   .statistics.hours,
   .statistics.projects,
   .statistics.travels {
-    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .statistics.projects,
+  .statistics.travels {
+    margin: 0 30px 5px 0;
+  }
+}
+
+@media (min-width: 1600px) {
+  .statistics {
+    gap: 10px;
   }
 }
 
 @media (min-width: 1920px) {
   .statistics {
-    padding: 0 60px;
-    max-width: 1800px;
+    gap: 20px;
+    margin: 0 45px;
   }
-} */
+}
