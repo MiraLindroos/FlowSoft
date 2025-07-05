@@ -30,9 +30,26 @@
   margin: 0 0 20px;
 }
 
+.project-info {
+  text-align: left;
+  margin: 0 15px;
+}
+
+.info-p {
+  margin: 0;
+}
+
 @media (min-width: 768px) {
   .edit {
     font-size: 1rem;
+  }
+  .project-detail {
+    margin: 0 20px 0;
+  }
+
+  .project-detail.hours,
+  .project-detail.else {
+    margin-top: 25px;
   }
 }
 
@@ -50,17 +67,14 @@
   }
   .project-detail.info {
     grid-area: a;
-    background-color: green;
   }
 
   .project-detail.hours {
     grid-area: b;
-    background-color: blue;
   }
 
   .project-detail.else {
     grid-area: c;
-    background-color: red;
   }
 
   .project-detail.info,
@@ -69,5 +83,10 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+  }
+
+  .project-detail.hours,
+  .project-detail.else {
+    margin-top: 0;
   }
 }
