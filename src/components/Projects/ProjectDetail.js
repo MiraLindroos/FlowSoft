@@ -1,12 +1,12 @@
 import Card from "../Card/Card"
 import ProjectInfo from "./ProjectInfo"
 
-const ProjectDetail = () => {
+const ProjectDetail = ({project}) => {
   return (
     <div>
       <Card
         title='projektin tiedot'
-      > <ProjectInfo />
+      > <ProjectInfo project={project}/>
       </Card>
       <Card
         title='projektin tunnit'
