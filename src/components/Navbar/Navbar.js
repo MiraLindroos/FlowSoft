@@ -9,7 +9,7 @@ const Navbar = ({setSidebarOpen, isMobile, onLogOutClick, items, logo}) => {
       <Link className="navbar-logo" to={'/'}>{logo}</Link>
       <div className="navbar-left">
         {/* If isMobile is false aka the window width is over 897px
-            we will show settings and profile icons on the navbar
+            we will show profile icon on the navbar
             otherwise we show a menu icon that opens the sidebar menu
         */}
         {!isMobile ? <>{items.map((item, index) => (

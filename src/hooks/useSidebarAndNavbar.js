@@ -25,7 +25,6 @@ const useSidebarAndNavbar = (handleLogOut) => {
   }, [])
 
   const navbarItems = [
-    { name: 'asetukset', path: 'Asetukset', iconName: <Fi.FiSettings /> },
     { name: 'profiili', path: 'Profiili', iconName: <Fi.FiUser /> }
   ]
 
@@ -38,7 +37,6 @@ const useSidebarAndNavbar = (handleLogOut) => {
   ]
   // Array of routes that are shown only on mobile view
   const extraMobileRoutes = [
-    { name: 'Asetukset', path: 'Asetukset', IconName: <Fi.FiSettings /> },
     { name: 'Profiili', path: 'Profiili', IconName: <Fi.FiUser /> },
     { name: 'Kirjaudu ulos', onClick: handleLogOut, IconName: <Fi.FiLogOut />},
   ]
