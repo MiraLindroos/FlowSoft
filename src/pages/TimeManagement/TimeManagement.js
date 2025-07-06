@@ -10,14 +10,18 @@ const TimeManagement = () => {
     previousMonth,
   } = useCalendarView();
   return (
-    <div className="timemanagement">
-      <Calendar
-        currentDate={currentDate}
-        daysInAMonth={daysInAMonth}
-        nextMonth={nextMonth}
-        previousMonth={previousMonth} 
-      />
-    </div>
+    <>
+      <h3>Ajanhallinta</h3>
+      <div className="timemanagement">
+        <Calendar
+          currentDate={currentDate}
+          daysInAMonth={daysInAMonth}
+          nextMonth={nextMonth}
+          previousMonth={previousMonth} 
+        />
+      </div>
+    </>
+
   )
 }
 

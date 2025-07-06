@@ -28,4 +28,13 @@
   .main-content-area {
     height: calc(100vh - 60px); /* Start the content right under the navbar */
   }
+  .page-content {
+    padding: 5px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-content {
+    padding: 10px;
+  }
 }

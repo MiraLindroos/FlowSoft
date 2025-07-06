@@ -1,0 +1,15 @@
+@media (min-width: 768px) {
+  .profile-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .profile-content {
+    margin-left: 55px;
+    margin-right: 55px;
+  }
+}

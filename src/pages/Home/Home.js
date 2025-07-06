@@ -12,7 +12,7 @@ const Home = () => {
   } = useStatistics();
   return (
     <div className="home">
-      <h3 className="home-title">Kuukauden yhteenveto</h3>
+      <h3>Kuukauden yhteenveto</h3>
       <div className="statistics">
         <div className="statistics hours">
           <Card
