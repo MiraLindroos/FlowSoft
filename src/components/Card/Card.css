@@ -14,3 +14,9 @@
 .card-info h3 {
   margin: 0;
 }
+
+/* CardSection.js */
+
+.card-section-p {
+  margin-top: 0;
+}

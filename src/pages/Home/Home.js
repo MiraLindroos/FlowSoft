@@ -4,6 +4,7 @@ import ActiveProjects from "../../components/Statistics/ActiveProjects"
 import TravelsThisMonth from "../../components/Statistics/TravelsThisMonth"
 import useStatistics from "../../hooks/useStatistics"
 import Card from "../../components/Card/Card"
+import cardColors from "../../theme/cardColors"
 
 const Home = () => {
   const {
@@ -18,7 +19,7 @@ const Home = () => {
             icon={'⌚️'}
             title={'Tunnit'}
             description={'Tarkastele kuukauden tunteja'}
-            style={{ backgroundColor: "#e0f0f3", borderLeft: "4px solid #013746"}}
+            variant="blue"
           > <HoursThisMonth data={data}/>
           </Card>
         </div>
@@ -28,7 +29,7 @@ const Home = () => {
             icon={'📂'}
             title={'Projektit'}
             description={'Aktiiviset projektit'}
-            style={{ backgroundColor: "#e0f3e6", borderLeft: "4px solid #014639"}}
+            variant="green"
           > <ActiveProjects />
           </Card>
         </div>
@@ -38,7 +39,7 @@ const Home = () => {
             icon={'🚙'}
             title={'Matkat'}
             description={'Tarkastele kuukauden matkoja'}
-            style={{ backgroundColor: "#e8e0f3", borderLeft: "4px solid #1a0146"}}
+            variant="purple"
           > <TravelsThisMonth />
           </Card>
         </div>
