@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const useCalendarView = () => {
+const useDateUtils = () => {
   const [currentDate, setCurrentDate] = useState(new Date())
 
   const currentMonth = currentDate.getMonth()
@@ -45,4 +45,4 @@ const useCalendarView = () => {
   }
 }
 
-export default useCalendarView
+export default useDateUtils

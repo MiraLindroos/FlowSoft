@@ -1,6 +1,6 @@
 import Calendar from "../../components/Calendar/Calendar"
 import "./TimeManagement.css"
-import useCalendarView from "../../hooks/useCalendarView"
+import useDateUtils from "../../hooks/useDateUtils"
 
 const TimeManagement = () => {
     const {
@@ -8,7 +8,7 @@ const TimeManagement = () => {
     daysInAMonth,
     nextMonth,
     previousMonth,
-  } = useCalendarView();
+  } = useDateUtils();
   return (
     <>
       <h3>Ajanhallinta</h3>
