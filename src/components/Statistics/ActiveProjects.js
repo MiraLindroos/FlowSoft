@@ -1,37 +1,25 @@
 import "./Statistics.css";
-import { BarChart, Bar, Rectangle, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts'
-
+import { PieChart, ResponsiveContainer, Pie } from 'recharts'
+import useProjectsList from "../../hooks/useProjectsList"
 
 const ActiveProjects = () => {
-  const data = [
-    {
-      name: 'prisma',
-      dateRange: '1.–7.6.',
-      tunnit: 25,
-    },
-    {
-      name: 'kesko',
-      dateRange: '1.–7.6.',
-      tunnit: 25,
-    },
-  ]
+  const { projects } = useProjectsList()
+  // Let's filter out all projects that have onGoing=false
+  const activeProjects = projects
+    .filter((p) => p.onGoing)
+    .map((p) => ({name: p.name, value: p.hours}))
   return (
     <ResponsiveContainer width="100%" height={150}>
-      <BarChart
-        data={data}
-        margin={{
-          top: 5,
-          right: 25,
-          left: -20,
-          bottom: 5,
-        }}
-      >
-        <XAxis dataKey="dateRange" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="tunnit" fill="#013746" activeBar={<Rectangle />}/>
-      </BarChart>
+      <PieChart margin={{top: 15}}>
+        <Pie
+          data={activeProjects}
+          dataKey="value"
+          outerRadius={50}
+          fill="#014639"
+          label={({ name, value }) => `${name}: ${value}h`}
+          labelLine={false}
+        />
+      </PieChart>
     </ResponsiveContainer>
   )
 }

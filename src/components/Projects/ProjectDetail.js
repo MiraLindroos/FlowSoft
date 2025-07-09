@@ -7,7 +7,7 @@ const ProjectDetail = ({project}) => {
     <div className="project-detail">
       <div className="project-detail info">
         <Card
-          title='projektin tiedot'
+          title='Projektin tiedot'
         > <CardSection
           fields={[
             {label: "Projekti", value: project.name},
@@ -20,8 +20,7 @@ const ProjectDetail = ({project}) => {
       </div>
       <div className="project-detail hours">
         <Card
-          title='projektin tunnit'
-          description='tunnit'
+          title='Projektin tunnit'
         > <CardSection
             fields={[
               {label: "Tunnit tässä kuussa", value: "20"},
@@ -32,8 +31,7 @@ const ProjectDetail = ({project}) => {
       </div>
       <div className="project-detail else">
         <Card
-          title='projektin muuta'
-          description='jotain'
+          title='Laskutustiedot'
         > <CardSection
             fields={[
               {label: "Muuta tietoo", value: "testitesti"},

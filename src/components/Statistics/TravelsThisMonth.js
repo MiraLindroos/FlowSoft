@@ -1,37 +1,53 @@
 import "./Statistics.css";
-import { BarChart, Bar, Rectangle, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import { CartesianGrid, LineChart, XAxis, YAxis, Tooltip, Legend, Line, ResponsiveContainer } from 'recharts'
 
 const TravelsThisMonth = () => {
   const data = [
     {
-      name: 'prisma',
+      name: 'ma',
       dateRange: '1.–7.6.',
-      tunnit: 25,
+      tunnit: 30,
+      raha: 40,
     },
     {
-      name: 'kesko',
+      name: 'ti',
       dateRange: '1.–7.6.',
-      tunnit: 25,
+      tunnit: 65,
+      raha: 90,
+    },
+        {
+      name: 'ke',
+      dateRange: '1.–7.6.',
+      tunnit: 23,
+      raha: 32,
+    },
+    {
+      name: 'to',
+      dateRange: '1.–7.6.',
+      tunnit: 53,
+      raha:79,
     },
   ]
   return (
-    <ResponsiveContainer width="100%" height={150}>
-      <BarChart
+    <ResponsiveContainer width="100%" height={150} >
+      <LineChart
         data={data}
         margin={{
-          top: 5,
-          right: 25,
+          right: 20,
           left: -20,
           bottom: 5,
         }}
       >
-        <XAxis dataKey="dateRange" />
+        <CartesianGrid strokeDasharray="5" />
+        <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="tunnit" fill="#013746" activeBar={<Rectangle />}/>
-      </BarChart>
+        <Line type="monotone" dataKey="tunnit" stroke="#013746" />
+        <Line type="monotone" dataKey="raha" stroke="#1a0146" />
+      </LineChart>
     </ResponsiveContainer>
+
   )
 }
 
