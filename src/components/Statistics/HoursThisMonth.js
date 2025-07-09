@@ -8,7 +8,6 @@ const HoursThisMonth = ({data}) => {
       <BarChart
         data={data}
         margin={{
-          top: 5,
           right: 25,
           left: -20,
           bottom: 5,

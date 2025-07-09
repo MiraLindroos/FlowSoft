@@ -10,7 +10,9 @@ const Card = ({icon, title, description, children, variant = "default"}) => {
         <h3>{icon} {title}</h3>
         <small>{description}</small>
       </div>
-      <>{children}</>
+      <div className='card-content'>
+        {children}
+      </div>
     </div>
   )
 }
