@@ -2,7 +2,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth"
 import { auth } from "../firebase/index"
 import { useState, useEffect } from "react"
 
-const useAuth = (openModal, closeModal, cancelButton, confirmButton) => {
+const useAuth = (openModal, closeModal) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [authChecked, setAuthChecked] = useState(null)
 

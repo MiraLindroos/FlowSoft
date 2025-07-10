@@ -2,13 +2,15 @@ import Calendar from "../../components/Calendar/Calendar"
 import "./TimeManagement.css"
 import useDateUtils from "../../hooks/useDateUtils"
 
-const TimeManagement = () => {
+const TimeManagement = ({onDayClick}) => {
     const {
     currentDate,
     daysInAMonth,
     nextMonth,
     previousMonth,
   } = useDateUtils();
+
+  console.log(onDayClick)
   return (
     <>
       <h3>Ajanhallinta</h3>
@@ -17,7 +19,8 @@ const TimeManagement = () => {
           currentDate={currentDate}
           daysInAMonth={daysInAMonth}
           nextMonth={nextMonth}
-          previousMonth={previousMonth} 
+          previousMonth={previousMonth}
+          onDayClick={onDayClick}
         />
       </div>
     </>

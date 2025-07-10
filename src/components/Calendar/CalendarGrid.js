@@ -1,19 +1,14 @@
 import "./Calendar.css"
 import DayCell from "./DayCell"
 
-const CalendarGrid = ({daysInAMonth}) => {
-
-  const click = (day) => {
-    console.log(`Klikattiin päivää: ${day}`)
-  }
-
+const CalendarGrid = ({daysInAMonth, onDayClick}) => {
   return (
     <div className="grid">
       {daysInAMonth.map((day, index) => (
         <DayCell
           key={index}
           day={day}
-          onClick={() => click(day)}
+          onClick={onDayClick}
         />
       ))}
     </div>
