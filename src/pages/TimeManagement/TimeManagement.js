@@ -2,8 +2,8 @@ import Calendar from "../../components/Calendar/Calendar"
 import "./TimeManagement.css"
 import useDateUtils from "../../hooks/useDateUtils"
 import useModal from "../../hooks/useModal"
-import Card from "../../components/Card/Card"
 import Modal from "../../components/Modal/Modal"
+import AddHoursForm from "../../components/Forms/AddHoursForm"
 
 const TimeManagement = () => {
     const {
@@ -23,7 +23,7 @@ const TimeManagement = () => {
   const handleDayClick = (day) => {
     openModal({
       message: `Lisää tunteja päivälle ${day}.`,
-      children: <Card title="testi 4"/>,
+      children: <AddHoursForm />,
       onConfirm: () => {
         console.log("tallennettu")
         closeModal()

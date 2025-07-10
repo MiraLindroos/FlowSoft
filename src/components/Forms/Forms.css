@@ -1,0 +1,10 @@
+.form-area {
+  margin-bottom: 5px;
+  padding: 2px 0;
+}
+
+.form-item {
+  margin: 5px;
+  display: flex;
+  justify-content: space-between;
+}
