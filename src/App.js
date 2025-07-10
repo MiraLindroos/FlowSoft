@@ -10,14 +10,21 @@ import useAuth from "./hooks/useAuth"
 import Modal from "./components/Modal/Modal"
 
 function App() {
-  const { showModal, modalContent, openModal, closeModal } = useModal()
+  const {
+    showModal,
+    modalContent,
+    openModal,
+    closeModal,
+    cancelButton,
+    confirmButton
+  } = useModal()
 
   const {
     isLoggedIn,
     setIsLoggedIn,
     authChecked,
     handleLogOut
-  } = useAuth(openModal, closeModal)
+  } = useAuth(openModal, closeModal, cancelButton, confirmButton)
 
   const {
     isSidebarOpen,
@@ -67,6 +74,8 @@ function App() {
                   message={modalContent.message}
                   onConfirm={modalContent.onConfirm}
                   onCancel={modalContent.onCancel}
+                  cancelButton={modalContent.cancelButton}
+                  confirmButton={modalContent.confirmButton}
                 />
               }
             </main>

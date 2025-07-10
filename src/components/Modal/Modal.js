@@ -1,13 +1,13 @@
 import './Modal.css'
 
-const Modal = ({message, onConfirm, onCancel}) => {
+const Modal = ({message, onConfirm, onCancel, cancelButton, confirmButton}) => {
   return (
     <div className="modal">
       <div className="modal-content">
         <p>{message}</p>
         <div className="modal-buttons">
-          <button onClick={onCancel}>Sulje</button>
-          <button onClick={onConfirm}>Vahvista</button>
+          <button onClick={onCancel}>{cancelButton}</button>
+          <button onClick={onConfirm}>{confirmButton}</button>
         </div>
       </div>
     </div>

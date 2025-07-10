@@ -2,7 +2,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth"
 import { auth } from "../firebase/index"
 import { useState, useEffect } from "react"
 
-const useAuth = (openModal, closeModal) => {
+const useAuth = (openModal, closeModal, cancelButton, confirmButton) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [authChecked, setAuthChecked] = useState(null)
 
@@ -40,7 +40,9 @@ const useAuth = (openModal, closeModal) => {
             console.log(errorMessage)
           })
       },
-      onCancel: closeModal
+      onCancel: closeModal,
+      cancelButton: "Sulje",
+      confirmButton: "Vahvista"
     })
   }
 
