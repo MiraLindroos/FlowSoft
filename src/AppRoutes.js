@@ -6,7 +6,7 @@ import ProjectDetailPage from "./pages/Projects/ProjectDetailPage"
 import Profile from './pages/Profile/Profile'
 import Travel from './pages/Travel/Travel'
 
-const AppRoutes = ({ setIsLoggedIn, onDateClick }) => {
+const AppRoutes = ({ setIsLoggedIn }) => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
