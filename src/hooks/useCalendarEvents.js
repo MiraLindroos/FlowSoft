@@ -1,7 +1,8 @@
 const useCalendarEvents = (openModal, closeModal) => {
-  const handleDayClick = () => {
+  const handleDayClick = (day, child) => {
     openModal({
-      message: "Lisää tunteja",
+      message: `Lisää tunteja päivälle ${day}.`,
+      children: child,
       onConfirm: () => {
         console.log("tallennettu")
       },

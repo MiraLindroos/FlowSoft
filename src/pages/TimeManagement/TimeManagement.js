@@ -1,8 +1,11 @@
 import Calendar from "../../components/Calendar/Calendar"
 import "./TimeManagement.css"
 import useDateUtils from "../../hooks/useDateUtils"
+import useModal from "../../hooks/useModal"
+import Card from "../../components/Card/Card"
+import Modal from "../../components/Modal/Modal"
 
-const TimeManagement = ({onDayClick}) => {
+const TimeManagement = () => {
     const {
     currentDate,
     daysInAMonth,
@@ -10,7 +13,27 @@ const TimeManagement = ({onDayClick}) => {
     previousMonth,
   } = useDateUtils();
 
-  console.log(onDayClick)
+  const {
+    showModal,
+    modalContent,
+    openModal,
+    closeModal,
+  } = useModal()
+
+  const handleDayClick = (day) => {
+    openModal({
+      message: `Lisää tunteja päivälle ${day}.`,
+      children: <Card title="testi 4"/>,
+      onConfirm: () => {
+        console.log("tallennettu")
+        closeModal()
+      },
+      onCancel: closeModal,
+      cancelButton: "Peruuta",
+      confirmButton: "Tallenna"
+    })
+  }
+
   return (
     <>
       <h3>Ajanhallinta</h3>
@@ -20,8 +43,18 @@ const TimeManagement = ({onDayClick}) => {
           daysInAMonth={daysInAMonth}
           nextMonth={nextMonth}
           previousMonth={previousMonth}
-          onDayClick={onDayClick}
+          onDateClick={handleDayClick}
         />
+        {showModal &&
+          <Modal
+            message={modalContent.message}
+            children={modalContent.children}
+            onConfirm={modalContent.onConfirm}
+            onCancel={modalContent.onCancel}
+            cancelButton={modalContent.cancelButton}
+            confirmButton={modalContent.confirmButton}
+          />
+        }
       </div>
     </>
 

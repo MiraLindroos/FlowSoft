@@ -31,7 +31,7 @@ const useAuth = (openModal, closeModal) => {
       onConfirm: () => {
         signOut(auth)
           .then(() => {
-            console.log('logattu ulos')
+            closeModal()
           })
           .catch((error) => {
             const errorCode = error.code

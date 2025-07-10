@@ -2,7 +2,7 @@ import CalendarGrid from "./CalendarGrid"
 import CalendarHeader from "./CalendarHeader"
 import "./Calendar.css"
 
-const Calendar = ({currentDate, daysInAMonth, nextMonth, previousMonth, onDayClick}) => {
+const Calendar = ({currentDate, daysInAMonth, nextMonth, previousMonth, onDateClick}) => {
   return (
     <div className="calendar">
       <CalendarHeader
@@ -13,7 +13,7 @@ const Calendar = ({currentDate, daysInAMonth, nextMonth, previousMonth, onDayCli
       <CalendarGrid
         currentDate={currentDate}
         daysInAMonth={daysInAMonth}
-        onDayClick={onDayClick}
+        onDateClick={onDateClick}
       />
     </div>
   )

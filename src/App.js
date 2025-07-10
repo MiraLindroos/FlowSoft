@@ -7,7 +7,6 @@ import Login from './pages/Login/Login'
 import useModal from "./hooks/useModal"
 import useSidebarAndNavbar from "./hooks/useSidebarAndNavbar"
 import useAuth from "./hooks/useAuth"
-import useCalendarEvents from './hooks/useCalendarEvents'
 import Modal from "./components/Modal/Modal"
 
 function App() {
@@ -33,8 +32,6 @@ function App() {
     isMobile, navbarItems,
     sidebarVisibleRoutes
   } = useSidebarAndNavbar(handleLogOut)
-
-  const { handleDayClick } = useCalendarEvents(openModal, closeModal)
 
   if (!authChecked) {
     return (
@@ -71,10 +68,11 @@ function App() {
               />
             }
             <main className="page-content">
-              <AppRoutes setIsLoggedIn={setIsLoggedIn} onDayClick={handleDayClick}/>
+              <AppRoutes setIsLoggedIn={setIsLoggedIn}/>
               {showModal &&
                 <Modal
                   message={modalContent.message}
+                  children={modalContent.children}
                   onConfirm={modalContent.onConfirm}
                   onCancel={modalContent.onCancel}
                   cancelButton={modalContent.cancelButton}

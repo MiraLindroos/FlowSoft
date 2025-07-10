@@ -4,14 +4,15 @@ const useModal = () => {
   const [showModal, setShowModal] = useState(false)
   const [modalContent, setModalContent] = useState({
     message: "",
+    children: null,
     onConfirm: () => {},
     onCancel: () => {},
     cancelButton: "",
     confirmButton: "",
   })
 
-  const openModal = ({message, onConfirm, onCancel, cancelButton, confirmButton}) => {
-    setModalContent({message, onConfirm, onCancel, cancelButton, confirmButton})
+  const openModal = ({message, children, onConfirm, onCancel, cancelButton, confirmButton}) => {
+    setModalContent({message, children, onConfirm, onCancel, cancelButton, confirmButton})
     setShowModal(true)
   }
 
