@@ -20,9 +20,10 @@ const TimeManagement = () => {
     closeModal,
   } = useModal()
 
-  const handleDayClick = (day) => {
+  const handleDayClick = (date) => {
+    const formattedDate = date.toLocaleDateString('fi-FI', { weekday: 'short', day: 'numeric', month: 'numeric' })
     openModal({
-      message: `Lisää tunteja päivälle ${day}.`,
+      message: `Lisää tunteja päivälle ${formattedDate}`,
       children: <AddHoursForm />,
       onConfirm: () => {
         console.log("tallennettu")
@@ -30,7 +31,8 @@ const TimeManagement = () => {
       },
       onCancel: closeModal,
       cancelButton: "Peruuta",
-      confirmButton: "Tallenna"
+      confirmButton: "Tallenna",
+      width: "80%"
     })
   }
 
@@ -53,6 +55,7 @@ const TimeManagement = () => {
             onCancel={modalContent.onCancel}
             cancelButton={modalContent.cancelButton}
             confirmButton={modalContent.confirmButton}
+            width={modalContent.width}
           />
         }
       </div>

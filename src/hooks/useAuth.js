@@ -41,8 +41,9 @@ const useAuth = (openModal, closeModal) => {
           })
       },
       onCancel: closeModal,
-      cancelButton: "Sulje",
-      confirmButton: "Vahvista"
+      cancelButton: "Ei",
+      confirmButton: "Kyllä",
+      width: "270px"
     })
   }
 

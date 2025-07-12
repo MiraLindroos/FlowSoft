@@ -13,7 +13,7 @@
   margin: 20% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #e3e1e1;
-  width: 65%;
+  max-width: 80%;
 }
 
 .modal-content p {
@@ -38,26 +38,26 @@
 
 @media (min-width: 768px) {
   .modal-content {
-    width: 40%;
+    max-width: 60%;
   }
 }
 
 @media (min-width: 1024px) {
   .modal-content {
-    width: 25%;
+    max-width: 45%;
     margin: 15% auto;
   }
 }
 
 @media (min-width: 1440px) {
   .modal-content {
-    width: 18%;
+    max-width: 30%;
     margin: 10% auto;
   }
 }
 
 @media (min-width: 1600px) {
   .modal-content {
-    width: 15%;
+    max-width: 25%;
   }
 }

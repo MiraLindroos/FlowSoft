@@ -3,19 +3,16 @@ import { useState } from "react"
 
 const AddHoursForm = () => {
   const {
-    date,
     start,
     end,
     project,
     travel,
-    price
+    price,
+    memo
   } = useState("")
+
   return (
     <form className="form-area">
-      <div className="form-item">
-        <label>Päivämäärä</label>
-        <input type="date" value={date} />
-      </div>
       <div className="form-item">
         <label>Aloitusaika</label>
         <input type="time" value={start} />
@@ -35,6 +32,10 @@ const AddHoursForm = () => {
       <div className="form-item">
         <label>Tuntihinta</label>
         <input type="number" value={price} />
+      </div>
+      <div className="form-item">
+        <label>Muistiinpanot</label>
+        <textarea value={memo} />
       </div>
     </form>
   )

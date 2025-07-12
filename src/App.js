@@ -77,6 +77,7 @@ function App() {
                   onCancel={modalContent.onCancel}
                   cancelButton={modalContent.cancelButton}
                   confirmButton={modalContent.confirmButton}
+                  width={modalContent.width}
                 />
               }
             </main>

@@ -9,10 +9,11 @@ const useModal = () => {
     onCancel: () => {},
     cancelButton: "",
     confirmButton: "",
+    width: "65%",
   })
 
-  const openModal = ({message, children, onConfirm, onCancel, cancelButton, confirmButton}) => {
-    setModalContent({message, children, onConfirm, onCancel, cancelButton, confirmButton})
+  const openModal = ({message, children, onConfirm, onCancel, cancelButton, confirmButton, width}) => {
+    setModalContent({message, children, onConfirm, onCancel, cancelButton, confirmButton, width})
     setShowModal(true)
   }
 
