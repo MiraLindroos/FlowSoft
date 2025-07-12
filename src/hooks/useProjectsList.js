@@ -26,8 +26,13 @@ const useProjectsList = () => {
     fetchProjects()
   }, [])
 
+  const activeProjects = projects
+    .filter((p) => p.onGoing)
+    .map((p) => ({name: p.name, value: p.hours}))
+
   return {
-    projects
+    projects,
+    activeProjects
   }
 }
 

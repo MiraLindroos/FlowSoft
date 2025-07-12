@@ -3,7 +3,8 @@ import "./TimeManagement.css"
 import useDateUtils from "../../hooks/useDateUtils"
 import useModal from "../../hooks/useModal"
 import Modal from "../../components/Modal/Modal"
-import AddHoursForm from "../../components/Forms/AddHoursForm"
+import Form from "../../components/Forms/Form"
+import useAddHoursForm from "../../hooks/useAddHoursForm"
 
 const TimeManagement = () => {
     const {
@@ -11,7 +12,7 @@ const TimeManagement = () => {
     daysInAMonth,
     nextMonth,
     previousMonth,
-  } = useDateUtils();
+  } = useDateUtils()
 
   const {
     showModal,
@@ -20,11 +21,13 @@ const TimeManagement = () => {
     closeModal,
   } = useModal()
 
+  const { addHoursFields } = useAddHoursForm()
+
   const handleDayClick = (date) => {
     const formattedDate = date.toLocaleDateString('fi-FI', { weekday: 'short', day: 'numeric', month: 'numeric' })
     openModal({
       message: `Lisää tunteja päivälle ${formattedDate}`,
-      children: <AddHoursForm />,
+      children: <Form fields={addHoursFields}/>,
       onConfirm: () => {
         console.log("tallennettu")
         closeModal()
