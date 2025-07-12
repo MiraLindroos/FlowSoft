@@ -1,25 +1,26 @@
 import "./Forms.css"
-import { useState } from "react"
+import { useFormContext } from "react-hook-form"
 
 const Form = ({fields}) => {
+  const { register } = useFormContext()
   return (
-    <form className="form-area">
+    <form className="form-area" >
       {fields.map((field, index) => 
         <div className="form-item" key={index}>
           <label>{field.label}</label>
           {field.type==="select" ? (
-            <select value={field.value}>
+            <select>
               <option value="">Valitse projekti</option>
               {field.options.map((option, index) => 
-                <option key={index} value={field.value}>
+                <option {...register(`${option.name}`)} key={index}>
                   {option.name}
                 </option>
               )}
             </select>
           ) : field.type==="textarea" ? (
-            <textarea value={field.value} />
+            <textarea {...register(`${field.name}`)} />
           ) : (
-            <input type={field.type} value={field.value} /> 
+            <input {...register(`${field.name}`)} type={field.type} /> 
           )}
         </div>
       )}

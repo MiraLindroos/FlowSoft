@@ -5,6 +5,7 @@ import useModal from "../../hooks/useModal"
 import Modal from "../../components/Modal/Modal"
 import Form from "../../components/Forms/Form"
 import useAddHoursForm from "../../hooks/useAddHoursForm"
+import { useForm, FormProvider } from "react-hook-form"
 
 const TimeManagement = () => {
     const {
@@ -23,15 +24,18 @@ const TimeManagement = () => {
 
   const { addHoursFields } = useAddHoursForm()
 
+    const methods = useForm()
+    const onSubmit = (data) => console.log(data)
+
   const handleDayClick = (date) => {
     const formattedDate = date.toLocaleDateString('fi-FI', { weekday: 'short', day: 'numeric', month: 'numeric' })
     openModal({
       message: `Lisää tunteja päivälle ${formattedDate}`,
-      children: <Form fields={addHoursFields}/>,
-      onConfirm: () => {
-        console.log("tallennettu")
-        closeModal()
-      },
+      children:
+      <FormProvider {...methods}>
+        <Form fields={addHoursFields}/>
+      </FormProvider>,
+      onConfirm: methods.handleSubmit(onSubmit),
       onCancel: closeModal,
       cancelButton: "Peruuta",
       confirmButton: "Tallenna",
