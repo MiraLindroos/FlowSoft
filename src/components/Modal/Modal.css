@@ -11,9 +11,9 @@
 .modal-content {
   background-color: #fff;
   margin: 20% auto; /* 15% from the top and centered */
-  padding: 20px;
+  padding: 10px;
   border: 1px solid #e3e1e1;
-  max-width: 80%;
+  max-width: 90%;
 }
 
 .modal-content p {
@@ -39,6 +39,7 @@
 @media (min-width: 768px) {
   .modal-content {
     max-width: 60%;
+    padding: 20px;
   }
 }
 

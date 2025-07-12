@@ -32,7 +32,7 @@ const TimeManagement = () => {
       onCancel: closeModal,
       cancelButton: "Peruuta",
       confirmButton: "Tallenna",
-      width: "80%"
+      width: "85%"
     })
   }
 
