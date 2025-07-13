@@ -46,9 +46,6 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
     console.log(docRef.id)
   }
 
-
-
-  console.log(timeEntries)
   return {
     timeEntries,
     addTimeEntry
