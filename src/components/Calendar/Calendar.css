@@ -19,7 +19,6 @@
 .grid-square {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   padding: 6px;
   border: 1px solid #013746;
   background-color: #fff;
@@ -36,6 +35,7 @@
   margin-bottom: 4px;
   color: #013746;
   font-size: 0.9rem;
+  text-align: end;
 }
 
 /* CalendarHeader.js styling */

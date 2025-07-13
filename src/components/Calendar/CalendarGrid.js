@@ -1,7 +1,7 @@
 import "./Calendar.css"
 import DayCell from "./DayCell"
 
-const CalendarGrid = ({currentDate, daysInAMonth, onDateClick}) => {
+const CalendarGrid = ({currentDate, daysInAMonth, onDateClick, timeEntries}) => {
   const year = currentDate.getFullYear()
   const month = currentDate.getMonth()
 
@@ -11,6 +11,8 @@ const CalendarGrid = ({currentDate, daysInAMonth, onDateClick}) => {
         <DayCell
           key={index}
           day={day}
+          currentDate={currentDate}
+          timeEntries={timeEntries}
           onClick={() => {
             if (day !== '') {
               const fullDate = new Date(year, month, day)

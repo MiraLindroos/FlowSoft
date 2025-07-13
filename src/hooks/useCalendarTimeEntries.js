@@ -2,7 +2,7 @@ import { collection, getDocs } from "firebase/firestore"
 import { db } from "../firebase/index"
 import { useEffect, useState } from "react"
 
-const useCalendarTimeEntries = () => {
+const useCalendarTimeEntries = (currentDate) => {
   const [timeEntries, setTimeEntries] = useState([])
 
   useEffect(() => {
@@ -20,8 +20,6 @@ const useCalendarTimeEntries = () => {
     }
     fetchTimeEntires()
   }, [])
-  console.log(timeEntries)
-
   return {
     timeEntries
   }

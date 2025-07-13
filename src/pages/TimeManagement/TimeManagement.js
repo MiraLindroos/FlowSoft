@@ -25,7 +25,7 @@ const TimeManagement = () => {
 
   const { addHoursFields } = useAddHoursForm()
 
-  const { timeEntries } = useCalendarTimeEntries()
+  const { timeEntries } = useCalendarTimeEntries(currentDate)
 
   console.log('timessä ' + timeEntries)
 
@@ -58,6 +58,7 @@ const TimeManagement = () => {
           nextMonth={nextMonth}
           previousMonth={previousMonth}
           onDateClick={handleDayClick}
+          timeEntries={timeEntries}
         />
         {showModal &&
           <Modal
