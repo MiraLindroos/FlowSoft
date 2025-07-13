@@ -1,4 +1,4 @@
-import { collection, getDocs, where, Timestamp, query } from "firebase/firestore"
+import { collection, getDocs, where, Timestamp, query, addDoc } from "firebase/firestore"
 import { db } from "../firebase/index"
 import { useEffect, useState } from "react"
 
@@ -30,9 +30,28 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
     fetchTimeEntires()
   }, [currentMonth, currentYear])
 
+  const addTimeEntry = async (data) => {
+    console.log(data)
+    const docRef = await addDoc(collection(db, 'timeEntries'), {
+      startTime: data.startTime,
+      endTime: data.endTime,
+      project: data.project,
+      projectId: "testitestitesti",
+      travels: data.travel,
+      hourRate: data.hourRate,
+      hours: 3,
+      memo: data.memo,
+      userId: "minä"
+    })
+    console.log(docRef.id)
+  }
+
+
+
   console.log(timeEntries)
   return {
-    timeEntries
+    timeEntries,
+    addTimeEntry
   }
 }
 

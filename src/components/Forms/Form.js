@@ -9,10 +9,10 @@ const Form = ({fields}) => {
         <div className="form-item" key={index}>
           <label>{field.label}</label>
           {field.type==="select" ? (
-            <select required={field.required}>
+            <select {...register(`${field.name}`)} required={field.required}>
               <option value="">Valitse projekti</option>
               {field.options.map((option, index) => 
-                <option {...register(`${option.name}`)} key={index}>
+                <option key={index}>
                   {option.name}
                 </option>
               )}

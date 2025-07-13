@@ -27,10 +27,10 @@ const TimeManagement = () => {
 
   const { addHoursFields } = useAddHoursForm()
 
-  const { timeEntries } = useCalendarTimeEntries(currentMonth, currentYear)
+  const { timeEntries, addTimeEntry } = useCalendarTimeEntries(currentMonth, currentYear)
 
   const methods = useForm()
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data) => addTimeEntry(data)
 
   const handleDayClick = (date) => {
     const formattedDate = date.toLocaleDateString('fi-FI', { weekday: 'short', day: 'numeric', month: 'numeric' })
