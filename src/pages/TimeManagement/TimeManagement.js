@@ -6,7 +6,7 @@ import Modal from "../../components/Modal/Modal"
 import Form from "../../components/Forms/Form"
 import useAddHoursForm from "../../hooks/useAddHoursForm"
 import { useForm, FormProvider } from "react-hook-form"
-import useCalendarEvents from "../../hooks/useCalendarEvents"
+import useCalendarTimeEntries from "../../hooks/useCalendarTimeEntries"
 
 const TimeManagement = () => {
     const {
@@ -25,9 +25,9 @@ const TimeManagement = () => {
 
   const { addHoursFields } = useAddHoursForm()
 
-  const { events } = useCalendarEvents()
+  const { timeEntries } = useCalendarTimeEntries()
 
-  console.log('timessä ' + events)
+  console.log('timessä ' + timeEntries)
 
   const methods = useForm()
   const onSubmit = (data) => console.log(data)
