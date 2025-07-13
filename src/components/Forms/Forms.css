@@ -4,7 +4,51 @@
 }
 
 .form-item {
-  margin: 5px;
+  margin: 5px 0 12px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-item label {
+  font-size: 0.9rem;
+  align-items: start;
+  margin-bottom: 5px;
+}
+
+.form-item input,
+.form-item select,
+.form-item textarea {
+  width: 80%;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-item input[type="time"] {
+  max-width: 35%;
+}
+
+@media (min-width: 768px) {
+  .form-item {
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 8px 0;
+    padding: 2px 3px;
+  }
+
+  .form-item label {
+    font-size: 1rem;
+  }
+
+  .form-item input,
+  .form-item select,
+  .form-item textarea {
+    width: 60%;
+  }
+
+  .form-item input[type="time"] {
+    max-width: 20%;
+  }
 }
