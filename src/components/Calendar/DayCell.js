@@ -9,7 +9,7 @@ const DayCell = ({day, currentDate, timeEntries, onClick}) => {
   const timeEntryDates = timeEntries.filter((entry) => {
     return new Date(entry.startTime.seconds * 1000).toDateString() === fullDate.toDateString()
   })
-  console.log(timeEntryDates)
+
   return (
     <div className="grid-square" onClick={onClick}>
       <span className="grid-day">{day}</span>

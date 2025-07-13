@@ -39,6 +39,8 @@ const useDateUtils = () => {
 
   return {
     currentDate,
+    currentMonth,
+    currentYear,
     daysInAMonth,
     nextMonth,
     previousMonth,

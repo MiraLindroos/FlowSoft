@@ -9,7 +9,7 @@ const Form = ({fields}) => {
         <div className="form-item" key={index}>
           <label>{field.label}</label>
           {field.type==="select" ? (
-            <select>
+            <select required={field.required}>
               <option value="">Valitse projekti</option>
               {field.options.map((option, index) => 
                 <option {...register(`${option.name}`)} key={index}>
@@ -18,9 +18,9 @@ const Form = ({fields}) => {
               )}
             </select>
           ) : field.type==="textarea" ? (
-            <textarea {...register(`${field.name}`)} />
+            <textarea {...register(`${field.name}`)} required={field.required} />
           ) : (
-            <input {...register(`${field.name}`)} type={field.type} /> 
+            <input {...register(`${field.name}`)} type={field.type} required={field.required} /> 
           )}
         </div>
       )}

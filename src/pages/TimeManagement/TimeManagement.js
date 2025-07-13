@@ -11,6 +11,8 @@ import useCalendarTimeEntries from "../../hooks/useCalendarTimeEntries"
 const TimeManagement = () => {
     const {
     currentDate,
+    currentMonth,
+    currentYear,
     daysInAMonth,
     nextMonth,
     previousMonth,
@@ -25,9 +27,7 @@ const TimeManagement = () => {
 
   const { addHoursFields } = useAddHoursForm()
 
-  const { timeEntries } = useCalendarTimeEntries(currentDate)
-
-  console.log('timessä ' + timeEntries)
+  const { timeEntries } = useCalendarTimeEntries(currentMonth, currentYear)
 
   const methods = useForm()
   const onSubmit = (data) => console.log(data)
