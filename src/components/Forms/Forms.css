@@ -30,6 +30,11 @@
   max-width: 35%;
 }
 
+.form-item textarea {
+  min-width: 70%;
+  max-width: 80%;
+}
+
 @media (min-width: 768px) {
   .form-item {
     flex-direction: row;
@@ -46,6 +51,11 @@
   .form-item select,
   .form-item textarea {
     width: 60%;
+  }
+
+  .form-item textarea {
+    min-width: 60%;
+    max-width: 60%;
   }
 
   .form-item input[type="time"] {
