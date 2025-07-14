@@ -26,6 +26,7 @@ const useProjectsList = () => {
     fetchProjects()
   }, [])
 
+  // Filter projects that have onGoing=true and save the projects name + hours
   const activeProjects = projects
     .filter((p) => p.onGoing)
     .map((p) => ({name: p.name, value: p.hours}))
