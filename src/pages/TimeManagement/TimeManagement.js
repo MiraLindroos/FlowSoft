@@ -45,6 +45,7 @@ const TimeManagement = ({currentUser}) => {
     const totalHours = (diffMs / (1000 * 60 * 60)).toFixed(2)  // Rounding up to two decimals
 
     addTimeEntry({...data, startTime: start, endTime: end, hours: totalHours})
+    closeModal()
   }
 
   const handleDayClick = (date) => {

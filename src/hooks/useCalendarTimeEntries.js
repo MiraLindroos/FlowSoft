@@ -12,7 +12,6 @@ const useCalendarTimeEntries = (currentMonth, currentYear, currentUser) => {
         // Converting dates to timestamps
         const startOfTheMonth = Timestamp.fromDate(new Date(currentYear, currentMonth, 1))
         const endOfTheMonth = Timestamp.fromDate(new Date(currentYear, currentMonth + 1, 0))
-        console.log(currentUser)
         // Fetch all entries that are in the current month
         const q = query(
           collection(db, 'timeEntries'),
