@@ -1,5 +1,5 @@
 import ProjectsList from "../../components/Projects/ProjectsList"
-import useProjectsList from "../../hooks/useProjectsList"
+import useProjects from "../../hooks/useProjects"
 import "./Projects.css"
 import Modal from "../../components/Modal/Modal"
 import { useForm, FormProvider } from "react-hook-form"
@@ -7,10 +7,11 @@ import useModal from "../../hooks/useModal"
 import Form from "../../components/Forms/Form"
 import addProjectFields from "../../data/addProjectFields"
 
-const Projects = () => {
+const Projects = ({currentUser}) => {
   const {
-    projects
-  } = useProjectsList()
+    projects,
+    addProject
+  } = useProjects(currentUser)
 
   const {
     showModal,
@@ -21,7 +22,10 @@ const Projects = () => {
 
   const methods = useForm()
 
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data) => {
+    addProject(data)
+    closeModal()
+  }
 
     const addProjectClick = () => {
       openModal({

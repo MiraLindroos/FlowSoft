@@ -1,9 +1,9 @@
 import "./Statistics.css";
 import { PieChart, ResponsiveContainer, Pie } from 'recharts'
-import useProjectsList from "../../hooks/useProjectsList"
+import useProjects from "../../hooks/useProjects"
 
 const ActiveProjects = () => {
-  const { activeProjects } = useProjectsList()
+  const { activeProjects } = useProjects()
   // Let's filter out all projects that have onGoing=false
 
   return (

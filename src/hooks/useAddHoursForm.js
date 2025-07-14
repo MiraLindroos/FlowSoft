@@ -1,8 +1,8 @@
-import useProjectsList from "./useProjectsList"
+import useProjects from "./useProjects"
 
 const useAddHoursForm = () => {
   // We need activeProjects so we can show them as options
-  const { activeProjects } = useProjectsList()
+  const { activeProjects } = useProjects()
 
   // Fields for add hours form
   const addHoursFields = [

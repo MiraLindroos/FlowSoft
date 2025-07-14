@@ -1,8 +1,8 @@
-import { collection, getDocs } from "firebase/firestore"
+import { collection, getDocs, addDoc } from "firebase/firestore"
 import { db } from "../firebase/index"
 import { useEffect, useState } from "react"
 
-const useProjectsList = () => {
+const useProjects = (currentUser) => {
   const [projects, setProjects] = useState([])
 
   useEffect(() => {
@@ -31,10 +31,26 @@ const useProjectsList = () => {
     .filter((p) => p.onGoing)
     .map((p) => ({name: p.name, value: p.hours}))
 
+  const addProject = async (data) => {
+    await addDoc(collection(db, 'projects'), {
+      name: data.name,
+      startDate: new Date(data.startDate),
+      endDate: new Date(data.endDate),
+      hourRate: data.hourRate,
+      fixedRate: data.fixedRate,
+      memo: data.memo,
+      created: new Date(),
+      onGoing: (new Date(data.startDate) <= new Date() && new Date() <= new Date(data.endDate)) ? true : false,
+      userId: currentUser,
+      hours: 0
+    })
+  }
+
   return {
     projects,
-    activeProjects
+    activeProjects,
+    addProject
   }
 }
 
-export default useProjectsList
+export default useProjects

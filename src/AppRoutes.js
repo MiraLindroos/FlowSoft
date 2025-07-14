@@ -12,7 +12,7 @@ const AppRoutes = ({ setIsLoggedIn, currentUser }) => {
       <Route path="/" element={<Home />} />
       <Route path="/Etusivu" element={<Home setIsLoggedIn={setIsLoggedIn}/>} />
       <Route path="/Ajanhallinta" element={<TimeManagement currentUser={currentUser} />} />
-      <Route path="/Projektit" element={<Projects />} />
+      <Route path="/Projektit" element={<Projects currentUser={currentUser} />} />
       <Route path="/Projekti/:id" element={<ProjectDetailPage />} />
       <Route path="/Profiili" element={<Profile />} />
       <Route path="/Matkat" element={<Travel />} />
