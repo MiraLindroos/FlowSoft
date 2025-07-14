@@ -23,6 +23,7 @@ function App() {
     isLoggedIn,
     setIsLoggedIn,
     authChecked,
+    currentUser,
     handleLogOut
   } = useAuth(openModal, closeModal, cancelButton, confirmButton)
 
