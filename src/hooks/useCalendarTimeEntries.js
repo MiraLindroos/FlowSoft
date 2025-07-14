@@ -2,7 +2,7 @@ import { collection, getDocs, where, Timestamp, query, addDoc } from "firebase/f
 import { db } from "../firebase/index"
 import { useEffect, useState } from "react"
 
-const useCalendarTimeEntries = (currentMonth, currentYear) => {
+const useCalendarTimeEntries = (currentMonth, currentYear, currentUser) => {
   const [timeEntries, setTimeEntries] = useState([])
 
   useEffect(() => {
@@ -12,10 +12,11 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
         // Converting dates to timestamps
         const startOfTheMonth = Timestamp.fromDate(new Date(currentYear, currentMonth, 1))
         const endOfTheMonth = Timestamp.fromDate(new Date(currentYear, currentMonth + 1, 0))
-
+        console.log(currentUser)
         // Fetch all entries that are in the current month
         const q = query(
           collection(db, 'timeEntries'),
+          where('userId', '==', currentUser),
           where('startTime', '>=', startOfTheMonth),
           where('startTime', '<=', endOfTheMonth)
         )
@@ -47,7 +48,7 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
       hourRate: data.hourRate,
       hours: data.hours,
       memo: data.memo,
-      userId: "minä"
+      userId: currentUser
     })
   }
 

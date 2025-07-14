@@ -69,7 +69,7 @@ function App() {
               />
             }
             <main className="page-content">
-              <AppRoutes setIsLoggedIn={setIsLoggedIn}/>
+              <AppRoutes setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} />
               {showModal &&
                 <Modal
                   message={modalContent.message}

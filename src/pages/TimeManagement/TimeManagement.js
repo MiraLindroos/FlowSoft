@@ -7,9 +7,8 @@ import Form from "../../components/Forms/Form"
 import useAddHoursForm from "../../hooks/useAddHoursForm"
 import { useForm, FormProvider } from "react-hook-form"
 import useCalendarTimeEntries from "../../hooks/useCalendarTimeEntries"
-import { useState } from "react"
 
-const TimeManagement = () => {
+const TimeManagement = ({currentUser}) => {
     const {
     currentDate,
     currentMonth,
@@ -28,7 +27,7 @@ const TimeManagement = () => {
 
   const { addHoursFields } = useAddHoursForm()
 
-  const { timeEntries, addTimeEntry } = useCalendarTimeEntries(currentMonth, currentYear)
+  const { timeEntries, addTimeEntry } = useCalendarTimeEntries(currentMonth, currentYear, currentUser)
 
   const methods = useForm()
 
