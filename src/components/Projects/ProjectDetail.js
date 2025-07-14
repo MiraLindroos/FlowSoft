@@ -11,9 +11,11 @@ const ProjectDetail = ({project}) => {
         > <CardSection
           fields={[
             {label: "Projekti", value: project.name},
-            {label: "Kesto", value: project.endDate.toDate().toDateString()},
+            {label: "Alkamispäivä", value: project.startDate.toDate().toDateString()},
+            {label: "Loppumispäivä", value: project.endDate.toDate().toDateString()},
             {label: "Lisätty", value: project.created.toDate().toDateString()},
-            {label: "Hinta", value: project.price}
+            {label: project.hourRate.length > 0 ? "Tuntihinta" : "Kiinteä hinta", value: project.hourRate.length > 0 ? project.hourRate : project.fixedRate },
+            {label: "Muistiinpanot", value: project.memo}
           ]}
         />
         </Card>
@@ -24,7 +26,7 @@ const ProjectDetail = ({project}) => {
         > <CardSection
             fields={[
               {label: "Tunnit tässä kuussa", value: "20"},
-              {label: "tunnit yhteensä", value: "90"},
+              {label: "tunnit yhteensä", value: project.hours},
             ]}
           />
         </Card>
