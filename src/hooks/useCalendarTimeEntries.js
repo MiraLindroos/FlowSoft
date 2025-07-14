@@ -39,7 +39,7 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
       projectId: "testitestitesti",
       travels: data.travel,
       hourRate: data.hourRate,
-      hours: 3,
+      hours: data.hours,
       memo: data.memo,
       userId: "minä"
     })

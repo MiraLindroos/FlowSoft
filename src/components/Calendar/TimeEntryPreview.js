@@ -1,8 +1,16 @@
 const TimeEntryPreview = ({ timeEntryDates }) => {
   return (
     <div>
-      {timeEntryDates.map((entry, index) => 
-        <p key={index}>{entry.project} - {entry.hours}h</p>
+      {timeEntryDates.map((entry, index) => {
+        const fullHours = Math.floor(entry.hours)
+        const fullMinutes = Math.round((entry.hours - fullHours) * 60)
+        return (
+          <p key={index}>
+            {entry.project} - {fullHours}h {fullMinutes}min
+          </p>
+        )
+
+      }
       )}
     </div>
 

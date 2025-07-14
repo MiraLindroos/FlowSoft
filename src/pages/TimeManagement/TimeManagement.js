@@ -40,12 +40,12 @@ const TimeManagement = () => {
   const onSubmit = (data, date) => {
     const start = time(data.startTime, date)
     const end = time(data.endTime, date)
-    const diffMs = Math.abs(end - start)  // erotus millisekunteina
-    const diffHours = Math.floor(diffMs / (1000 * 60 * 60))  // kokonaiset tunnit
-    const diffMinutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60))  // jäljellä olevat minuutit
+    // Counting hours between startTime and endTime, abs returns the absolute positive value
+    const diffMs = Math.abs(end - start)  // This value is in milliseconds
+    // Counting hours, there are (1000 * 60 * 60) millisecond in an hour
+    const totalHours = (diffMs / (1000 * 60 * 60)).toFixed(2)  // Rounding up to two decimals
 
-    console.log(diffHours + "h " + diffMinutes + "min")
-    // addTimeEntry({...data, startTime: start, endTime: end})
+    addTimeEntry({...data, startTime: start, endTime: end, hours: totalHours})
   }
 
   const handleDayClick = (date) => {
