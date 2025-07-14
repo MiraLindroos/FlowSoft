@@ -5,7 +5,12 @@ const TimeEntryPreview = ({ timeEntryDates }) => {
         const fullHours = Math.floor(entry.hours)
         const fullMinutes = Math.round((entry.hours - fullHours) * 60)
         return (
-          <p key={index}>
+          <p key={index} onClick={(e) => {
+            // Prevent parent event from triggering (DayCell.js onClick)
+            e.stopPropagation()
+            console.log('klik!')
+            }}
+          >
             {entry.project} - {fullHours}h {fullMinutes}min
           </p>
         )

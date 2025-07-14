@@ -82,7 +82,7 @@
 .time-entry {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
   overflow-y: auto;
 }
 
@@ -108,6 +108,10 @@
     gap: 8px;
   }
 
+  .grid-square {
+    min-height: 70px;
+  }
+
   .grid-day {
     font-size: 1rem;
   }
@@ -118,6 +122,11 @@
 
   .header-button {
     padding: 6px 14px;
+  }
+
+  .time-entry {
+    gap: 6px;
+    margin-top: 2px;
   }
 }
 
@@ -135,10 +144,6 @@
     gap: 10px;
   }
 
-  .grid-square {
-    min-height: 60px;
-  }
-
   .grid-day {
     font-size: 1rem;
   }
@@ -149,11 +154,7 @@
     margin: 40px 60px;
     padding: 18px;
   }
-  
-  .grid-square {
-    min-height: 70px;
-  }
-  
+
   .calendar-header {
     font-size: 1.25rem;
   }

@@ -54,7 +54,7 @@ const TimeManagement = ({currentUser}) => {
       message: `Lisää tunteja päivälle ${formattedDate}`,
       children:
       <FormProvider {...methods}>
-        <Form fields={addHoursFields}/>
+        <Form fields={addHoursFields} />
       </FormProvider>,
       onConfirm: methods.handleSubmit((data) => onSubmit(data, date)),
       onCancel: closeModal,
