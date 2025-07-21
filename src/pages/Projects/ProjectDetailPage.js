@@ -7,11 +7,12 @@ import { useForm, FormProvider } from "react-hook-form"
 import useModal from "../../hooks/useModal"
 import Form from "../../components/Forms/Form"
 import addProjectFields from "../../data/addProjectFields"
+import useProjects from "../../hooks/useProjects"
 
-const ProjectDetailPage = () => {
+const ProjectDetailPage = ({currentUser}) => {
   const {id} = useParams()
   const { project } = useProjectDetail(id)
-
+  console.log(project)
   const {
     showModal,
     modalContent,
@@ -19,10 +20,12 @@ const ProjectDetailPage = () => {
     closeModal
   } = useModal()
 
+  const { addProject } = useProjects(currentUser)
+
   const methods = useForm()
 
   const onSubmit = (data) => {
-    console.log(data)
+    addProject(data)
     closeModal()
   }
   // Function to convert Date object to 'YYYY-MM-DD' format for input type=date field

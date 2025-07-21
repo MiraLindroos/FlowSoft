@@ -1,4 +1,4 @@
-import { collection, getDocs, addDoc } from "firebase/firestore"
+import { collection, getDocs, setDoc, doc } from "firebase/firestore"
 import { db } from "../firebase/index"
 import { useEffect, useState } from "react"
 
@@ -32,7 +32,11 @@ const useProjects = (currentUser) => {
     .map((p) => ({name: p.name, value: p.hours, id: p.id}))
 
   const addProject = async (data) => {
-    await addDoc(collection(db, 'projects'), {
+    const docRef = data.id
+    ? doc(db, 'projects', data.id) // If id, edit the existing doc
+    : doc(collection(db, 'projects')) // Create new doc if no id
+
+    await setDoc(docRef, {
       name: data.name,
       startDate: new Date(data.startDate),
       endDate: new Date(data.endDate),

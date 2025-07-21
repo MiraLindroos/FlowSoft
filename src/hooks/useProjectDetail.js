@@ -13,7 +13,7 @@ const useProjectDetail = (id) => {
         const projectDoc = await getDoc(projectRef)
         // If the document exists, update the state with its data
         if (projectDoc.exists()) {
-          setProject(projectDoc.data())
+          setProject({ id: projectDoc.id, ...projectDoc.data()})
         } else {
           console.log('cant find document')
         }
