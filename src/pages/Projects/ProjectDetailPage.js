@@ -2,10 +2,59 @@ import "./Projects.css"
 import ProjectDetail from "../../components/Projects/ProjectDetail"
 import { useParams } from "react-router-dom"
 import useProjectDetail from "../../hooks/useProjectDetail"
+import Modal from "../../components/Modal/Modal"
+import { useForm, FormProvider } from "react-hook-form"
+import useModal from "../../hooks/useModal"
+import Form from "../../components/Forms/Form"
+import addProjectFields from "../../data/addProjectFields"
 
 const ProjectDetailPage = () => {
   const {id} = useParams()
   const { project } = useProjectDetail(id)
+
+  const {
+    showModal,
+    modalContent,
+    openModal,
+    closeModal
+  } = useModal()
+
+  const methods = useForm()
+
+  const onSubmit = (data) => {
+    console.log(data)
+    closeModal()
+  }
+  // Function to convert Date object to 'YYYY-MM-DD' format for input type=date field
+  const dateToInputValue = (date) => {
+    const year = date.getFullYear()
+    // Convert month (0–11) to 1–12, then add a zero in front if needed (e.g. "03")
+    const month = String(date.getMonth() + 1).padStart(2, '0') // e.g. month 11 already has two numbers so no zero needed in front
+    // Convert day number to string and add a zero in front if needed (e.g. "09")
+    const day = String(date.getDate()).padStart(2, '0')
+    return `${year}-${month}-${day}`
+  }
+
+  const editProjectClick = () => {
+    methods.reset({ // Reset methods with projet values
+      ...project,
+      // Convert Firestore Timestamps to input type=date strings
+      startDate: dateToInputValue(project.startDate.toDate()),
+      endDate: dateToInputValue(project.endDate.toDate())
+    })
+    openModal({
+      message: `Muokkaa projektia: ${project.name}`,
+      children:
+      <FormProvider {...methods}>
+        <Form fields={addProjectFields}/>
+      </FormProvider>,
+      onConfirm: methods.handleSubmit(onSubmit),
+      onCancel: closeModal,
+      cancelButton: "Peruuta",
+      confirmButton: "Tallenna",
+      width: "85%"
+    })
+  }
 
   if (!project) {
     return <div>Ladataan projektia...</div>;
@@ -13,7 +62,21 @@ const ProjectDetailPage = () => {
   return (
     <div>
       <h3>Projekti: {project.name}</h3>
-      <ProjectDetail project={project}/>
+      <button onClick={editProjectClick}>Muokkaa</button>
+      <ProjectDetail
+        project={project}
+      />
+      {showModal && (
+        <Modal
+          message={modalContent.message}
+          children={modalContent.children}
+          onConfirm={modalContent.onConfirm}
+          onCancel={modalContent.onCancel}
+          cancelButton={modalContent.cancelButton}
+          confirmButton={modalContent.confirmButton}
+          width={modalContent.width}
+        />
+      )}
     </div>
   )
 }
