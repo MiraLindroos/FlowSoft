@@ -44,6 +44,7 @@ const Projects = ({currentUser}) => {
 
   return (
     <div className="projects-view">
+      <h3>Projektit</h3>
       <div className="project-buttons">
         <button className="add-project" onClick={addProjectClick}>LISÄÄ UUSI</button>
       </div>

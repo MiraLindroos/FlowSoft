@@ -1,6 +1,6 @@
 import "./Projects.css"
 import { Link } from "react-router-dom"
-import { FiEdit } from "react-icons/fi"
+import { FiTrash } from "react-icons/fi"
 
 const ProjectsList = ({projects}) => {
   return (
@@ -8,7 +8,7 @@ const ProjectsList = ({projects}) => {
       {projects.map((project) => (
         <div className="project-row" key={project.id}>
           <Link to={`/Projekti/${project.id}`} className="project-item">{project.name}</Link>
-          <button className="edit"><FiEdit /></button>
+          <button className="edit"><FiTrash /></button>
         </div>
       ))}
     </div>
