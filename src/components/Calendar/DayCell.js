@@ -15,6 +15,7 @@ const DayCell = ({day, currentDate, onEntryClick, timeEntries, onClick}) => {
       <span className="grid-day">{day}</span>
       <div>
         <TimeEntryPreview
+          date={fullDate}
           timeEntryDates={timeEntryDates}
           onEntryClick={onEntryClick}
         />

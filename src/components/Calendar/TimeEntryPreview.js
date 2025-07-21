@@ -1,4 +1,4 @@
-const TimeEntryPreview = ({ timeEntryDates, onEntryClick }) => {
+const TimeEntryPreview = ({ date, timeEntryDates, onEntryClick }) => {
   return (
     <div className="time-entry">
       {timeEntryDates.map((entry, index) => {
@@ -10,7 +10,7 @@ const TimeEntryPreview = ({ timeEntryDates, onEntryClick }) => {
             onClick={(e) => {
               // Prevent parent event from triggering (DayCell.js onClick)
               e.stopPropagation()
-              onEntryClick(entry)
+              onEntryClick(date, entry)
               console.log('klik!')
             }}>
             {entry.project} - {fullHours}h {fullMinutes}min

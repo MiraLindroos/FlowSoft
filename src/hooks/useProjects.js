@@ -29,7 +29,7 @@ const useProjects = (currentUser) => {
   // Filter projects that have onGoing=true and save the projects name + hours
   const activeProjects = projects
     .filter((p) => p.onGoing)
-    .map((p) => ({name: p.name, value: p.hours}))
+    .map((p) => ({name: p.name, value: p.hours, id: p.id}))
 
   const addProject = async (data) => {
     await addDoc(collection(db, 'projects'), {

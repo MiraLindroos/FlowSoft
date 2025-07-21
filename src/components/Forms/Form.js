@@ -12,7 +12,7 @@ const Form = ({fields}) => {
             <select {...register(`${field.name}`)} required={field.required}>
               <option value="">Valitse projekti</option>
               {field.options.map((option, index) => 
-                <option key={index}>
+                <option key={index} value={option.name}>
                   {option.name}
                 </option>
               )}

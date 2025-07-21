@@ -50,6 +50,14 @@ const TimeManagement = ({currentUser}) => {
 
   const handleDayClick = (date) => {
     const formattedDate = date.toLocaleDateString('fi-FI', { weekday: 'short', day: 'numeric', month: 'numeric' })
+    methods.reset({  // Reset methods before adding a new entry
+      startTime: "",
+      endTime: "",
+      project: "",
+      travel: "",
+      hourRate: "",
+      memo: ""
+    })
     openModal({
       message: `Lisää tunteja päivälle ${formattedDate}`,
       children:
@@ -64,13 +72,23 @@ const TimeManagement = ({currentUser}) => {
     })
   }
 
-  const handleEntryClick = (entry) => {
+  const handleEntryClick = (date, entry) => {
+    const formattedDate = date.toLocaleDateString('fi-FI', { day: 'numeric', month: 'numeric' })
+    methods.reset({ // Reset methods with entry values
+      ...entry,
+      startTime: entry.startTime.toDate().toTimeString().slice(0, 5),
+      endTime: entry.endTime.toDate().toTimeString().slice(0, 5)
+    })
     openModal({
-      message: `testi ${entry.project}`,
+      message: `Muokkaa tunteja päivälle ${formattedDate} (Projekti: ${entry.project})`,
+      children:
+      <FormProvider {...methods}>
+        <Form fields={addHoursFields}/>
+      </FormProvider>,
       onConfirm: closeModal,
       onCancel: closeModal,
-      cancelButton: "Sulje",
-      confirmButton: "Muokkaa"
+      cancelButton: "Peruuta",
+      confirmButton: "Tallenna"
     })
   }
 
