@@ -4,8 +4,11 @@ const Modal = ({message, children, onConfirm, onCancel, cancelButton, confirmBut
   return (
     <div className="modal">
       <div className="modal-content" style={{width}}>
+        {/* Display modal message */}
         <p>{message}</p>
+        {/* Modal content */}
         {children}
+        {/* Modal buttons for cancel and confirm */}
         <div className="modal-buttons">
           <button onClick={onCancel}>{cancelButton}</button>
           <button onClick={onConfirm}>{confirmButton}</button>
