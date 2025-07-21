@@ -28,7 +28,7 @@
 }
 
 .grid-square:hover {
-  background-color: #f0f4f4;
+  background-color: #f4f7f7;
   cursor: pointer;
 }
 
@@ -96,6 +96,11 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.time-entry p:hover {
+  background-color: #013746;
+  color: #fff;
 }
 
 @media (min-width: 768px) {
