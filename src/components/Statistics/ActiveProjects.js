@@ -4,8 +4,6 @@ import useProjects from "../../hooks/useProjects"
 
 const ActiveProjects = () => {
   const { activeProjects } = useProjects()
-  // Let's filter out all projects that have onGoing=false
-
   return (
     <ResponsiveContainer width="100%" height={150}>
       <PieChart margin={{top: 15}}>

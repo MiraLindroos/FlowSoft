@@ -1,7 +1,7 @@
 import "./Calendar.css"
 import TimeEntryPreview from "./TimeEntryPreview"
 
-const DayCell = ({day, currentDate, timeEntries, onClick}) => {
+const DayCell = ({day, currentDate, onEntryClick, timeEntries, onClick}) => {
   const year = currentDate.getFullYear()
   const month = currentDate.getMonth()
   const fullDate = new Date(year, month, day)
@@ -14,7 +14,10 @@ const DayCell = ({day, currentDate, timeEntries, onClick}) => {
     <div className="grid-square" onClick={onClick}>
       <span className="grid-day">{day}</span>
       <div>
-        <TimeEntryPreview timeEntryDates={timeEntryDates}/>
+        <TimeEntryPreview
+          timeEntryDates={timeEntryDates}
+          onEntryClick={onEntryClick}
+        />
       </div>
     </div>
   )

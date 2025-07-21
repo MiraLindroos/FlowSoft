@@ -64,6 +64,16 @@ const TimeManagement = ({currentUser}) => {
     })
   }
 
+  const handleEntryClick = (entry) => {
+    openModal({
+      message: `testi ${entry.project}`,
+      onConfirm: closeModal,
+      onCancel: closeModal,
+      cancelButton: "Sulje",
+      confirmButton: "Muokkaa"
+    })
+  }
+
   return (
     <>
       <h3>Ajanhallinta</h3>
@@ -74,6 +84,7 @@ const TimeManagement = ({currentUser}) => {
           nextMonth={nextMonth}
           previousMonth={previousMonth}
           onDateClick={handleDayClick}
+          onEntryClick={handleEntryClick}
           timeEntries={timeEntries}
         />
         {showModal &&
