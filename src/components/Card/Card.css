@@ -26,6 +26,10 @@
 
 /* CardSection.js */
 
+.card-section {
+  padding: 0 15px;
+}
+
 .card-section-p {
   margin-top: 0;
 }
