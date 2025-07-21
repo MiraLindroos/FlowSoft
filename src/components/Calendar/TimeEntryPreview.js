@@ -1,7 +1,9 @@
 const TimeEntryPreview = ({ date, timeEntryDates, onEntryClick }) => {
   return (
     <div className="time-entry">
+      {/* Map through all time entries for this day and display them */}
       {timeEntryDates.map((entry, index) => {
+        // Calculate the entry's full hours and minutes
         const fullHours = Math.floor(entry.hours)
         const fullMinutes = Math.round((entry.hours - fullHours) * 60)
         return (
@@ -13,6 +15,7 @@ const TimeEntryPreview = ({ date, timeEntryDates, onEntryClick }) => {
               onEntryClick(date, entry)
               console.log('klik!')
             }}>
+            {/* Display project name and calculated hours */}
             {entry.project} - {fullHours}h {fullMinutes}min
           </p>
         )

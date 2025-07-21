@@ -7,6 +7,7 @@ const CalendarGrid = ({currentDate, daysInAMonth, onDateClick, onEntryClick, tim
 
   return (
     <div className="grid">
+      {/* Render a DayCell for each day in the current month */}
       {daysInAMonth.map((day, index) => (
         <DayCell
           key={index}
@@ -14,9 +15,13 @@ const CalendarGrid = ({currentDate, daysInAMonth, onDateClick, onEntryClick, tim
           currentDate={currentDate}
           onEntryClick={onEntryClick}
           timeEntries={timeEntries}
+          // Handle click on a day cell
           onClick={() => {
+            // Only handle clicks for valid days (not empty cells)
             if (day !== '') {
+              // Create a Date object for the clicked day
               const fullDate = new Date(year, month, day)
+              // Trigger the onDateClick callback with the selected date
               onDateClick(fullDate)
             }
           }}
