@@ -73,6 +73,7 @@ const TimeManagement = ({currentUser}) => {
   }
 
   const handleEntryClick = (date, entry) => {
+    console.log(entry)
     const formattedDate = date.toLocaleDateString('fi-FI', { day: 'numeric', month: 'numeric' })
     methods.reset({ // Reset methods with entry values
       ...entry,
@@ -85,7 +86,7 @@ const TimeManagement = ({currentUser}) => {
       <FormProvider {...methods}>
         <Form fields={addHoursFields}/>
       </FormProvider>,
-      onConfirm: closeModal,
+      onConfirm: methods.handleSubmit((data) => onSubmit(data, date)),
       onCancel: closeModal,
       cancelButton: "Peruuta",
       confirmButton: "Tallenna"

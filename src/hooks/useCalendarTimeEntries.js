@@ -1,4 +1,4 @@
-import { collection, getDocs, where, Timestamp, query, addDoc } from "firebase/firestore"
+import { collection, getDocs, where, Timestamp, query, setDoc, doc } from "firebase/firestore"
 import { db } from "../firebase/index"
 import { useEffect, useState } from "react"
 
@@ -38,7 +38,11 @@ const useCalendarTimeEntries = (currentMonth, currentYear, currentUser) => {
 
   // Add new document to firestore collection 'timeEntries' with following data
   const addTimeEntry = async (data) => {
-    await addDoc(collection(db, 'timeEntries'), {
+    const docRef = data.id
+      ? doc(db, 'timeEntries', data.id) // If id, edit the existing doc
+      : doc(collection(db, 'timeEntries')) // Create new doc if no id
+
+    await setDoc(docRef, {
       startTime: data.startTime,
       endTime: data.endTime,
       project: data.project,
