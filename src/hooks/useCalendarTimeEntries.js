@@ -1,4 +1,4 @@
-import { collection, getDocs, where, Timestamp, query, setDoc, doc, deleteDoc } from "firebase/firestore"
+import { collection, where, Timestamp, query, setDoc, doc, deleteDoc, onSnapshot } from "firebase/firestore"
 import { db } from "../firebase/index"
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
@@ -7,34 +7,43 @@ const useCalendarTimeEntries = (currentMonth, currentYear, currentUser) => {
   const [timeEntries, setTimeEntries] = useState([])
 
   useEffect(() => {
+    // Initialize a empty unsubscribe function to be safely called later
+    let unsubscribe = () => {}
     // Fetching time entries from firestore
     const fetchTimeEntries = async () => {
       try {
         // Converting dates to timestamps
         const startOfTheMonth = Timestamp.fromDate(new Date(currentYear, currentMonth, 1))
         const endOfTheMonth = Timestamp.fromDate(new Date(currentYear, currentMonth + 1, 0))
-        // Fetch all entries that are in the current month
+
+        // Fetch all entries from current user that are in the current month
         const q = query(
           collection(db, 'timeEntries'),
           where('userId', '==', currentUser),
           where('startTime', '>=', startOfTheMonth),
           where('startTime', '<=', endOfTheMonth)
         )
-
-        const timeEntriesCollection = await getDocs(q)
-        const timeEntriesArray = []
-        // Go through each document and push its data to the timeEntriesArray
-        timeEntriesCollection.forEach((doc) => {
-          // doc.data() returs the document data as an object
-          timeEntriesArray.push({id: doc.id, ...doc.data()})
+        // Start listening to real-time updates from Firestore
+        unsubscribe = onSnapshot(q, (querySnapshot) => {
+          const timeEntriesArray = []
+          // Go through each document and push its data to the timeEntriesArray
+          querySnapshot.forEach((doc) => {
+            // doc.data() returs the document data as an object
+            timeEntriesArray.push({id: doc.id, ...doc.data()})
+          })
+          // Update the state with the fetched time entries
+          setTimeEntries(timeEntriesArray)
         })
-        // Update the state with the fetched time entries
-        setTimeEntries(timeEntriesArray)
       } catch (e) {
         console.error(e)
       }
     }
     fetchTimeEntries()
+    // Cleanup function runs when the component is unmounted or when a depency changes (e.g. month or year)
+    return () => {
+    // Stop listening to real-time Firestore updates to prevent memory leaks and duplicate listeners
+      unsubscribe()
+    }
   }, [currentMonth, currentYear])
 
   // Add new document to firestore collection 'timeEntries' with following data

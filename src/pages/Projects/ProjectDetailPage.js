@@ -13,7 +13,7 @@ import Button from "../../components/Button/Button"
 const ProjectDetailPage = ({currentUser}) => {
   const {id} = useParams()
   const { project } = useProjectDetail(id)
-  console.log(project)
+
   const {
     showModal,
     modalContent,
