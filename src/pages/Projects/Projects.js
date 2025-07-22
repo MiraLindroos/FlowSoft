@@ -27,20 +27,31 @@ const Projects = ({currentUser}) => {
     closeModal()
   }
 
-    const addProjectClick = () => {
-      openModal({
-        message: "Lisää uusi projekti",
-        children:
-        <FormProvider {...methods}>
-          <Form fields={addProjectFields}/>
-        </FormProvider>,
-        onConfirm: methods.handleSubmit(onSubmit),
-        onCancel: closeModal,
-        cancelButton: "Peruuta",
-        confirmButton: "Tallenna",
-        width: "85%"
-      })
-    }
+  const addProjectClick = () => {
+    openModal({
+      message: "Lisää uusi projekti",
+      children:
+      <FormProvider {...methods}>
+        <Form fields={addProjectFields}/>
+      </FormProvider>,
+      onConfirm: methods.handleSubmit(onSubmit),
+      onCancel: closeModal,
+      cancelButton: "Peruuta",
+      confirmButton: "Tallenna",
+      width: "85%"
+    })
+  }
+
+  const onDelete = (project) => {
+    console.log('delete')
+    openModal({
+      message: `Haluatko varmasti poistaa projektin: ${project.name}?`,
+      onConfirm: closeModal,
+      onCancel: closeModal,
+      cancelButton: "Peruuta",
+      confirmButton: "Vahvista",
+    })
+  }
 
   return (
     <div className="projects-view">
@@ -49,7 +60,7 @@ const Projects = ({currentUser}) => {
         <button className="add-project" onClick={addProjectClick}>LISÄÄ UUSI</button>
       </div>
       <div className="projects-list">
-        <ProjectsList projects={projects}/>
+        <ProjectsList projects={projects} onDelete={onDelete} />
       </div>
       {showModal &&
         <Modal
