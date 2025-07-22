@@ -7,10 +7,10 @@ const useProjects = (currentUser) => {
   const [projects, setProjects] = useState([])
 
   useEffect(() => {
-    // Initialize a empty unsubscribe function to be safely called later
+    // Initialize an empty unsubscribe function to be safely called later
     // This prevents "unsubscribe is not a function" errors if for some reason onSnapshot fails or doesn't run
     let unsubscribe = () => {}
-    // Async function to fetch projects from Firestore
+    // Async function to fetch projects from Firestore and listen for real-time updates
     const fetchProjects =  async () => {
       try {
         // Get all documents for the current user from the projects collection

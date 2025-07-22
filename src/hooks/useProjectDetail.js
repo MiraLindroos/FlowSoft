@@ -1,27 +1,40 @@
-import { doc, getDoc } from "firebase/firestore"
+import { doc, onSnapshot } from "firebase/firestore"
 import { db } from "../firebase/index"
 import { useEffect, useState } from "react"
 
 const useProjectDetail = (id) => {
   const [project, setProject] = useState()
   useEffect(() => {
-    // Async function to fetch the project from Firestore
+    // Initialize an empty unsubscribe function to be safely called later
+    // This prevents "unsubscribe is not a function" errors if for some reason onSnapshot fails or doesn't run
+    let unsubscribe = () => {}
+    // Async function to fetch the project from Firestore and listen for real-time updates
     const fetchProject = async () => {
       try {
+        // Start listening to real-time updates from Firestore
         // Find project document with given id
-        const projectRef = doc(db, "projects", id)
-        const projectDoc = await getDoc(projectRef)
-        // If the document exists, update the state with its data
-        if (projectDoc.exists()) {
-          setProject({ id: projectDoc.id, ...projectDoc.data()})
-        } else {
-          console.log('cant find document')
-        }
+        unsubscribe = onSnapshot(
+          doc(db, 'projects', id),
+          (documentSnapshot) => {
+            console.log(documentSnapshot)
+            if (documentSnapshot.exists()) {
+              // Update state with the data from Firestore
+              setProject({ id: documentSnapshot.id, ...documentSnapshot.data()})
+            } else {
+              console.log('cant find document')
+            }
+          }
+        )
       } catch (e) {
         console.error(e)
       }
     }
     fetchProject()
+    // Cleanup function runs when the component is unmounted or when id changes
+    return () => {
+    // Stop listening to real-time Firestore updates to prevent memory leaks and duplicate listeners
+      unsubscribe()
+    }
   }, [id])
 
   return {
