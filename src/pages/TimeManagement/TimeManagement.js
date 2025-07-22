@@ -85,7 +85,6 @@ const TimeManagement = ({currentUser}) => {
   }
 
   const handleEntryClick = (date, entry) => {
-    console.log(entry)
     const formattedDate = date.toLocaleDateString('fi-FI', { day: 'numeric', month: 'numeric' })
     methods.reset({ // Reset methods with entry values
       ...entry,

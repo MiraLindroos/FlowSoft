@@ -1,4 +1,4 @@
-import { collection, getDocs, setDoc, doc } from "firebase/firestore"
+import { collection, getDocs, setDoc, doc, deleteDoc } from "firebase/firestore"
 import { db } from "../firebase/index"
 import { useEffect, useState } from "react"
 
@@ -50,10 +50,15 @@ const useProjects = (currentUser) => {
     })
   }
 
+  const deleteProject = async (id) => {
+    await deleteDoc(doc(db, 'projects', id))
+  }
+
   return {
     projects,
     activeProjects,
-    addProject
+    addProject,
+    deleteProject
   }
 }
 

@@ -10,7 +10,8 @@ import addProjectFields from "../../data/addProjectFields"
 const Projects = ({currentUser}) => {
   const {
     projects,
-    addProject
+    addProject,
+    deleteProject
   } = useProjects(currentUser)
 
   const {
@@ -43,10 +44,12 @@ const Projects = ({currentUser}) => {
   }
 
   const onDelete = (project) => {
-    console.log('delete')
     openModal({
       message: `Haluatko varmasti poistaa projektin: ${project.name}?`,
-      onConfirm: closeModal,
+      onConfirm: () => {
+        deleteProject(project.id)
+        closeModal()
+      },
       onCancel: closeModal,
       cancelButton: "Peruuta",
       confirmButton: "Vahvista",
