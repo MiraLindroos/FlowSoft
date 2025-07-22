@@ -1,4 +1,4 @@
-import { collection, getDocs, setDoc, doc, deleteDoc } from "firebase/firestore"
+import { collection, setDoc, doc, deleteDoc, onSnapshot, query, where } from "firebase/firestore"
 import { db } from "../firebase/index"
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
@@ -7,24 +7,38 @@ const useProjects = (currentUser) => {
   const [projects, setProjects] = useState([])
 
   useEffect(() => {
+    // Initialize a empty unsubscribe function to be safely called later
+    // This prevents "unsubscribe is not a function" errors if for some reason onSnapshot fails or doesn't run
+    let unsubscribe = () => {}
     // Async function to fetch projects from Firestore
     const fetchProjects =  async () => {
       try {
-        // Get all documents from the projects collection
-        const projectsCollection = await getDocs(collection(db, "projects"))
-        const projectsArray = []
-        // Go through each document and push its data to the projectsArray
-        projectsCollection.forEach((doc) => {
-          // doc.data() returs the document data as an object
-          projectsArray.push({ id: doc.id, ...doc.data()})
+        // Get all documents for the current user from the projects collection
+        const q = query(
+          collection(db, "projects"),
+          where('userId', '==', currentUser)
+        )
+        // Start listening to real-time updates from Firestore
+        unsubscribe = onSnapshot(q, (querySnapshot) => {
+          const projectsArray = []
+          // Go through each document and push its data to the projectsArray
+          querySnapshot.forEach((doc) => {
+            // doc.data() returs the document data as an object
+            projectsArray.push({ id: doc.id, ...doc.data()})
+          })
+          // Update the state with the fetched projects
+          setProjects(projectsArray)
         })
-        // Update the state with the fetched projects
-        setProjects(projectsArray)
       } catch (e) {
         console.error(e)
       }
     }
     fetchProjects()
+    // Cleanup function runs when the component is unmounted
+    return () => {
+    // Stop listening to real-time Firestore updates to prevent memory leaks and duplicate listeners
+      unsubscribe()
+    }
   }, [])
 
   // Filter projects that have onGoing=true and save the projects name + hours

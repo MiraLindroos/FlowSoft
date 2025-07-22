@@ -8,6 +8,7 @@ const useCalendarTimeEntries = (currentMonth, currentYear, currentUser) => {
 
   useEffect(() => {
     // Initialize a empty unsubscribe function to be safely called later
+    // This prevents "unsubscribe is not a function" errors if for some reason onSnapshot fails or doesn't run
     let unsubscribe = () => {}
     // Fetching time entries from firestore
     const fetchTimeEntries = async () => {
