@@ -1,0 +1,19 @@
+.button {
+  background-color: #013746;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 7px;
+}
+
+.button:hover {
+  background-color: #296d80;
+  cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+  .button {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}

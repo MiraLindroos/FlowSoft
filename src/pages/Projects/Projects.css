@@ -7,19 +7,6 @@
   margin-bottom: 15px;
 }
 
-.add-project {
-  background-color: #013746;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 7px;
-}
-
-.add-project:hover {
-  background-color: #296d80;
-  cursor: pointer;
-}
-
 .projects-list {
   background-color: #fff;
 }
@@ -33,11 +20,6 @@
 @media (min-width: 1024px) {
   .projects-view {
     margin: 26px 22px;
-  }
-
-  .add-project {
-    font-size: 0.9rem;
-    padding: 8px;
   }
 }
 

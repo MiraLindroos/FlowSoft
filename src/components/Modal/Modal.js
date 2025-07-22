@@ -1,4 +1,5 @@
 import './Modal.css'
+import Button from '../Button/Button'
 
 const Modal = ({message, children, onConfirm, onCancel, cancelButton, confirmButton, width = "65%"}) => {
   return (
@@ -10,8 +11,8 @@ const Modal = ({message, children, onConfirm, onCancel, cancelButton, confirmBut
         {children}
         {/* Modal buttons for cancel and confirm */}
         <div className="modal-buttons">
-          <button onClick={onCancel}>{cancelButton}</button>
-          <button onClick={onConfirm}>{confirmButton}</button>
+          <Button title={cancelButton} onClick={onCancel}/>
+          <Button title={confirmButton} onClick={onConfirm} />
         </div>
       </div>
     </div>

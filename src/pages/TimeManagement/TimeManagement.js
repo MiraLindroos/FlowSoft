@@ -8,6 +8,7 @@ import useAddHoursForm from "../../hooks/useAddHoursForm"
 import { useForm, FormProvider } from "react-hook-form"
 import useCalendarTimeEntries from "../../hooks/useCalendarTimeEntries"
 import { Toaster } from "react-hot-toast"
+import Button from "../../components/Button/Button"
 
 const TimeManagement = ({currentUser}) => {
     const {
@@ -99,7 +100,7 @@ const TimeManagement = ({currentUser}) => {
       message: `Muokkaa tunteja päivälle ${formattedDate} (Projekti: ${entry.project})`,
       children:
       <>
-        <button onClick={() => onDelete(entry)}>Poista</button>
+        <Button title={'Poista'} onClick={() => onDelete(entry)} />
         <FormProvider {...methods}>
           <Form fields={addHoursFields} />
         </FormProvider>

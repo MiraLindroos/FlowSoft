@@ -7,6 +7,7 @@ import useModal from "../../hooks/useModal"
 import Form from "../../components/Forms/Form"
 import addProjectFields from "../../data/addProjectFields"
 import { Toaster } from "react-hot-toast"
+import Button from "../../components/Button/Button"
 
 const Projects = ({currentUser}) => {
   const {
@@ -63,7 +64,7 @@ const Projects = ({currentUser}) => {
     <div className="projects-view">
       <h3>Projektit</h3>
       <div className="project-buttons">
-        <button className="add-project" onClick={addProjectClick}>LISÄÄ UUSI</button>
+        <Button title={'LISÄÄ UUSI'} onClick={addProjectClick} />
       </div>
       <div className="projects-list">
         <ProjectsList projects={projects} onDelete={onDelete} />

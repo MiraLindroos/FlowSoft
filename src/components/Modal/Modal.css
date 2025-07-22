@@ -29,14 +29,6 @@
   padding: 3px;
 }
 
-.modal-buttons button {
-  background-color: #013746;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 7px;
-}
-
 @media (min-width: 768px) {
   .modal-content {
     max-width: 60%;

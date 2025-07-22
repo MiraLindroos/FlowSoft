@@ -8,6 +8,7 @@ import useModal from "../../hooks/useModal"
 import Form from "../../components/Forms/Form"
 import addProjectFields from "../../data/addProjectFields"
 import useProjects from "../../hooks/useProjects"
+import Button from "../../components/Button/Button"
 
 const ProjectDetailPage = ({currentUser}) => {
   const {id} = useParams()
@@ -65,7 +66,7 @@ const ProjectDetailPage = ({currentUser}) => {
   return (
     <div>
       <h3>Projekti: {project.name}</h3>
-      <button onClick={editProjectClick}>Muokkaa</button>
+      <Button title={'Muokkaa'} onClick={editProjectClick} />
       <ProjectDetail
         project={project}
       />
