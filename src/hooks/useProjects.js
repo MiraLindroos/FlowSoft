@@ -1,6 +1,7 @@
 import { collection, getDocs, setDoc, doc, deleteDoc } from "firebase/firestore"
 import { db } from "../firebase/index"
 import { useEffect, useState } from "react"
+import toast from "react-hot-toast"
 
 const useProjects = (currentUser) => {
   const [projects, setProjects] = useState([])
@@ -36,22 +37,36 @@ const useProjects = (currentUser) => {
     ? doc(db, 'projects', data.id) // If id, edit the existing doc
     : doc(collection(db, 'projects')) // Create new doc if no id
 
-    await setDoc(docRef, {
-      name: data.name,
-      startDate: new Date(data.startDate),
-      endDate: new Date(data.endDate),
-      hourRate: data.hourRate,
-      fixedRate: data.fixedRate,
-      memo: data.memo,
-      created: new Date(),
-      onGoing: (new Date(data.startDate) <= new Date() && new Date() <= new Date(data.endDate)) ? true : false,
-      userId: currentUser,
-      hours: 0
-    })
+    await toast.promise(
+      setDoc(docRef, {
+        name: data.name,
+        startDate: new Date(data.startDate),
+        endDate: new Date(data.endDate),
+        hourRate: data.hourRate,
+        fixedRate: data.fixedRate,
+        memo: data.memo,
+        created: new Date(),
+        onGoing: (new Date(data.startDate) <= new Date() && new Date() <= new Date(data.endDate)) ? true : false,
+        userId: currentUser,
+        hours: 0
+      }),
+      {
+        loading: 'Tallennetaan...',
+        success: 'Tallennus onnistui!',
+        error: 'Tallennus epäonnistui'
+      }
+    )
   }
 
   const deleteProject = async (id) => {
-    await deleteDoc(doc(db, 'projects', id))
+    await toast.promise(
+      deleteDoc(doc(db, 'projects', id)),
+      {
+        loading: 'Poistetaan...',
+        success: 'Poisto onnistui!',
+        error: 'Posto epäonnistui'
+      }
+    )
   }
 
   return {

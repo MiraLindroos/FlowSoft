@@ -6,6 +6,7 @@ import { useForm, FormProvider } from "react-hook-form"
 import useModal from "../../hooks/useModal"
 import Form from "../../components/Forms/Form"
 import addProjectFields from "../../data/addProjectFields"
+import { Toaster } from "react-hot-toast"
 
 const Projects = ({currentUser}) => {
   const {
@@ -29,6 +30,7 @@ const Projects = ({currentUser}) => {
   }
 
   const addProjectClick = () => {
+    methods.reset({})
     openModal({
       message: "Lisää uusi projekti",
       children:
@@ -76,6 +78,7 @@ const Projects = ({currentUser}) => {
           width={modalContent.width}
         />
       }
+      <Toaster />
     </div>
   )
 }
