@@ -13,7 +13,6 @@ const TimeEntryPreview = ({ date, timeEntryDates, onEntryClick }) => {
               // Prevent parent event from triggering (DayCell.js onClick)
               e.stopPropagation()
               onEntryClick(date, entry)
-              console.log('klik!')
             }}>
             {/* Display project name and calculated hours */}
             {entry.project} - {fullHours}h {fullMinutes}min

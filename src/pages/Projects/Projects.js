@@ -55,6 +55,7 @@ const Projects = ({currentUser}) => {
       onCancel: closeModal,
       cancelButton: "Peruuta",
       confirmButton: "Vahvista",
+      width: "85%"
     })
   }
 

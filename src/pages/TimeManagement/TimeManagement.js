@@ -84,6 +84,7 @@ const TimeManagement = ({currentUser}) => {
       onCancel: closeModal,
       cancelButton: "Peruuta",
       confirmButton: "Vahvista",
+      width: "85%"
     })
   }
 
@@ -98,7 +99,7 @@ const TimeManagement = ({currentUser}) => {
       message: `Muokkaa tunteja päivälle ${formattedDate} (Projekti: ${entry.project})`,
       children:
       <>
-        <button onClick={() => onDelete(entry)}>poista</button>
+        <button onClick={() => onDelete(entry)}>Poista</button>
         <FormProvider {...methods}>
           <Form fields={addHoursFields} />
         </FormProvider>
@@ -106,7 +107,8 @@ const TimeManagement = ({currentUser}) => {
       onConfirm: methods.handleSubmit((data) => onSubmit(data, date)),
       onCancel: closeModal,
       cancelButton: "Peruuta",
-      confirmButton: "Tallenna"
+      confirmButton: "Tallenna",
+      width: "85%"
     })
   }
 
