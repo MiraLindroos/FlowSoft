@@ -2,7 +2,7 @@ import Card from "../../components/Card/Card"
 import CardSection from "../../components/Card/CardSection"
 import "./Profile.css"
 
-const Profile = () => {
+const Profile = ({currentUser}) => {
   return (
     <>
       <h3>Profiili</h3>

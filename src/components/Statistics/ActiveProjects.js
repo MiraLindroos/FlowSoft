@@ -2,8 +2,8 @@ import "./Statistics.css";
 import { PieChart, ResponsiveContainer, Pie } from 'recharts'
 import useProjects from "../../hooks/useProjects"
 
-const ActiveProjects = () => {
-  const { activeProjects } = useProjects()
+const ActiveProjects = ({currentUser}) => {
+  const { activeProjects } = useProjects(currentUser)
   return (
     <ResponsiveContainer width="100%" height={150}>
       <PieChart margin={{top: 15}}>

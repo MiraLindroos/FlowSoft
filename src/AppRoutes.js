@@ -10,11 +10,11 @@ const AppRoutes = ({ setIsLoggedIn, currentUser }) => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/Etusivu" element={<Home setIsLoggedIn={setIsLoggedIn}/>} />
+      <Route path="/Etusivu" element={<Home setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} />} />
       <Route path="/Ajanhallinta" element={<TimeManagement currentUser={currentUser} />} />
       <Route path="/Projektit" element={<Projects currentUser={currentUser} />} />
       <Route path="/Projekti/:id" element={<ProjectDetailPage currentUser={currentUser} />} />
-      <Route path="/Profiili" element={<Profile />} />
+      <Route path="/Profiili" element={<Profile currentUser={currentUser} />} />
       <Route path="/Matkat" element={<Travel />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>

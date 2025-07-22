@@ -6,7 +6,7 @@ import useStatistics from "../../hooks/useStatistics"
 import Card from "../../components/Card/Card"
 import cardColors from "../../theme/cardColors"
 
-const Home = () => {
+const Home = ({currentUser}) => {
   const {
     data
   } = useStatistics();
@@ -30,7 +30,7 @@ const Home = () => {
             title={'Projektit'}
             description={'Aktiiviset projektit'}
             variant="green"
-          > <ActiveProjects />
+          > <ActiveProjects currentUser={currentUser}/>
           </Card>
         </div>
         
