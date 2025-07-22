@@ -28,7 +28,7 @@ const TimeManagement = ({currentUser}) => {
 
   const { addHoursFields } = useAddHoursForm()
 
-  const { timeEntries, addTimeEntry } = useCalendarTimeEntries(currentMonth, currentYear, currentUser)
+  const { timeEntries, addTimeEntry, deleteTimeEntry } = useCalendarTimeEntries(currentMonth, currentYear, currentUser)
 
   const methods = useForm()
 
@@ -75,10 +75,12 @@ const TimeManagement = ({currentUser}) => {
 
 
   const onDelete = (entry) => {
-    console.log('delete')
     openModal({
       message: `Haluatko varmasti poistaa tuntilisäyksen projektille ${entry.project}?`,
-      onConfirm: closeModal,
+      onConfirm: () => {
+        deleteTimeEntry(entry.id)
+        closeModal()
+      },
       onCancel: closeModal,
       cancelButton: "Peruuta",
       confirmButton: "Vahvista",

@@ -1,4 +1,4 @@
-import { collection, getDocs, where, Timestamp, query, setDoc, doc } from "firebase/firestore"
+import { collection, getDocs, where, Timestamp, query, setDoc, doc, deleteDoc } from "firebase/firestore"
 import { db } from "../firebase/index"
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
@@ -63,9 +63,21 @@ const useCalendarTimeEntries = (currentMonth, currentYear, currentUser) => {
     )
   }
 
+  const deleteTimeEntry = async (id) => {
+    await toast.promise(
+      deleteDoc(doc(db, 'timeEntries', id)),
+      {
+        loading: 'Poistetaan tunteja..',
+        success: 'Tuntien poisto onnistui!',
+        error: 'Tuntien poistaminen epäonnistui'
+      }
+    )
+  }
+
   return {
     timeEntries,
-    addTimeEntry
+    addTimeEntry,
+    deleteTimeEntry
   }
 }
 
