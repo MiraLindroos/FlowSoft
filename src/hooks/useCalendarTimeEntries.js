@@ -1,6 +1,7 @@
 import { collection, getDocs, where, Timestamp, query, setDoc, doc } from "firebase/firestore"
 import { db } from "../firebase/index"
 import { useEffect, useState } from "react"
+import toast from "react-hot-toast"
 
 const useCalendarTimeEntries = (currentMonth, currentYear, currentUser) => {
   const [timeEntries, setTimeEntries] = useState([])
@@ -42,7 +43,8 @@ const useCalendarTimeEntries = (currentMonth, currentYear, currentUser) => {
       ? doc(db, 'timeEntries', data.id) // If id, edit the existing doc
       : doc(collection(db, 'timeEntries')) // Create new doc if no id
 
-    await setDoc(docRef, {
+    await toast.promise(
+      setDoc(docRef, {
       startTime: data.startTime,
       endTime: data.endTime,
       project: data.project,
@@ -52,7 +54,13 @@ const useCalendarTimeEntries = (currentMonth, currentYear, currentUser) => {
       hours: data.hours,
       memo: data.memo,
       userId: currentUser
-    })
+      }),
+      {
+        loading: 'Tallennetaan tunteja..',
+        success: 'Tuntien lisääminen onnistui!',
+        error: 'Tuntien lisääminen epäonnistui'
+      }
+    )
   }
 
   return {

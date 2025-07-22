@@ -32,6 +32,7 @@ const useProjects = (currentUser) => {
     .filter((p) => p.onGoing)
     .map((p) => ({name: p.name, value: p.hours, id: p.id}))
 
+  // Function for adding and updating project data to Firestore
   const addProject = async (data) => {
     const docRef = data.id
     ? doc(db, 'projects', data.id) // If id, edit the existing doc
@@ -58,6 +59,7 @@ const useProjects = (currentUser) => {
     )
   }
 
+  // Function for deleting a project from Firestore
   const deleteProject = async (id) => {
     await toast.promise(
       deleteDoc(doc(db, 'projects', id)),

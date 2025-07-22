@@ -7,6 +7,7 @@ import Form from "../../components/Forms/Form"
 import useAddHoursForm from "../../hooks/useAddHoursForm"
 import { useForm, FormProvider } from "react-hook-form"
 import useCalendarTimeEntries from "../../hooks/useCalendarTimeEntries"
+import { Toaster } from "react-hot-toast"
 
 const TimeManagement = ({currentUser}) => {
     const {
@@ -132,6 +133,7 @@ const TimeManagement = ({currentUser}) => {
           />
         }
       </div>
+      <Toaster />
     </>
 
   )
