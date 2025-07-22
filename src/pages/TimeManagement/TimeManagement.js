@@ -72,6 +72,18 @@ const TimeManagement = ({currentUser}) => {
     })
   }
 
+
+  const onDelete = (entry) => {
+    console.log('delete')
+    openModal({
+      message: `Haluatko varmasti poistaa tuntilisäyksen projektille ${entry.project}?`,
+      onConfirm: closeModal,
+      onCancel: closeModal,
+      cancelButton: "Peruuta",
+      confirmButton: "Vahvista",
+    })
+  }
+
   const handleEntryClick = (date, entry) => {
     console.log(entry)
     const formattedDate = date.toLocaleDateString('fi-FI', { day: 'numeric', month: 'numeric' })
@@ -83,9 +95,12 @@ const TimeManagement = ({currentUser}) => {
     openModal({
       message: `Muokkaa tunteja päivälle ${formattedDate} (Projekti: ${entry.project})`,
       children:
-      <FormProvider {...methods}>
-        <Form fields={addHoursFields}/>
-      </FormProvider>,
+      <>
+        <button onClick={() => onDelete(entry)}>poista</button>
+        <FormProvider {...methods}>
+          <Form fields={addHoursFields} />
+        </FormProvider>
+      </>,
       onConfirm: methods.handleSubmit((data) => onSubmit(data, date)),
       onCancel: closeModal,
       cancelButton: "Peruuta",
