@@ -1,8 +1,11 @@
 import Card from "../../components/Card/Card"
 import CardSection from "../../components/Card/CardSection"
 import "./Profile.css"
+import useUserInfo from "../../hooks/useUserInfo"
 
 const Profile = () => {
+  const { userInfo } = useUserInfo()
+
   return (
     <>
       <h3>Profiili</h3>
@@ -11,9 +14,9 @@ const Profile = () => {
           title="Perustiedot"
           > <CardSection
             fields={[
-              {label: "Nimi", value: "Jukka"},
-              {label: "Sähköposti", value: "Jukka@flowtec"},
-              {label: "Rooli", value: "Käyttäjä"}
+              {label: "Nimi", value: userInfo.name},
+              {label: "Sähköposti", value: userInfo.email},
+              {label: "Rooli", value: userInfo.role}
             ]}
           />
         </Card>
