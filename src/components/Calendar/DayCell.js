@@ -1,10 +1,11 @@
 import "./Calendar.css"
 import TimeEntryPreview from "./TimeEntryPreview"
 import { useAtomValue } from "jotai"
-import { currentDateAtom } from "../../jotai/atoms"
+import { currentDateAtom, timeEntriesAtom } from "../../jotai/atoms"
 
-const DayCell = ({day, onEntryClick, timeEntries, onClick}) => {
+const DayCell = ({day, onEntryClick, onClick}) => {
   const currentDate = useAtomValue(currentDateAtom)
+  const timeEntries = useAtomValue(timeEntriesAtom)
   // Get year and month from the current date
   const year = currentDate.getFullYear()
   const month = currentDate.getMonth()

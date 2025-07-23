@@ -29,7 +29,7 @@ const TimeManagement = () => {
 
   const { addHoursFields } = useAddHoursForm()
 
-  const { timeEntries, addTimeEntry, deleteTimeEntry } = useCalendarTimeEntries(currentMonth, currentYear)
+  const { addTimeEntry, deleteTimeEntry } = useCalendarTimeEntries(currentMonth, currentYear)
 
   const methods = useForm()
 
@@ -123,7 +123,6 @@ const TimeManagement = () => {
           previousMonth={previousMonth}
           onDateClick={handleDayClick}
           onEntryClick={handleEntryClick}
-          timeEntries={timeEntries}
         />
         {showModal &&
           <Modal

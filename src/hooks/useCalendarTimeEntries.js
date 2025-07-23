@@ -1,13 +1,13 @@
 import { collection, where, Timestamp, query, setDoc, doc, deleteDoc, onSnapshot } from "firebase/firestore"
 import { db } from "../firebase/index"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import toast from "react-hot-toast"
-import { useAtomValue } from 'jotai'
-import { currentUserAtom } from '../jotai/atoms'
+import { useAtomValue, useSetAtom } from 'jotai'
+import { currentUserAtom, timeEntriesAtom } from '../jotai/atoms'
 
 const useCalendarTimeEntries = (currentMonth, currentYear) => {
   const currentUser = useAtomValue(currentUserAtom)
-  const [timeEntries, setTimeEntries] = useState([])
+  const setTimeEntries = useSetAtom(timeEntriesAtom)
 
   useEffect(() => {
     // Initialize an empty unsubscribe function to be safely called later
@@ -89,7 +89,6 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
   }
 
   return {
-    timeEntries,
     addTimeEntry,
     deleteTimeEntry
   }
