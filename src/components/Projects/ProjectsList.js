@@ -1,8 +1,11 @@
 import "./Projects.css"
 import { Link } from "react-router-dom"
 import { FiTrash } from "react-icons/fi"
+import { useAtomValue } from "jotai"
+import { projectsAtom } from "../../jotai/atoms"
 
-const ProjectsList = ({projects, onDelete}) => {
+const ProjectsList = ({onDelete}) => {
+  const projects = useAtomValue(projectsAtom)
   return (
     <div className="projects-list">
       {projects.map((project) => (

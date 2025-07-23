@@ -1,13 +1,13 @@
 import { collection, setDoc, doc, deleteDoc, onSnapshot, query, where } from "firebase/firestore"
 import { db } from "../firebase/index"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import toast from "react-hot-toast"
-import { useAtomValue } from 'jotai'
-import { currentUserAtom } from '../jotai/atoms'
+import { useAtomValue, useAtom } from 'jotai'
+import { currentUserAtom, projectsAtom } from '../jotai/atoms'
 
 const useProjects = () => {
-  const [projects, setProjects] = useState([])
   const currentUser = useAtomValue(currentUserAtom)
+  const [projects, setProjects] = useAtom(projectsAtom)
 
   useEffect(() => {
     // Initialize an empty unsubscribe function to be safely called later
@@ -89,7 +89,6 @@ const useProjects = () => {
   }
 
   return {
-    projects,
     activeProjects,
     addProject,
     deleteProject

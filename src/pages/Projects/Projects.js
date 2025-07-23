@@ -11,7 +11,6 @@ import Button from "../../components/Button/Button"
 
 const Projects = () => {
   const {
-    projects,
     addProject,
     deleteProject
   } = useProjects()
@@ -67,7 +66,7 @@ const Projects = () => {
         <Button title={'LISÄÄ UUSI'} onClick={addProjectClick} />
       </div>
       <div className="projects-list">
-        <ProjectsList projects={projects} onDelete={onDelete} />
+        <ProjectsList onDelete={onDelete} />
       </div>
       {showModal &&
         <Modal
