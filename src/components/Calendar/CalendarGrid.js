@@ -1,7 +1,10 @@
 import "./Calendar.css"
 import DayCell from "./DayCell"
+import { useAtomValue } from "jotai"
+import { currentDateAtom } from "../../jotai/atoms"
 
-const CalendarGrid = ({currentDate, daysInAMonth, onDateClick, onEntryClick, timeEntries}) => {
+const CalendarGrid = ({daysInAMonth, onDateClick, onEntryClick, timeEntries}) => {
+  const currentDate = useAtomValue(currentDateAtom)
   const year = currentDate.getFullYear()
   const month = currentDate.getMonth()
 
@@ -12,7 +15,6 @@ const CalendarGrid = ({currentDate, daysInAMonth, onDateClick, onEntryClick, tim
         <DayCell
           key={index}
           day={day}
-          currentDate={currentDate}
           onEntryClick={onEntryClick}
           timeEntries={timeEntries}
           // Handle click on a day cell

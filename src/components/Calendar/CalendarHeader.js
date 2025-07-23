@@ -1,5 +1,8 @@
-const CalendarHeader = ({nextMonth, previousMonth, currentDate}) => {
+import { useAtomValue } from "jotai"
+import { currentDateAtom } from "../../jotai/atoms"
 
+const CalendarHeader = ({nextMonth, previousMonth}) => {
+  const currentDate = useAtomValue(currentDateAtom)
   // Returns the current month's name as a <p> element
   const getMonth = () => {
     return <p>{currentDate.toLocaleString('default', {month: 'long'})}</p>

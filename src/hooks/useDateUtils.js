@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useAtom } from "jotai"
+import { currentDateAtom } from "../jotai/atoms"
 
 const useDateUtils = () => {
-  const [currentDate, setCurrentDate] = useState(new Date())
+  const [currentDate, setCurrentDate] = useAtom(currentDateAtom)
 
   const currentMonth = currentDate.getMonth()
   const currentYear = currentDate.getFullYear()
@@ -46,7 +47,6 @@ const useDateUtils = () => {
   }
 
   return {
-    currentDate,
     currentMonth,
     currentYear,
     daysInAMonth,

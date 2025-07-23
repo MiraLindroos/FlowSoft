@@ -13,7 +13,6 @@ import Button from "../../components/Button/Button"
 const TimeManagement = () => {
 
   const {
-    currentDate,
     currentMonth,
     currentYear,
     daysInAMonth,
@@ -119,7 +118,6 @@ const TimeManagement = () => {
       <h3>Ajanhallinta</h3>
       <div className="timemanagement">
         <Calendar
-          currentDate={currentDate}
           daysInAMonth={daysInAMonth}
           nextMonth={nextMonth}
           previousMonth={previousMonth}
