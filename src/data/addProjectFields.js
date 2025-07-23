@@ -1,5 +1,5 @@
 const addProjectFields = [
-  {name:"name", label: "Projektin nimi", type: "text"},
+  {name:"name", label: "Projektin nimi", type: "text", required: true},
   {name:"startDate", label: "Alkamispäivä", type: "date"},
   {name:"endDate", label: "Lopetuspäivä", type: "date"},
   {name:"hourRate", label: "Tuntihinta", type: "number"},

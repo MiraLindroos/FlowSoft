@@ -11,7 +11,7 @@ const useAddHoursForm = () => {
     {name:"project", label: "Projekti", type: "select", options: activeProjects, required: true},
     {name:"travel", label: "Kilometrit", type: "number"},
     {name:"hourRate", label: "Tuntihinta", type: "number"},
-    {name:"memo", label: "Muistiinpanot", type: "textarea"},
+    {name:"memo", label: "Muistiinpanot", type: "textarea"}
   ]
 
   return {
