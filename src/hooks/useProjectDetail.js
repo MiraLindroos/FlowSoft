@@ -16,7 +16,6 @@ const useProjectDetail = (id) => {
         unsubscribe = onSnapshot(
           doc(db, 'projects', id),
           (documentSnapshot) => {
-            console.log(documentSnapshot)
             if (documentSnapshot.exists()) {
               // Update state with the data from Firestore
               setProject({ id: documentSnapshot.id, ...documentSnapshot.data()})

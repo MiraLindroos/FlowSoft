@@ -2,8 +2,11 @@ import { collection, where, Timestamp, query, setDoc, doc, deleteDoc, onSnapshot
 import { db } from "../firebase/index"
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
+import { useAtomValue } from 'jotai'
+import { currentUserAtom } from '../jotai/atoms'
 
-const useCalendarTimeEntries = (currentMonth, currentYear, currentUser) => {
+const useCalendarTimeEntries = (currentMonth, currentYear) => {
+  const currentUser = useAtomValue(currentUserAtom)
   const [timeEntries, setTimeEntries] = useState([])
 
   useEffect(() => {

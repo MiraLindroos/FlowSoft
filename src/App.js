@@ -23,7 +23,6 @@ function App() {
     isLoggedIn,
     setIsLoggedIn,
     authChecked,
-    currentUser,
     handleLogOut
   } = useAuth(openModal, closeModal, cancelButton, confirmButton)
 
@@ -69,7 +68,7 @@ function App() {
               />
             }
             <main className="page-content">
-              <AppRoutes setIsLoggedIn={setIsLoggedIn} currentUser={currentUser} />
+              <AppRoutes setIsLoggedIn={setIsLoggedIn} />
               {showModal &&
                 <Modal
                   message={modalContent.message}

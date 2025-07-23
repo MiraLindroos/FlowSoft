@@ -10,7 +10,7 @@ import addProjectFields from "../../data/addProjectFields"
 import useProjects from "../../hooks/useProjects"
 import Button from "../../components/Button/Button"
 
-const ProjectDetailPage = ({currentUser}) => {
+const ProjectDetailPage = () => {
   const {id} = useParams()
   const { project } = useProjectDetail(id)
 
@@ -21,7 +21,7 @@ const ProjectDetailPage = ({currentUser}) => {
     closeModal
   } = useModal()
 
-  const { addProject } = useProjects(currentUser)
+  const { addProject } = useProjects()
 
   const methods = useForm()
 

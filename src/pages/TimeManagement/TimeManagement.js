@@ -10,8 +10,9 @@ import useCalendarTimeEntries from "../../hooks/useCalendarTimeEntries"
 import { Toaster } from "react-hot-toast"
 import Button from "../../components/Button/Button"
 
-const TimeManagement = ({currentUser}) => {
-    const {
+const TimeManagement = () => {
+
+  const {
     currentDate,
     currentMonth,
     currentYear,
@@ -29,7 +30,7 @@ const TimeManagement = ({currentUser}) => {
 
   const { addHoursFields } = useAddHoursForm()
 
-  const { timeEntries, addTimeEntry, deleteTimeEntry } = useCalendarTimeEntries(currentMonth, currentYear, currentUser)
+  const { timeEntries, addTimeEntry, deleteTimeEntry } = useCalendarTimeEntries(currentMonth, currentYear)
 
   const methods = useForm()
 

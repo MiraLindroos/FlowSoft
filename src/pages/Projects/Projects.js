@@ -9,12 +9,12 @@ import addProjectFields from "../../data/addProjectFields"
 import { Toaster } from "react-hot-toast"
 import Button from "../../components/Button/Button"
 
-const Projects = ({currentUser}) => {
+const Projects = () => {
   const {
     projects,
     addProject,
     deleteProject
-  } = useProjects(currentUser)
+  } = useProjects()
 
   const {
     showModal,

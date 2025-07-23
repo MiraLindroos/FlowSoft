@@ -1,12 +1,14 @@
 import { onAuthStateChanged, signOut } from "firebase/auth"
 import { auth } from "../firebase/index"
 import { useState, useEffect } from "react"
+import { useSetAtom } from 'jotai'
+import { currentUserAtom } from '../jotai/atoms'
 
 // Custom hook to handle authentication state and logout logic
 const useAuth = (openModal, closeModal) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [authChecked, setAuthChecked] = useState(null)
-  const [currentUser, setCurrentUser] = useState(null)
+  const setCurrentUser = useSetAtom(currentUserAtom)
 
   useEffect(() => {
     // Subscribe to Firebase auth state changes to track user login status
@@ -58,7 +60,6 @@ const useAuth = (openModal, closeModal) => {
     isLoggedIn,
     setIsLoggedIn,
     authChecked,
-    currentUser,
     handleLogOut
   }
 }

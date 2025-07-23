@@ -4,12 +4,10 @@ import ActiveProjects from "../../components/Statistics/ActiveProjects"
 import TravelsThisMonth from "../../components/Statistics/TravelsThisMonth"
 import useStatistics from "../../hooks/useStatistics"
 import Card from "../../components/Card/Card"
-import cardColors from "../../theme/cardColors"
 
-const Home = ({currentUser}) => {
-  const {
-    data
-  } = useStatistics();
+const Home = () => {
+  const { data } = useStatistics();
+
   return (
     <div className="home">
       <h3>Kuukauden yhteenveto</h3>
@@ -30,7 +28,7 @@ const Home = ({currentUser}) => {
             title={'Projektit'}
             description={'Aktiiviset projektit'}
             variant="green"
-          > <ActiveProjects currentUser={currentUser}/>
+          > <ActiveProjects />
           </Card>
         </div>
         
