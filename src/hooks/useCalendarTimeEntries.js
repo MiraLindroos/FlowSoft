@@ -14,7 +14,7 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
     // This prevents "unsubscribe is not a function" errors if for some reason onSnapshot fails or doesn't run
     let unsubscribe = () => {}
     // Fetching time entries from firestore and listen for real-time updates
-    const fetchTimeEntries = async () => {
+    const fetchTimeEntries = () => {
       try {
         // Converting dates to timestamps
         const startOfTheMonth = Timestamp.fromDate(new Date(currentYear, currentMonth, 1))

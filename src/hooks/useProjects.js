@@ -14,7 +14,7 @@ const useProjects = () => {
     // This prevents "unsubscribe is not a function" errors if for some reason onSnapshot fails or doesn't run
     let unsubscribe = () => {}
     // Async function to fetch projects from Firestore and listen for real-time updates
-    const fetchProjects =  async () => {
+    const fetchProjects = () => {
       try {
         // Get all documents for the current user from the projects collection
         const q = query(
