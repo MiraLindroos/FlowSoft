@@ -3,6 +3,7 @@ import { collection, query, where, Timestamp, onSnapshot } from "firebase/firest
 import { useEffect, useState } from "react"
 import { useAtomValue } from "jotai"
 import { currentUserAtom } from "../jotai/atoms"
+import { getISOWeek } from 'date-fns'
 
 const Statistics = () => {
   const currentUser = useAtomValue(currentUserAtom)
@@ -52,6 +53,25 @@ const Statistics = () => {
       unsubscribe()
     }
   }, [])
+  
+  const parseHours = (hoursString) => {
+    const [hours, minutes] = hoursString.split('.').map(Number)
+    return hours + minutes / 60
+  }
+
+  const weekHours = {}
+
+  hours.forEach((entry) => {
+    const date = new Date(entry.date.seconds * 1000)
+    const week = getISOWeek(date)
+    const parsed = parseHours(entry.hours)
+    if (!weekHours[week]) {
+      weekHours[week] = 0
+    }
+    weekHours[week] += parsed
+  })
+
+  console.log(weekHours)
 
   const data = [
     {
