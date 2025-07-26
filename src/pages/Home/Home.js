@@ -13,6 +13,7 @@ const Home = () => {
       <h3>Kuukauden yhteenveto</h3>
       <div className="statistics">
         <div className="statistics hours">
+          {/* Card for displaying bar chart for this month's added hours */}
           <Card
             icon={'⌚️'}
             title={'Tunnit'}

@@ -3,6 +3,7 @@ import { BarChart, Bar, Rectangle, XAxis, YAxis, Tooltip, Legend, ResponsiveCont
 
 const HoursThisMonth = ({data}) => {
   return (
+    // Display a bar chart for this month's hours
     <ResponsiveContainer width="100%" height={300}>
       <BarChart
         data={data}
