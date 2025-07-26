@@ -2,7 +2,6 @@ import "./Statistics.css"
 import { BarChart, Bar, Rectangle, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
 const HoursThisMonth = ({data}) => {
-  console.log(data)
   return (
     <ResponsiveContainer width="100%" height={300}>
       <BarChart
