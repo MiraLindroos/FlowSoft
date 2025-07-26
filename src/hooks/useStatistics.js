@@ -63,6 +63,10 @@ const Statistics = () => {
   // Empty object to contain weekly hours
   const weeklyTotals = {}
 
+  // Get the week numbers for the current month's first and last week
+  const firstWeekOfMonth = getISOWeek(new Date(currentYear, currentMonth, 1))
+  const lastWeekOfMonth = getISOWeek(new Date(currentYear, currentMonth + 1, 0))
+
   // Go through each hours entry
   hours.forEach((entry) => {
     const date = new Date(entry.date.seconds * 1000) // Convert Firestore timestamp to Date
@@ -78,15 +82,18 @@ const Statistics = () => {
     // Add hours to this week's total 
     weeklyTotals[week] += parsedHours
   })
+  // Empty array for week hours
+  const weekHours = []
 
-  // Convert weeklytotals to an array with objects for showing data correctly in HoursThisMonth component
-  const weekHours = Object.entries(weeklyTotals).map(([week, tunnit]) => ({
-    week: `viikko ${week}`,
-    tunnit: tunnit.toFixed(2) // Round up to two decimals
-  }))
-
-  console.log(weekHours)
-
+  // Go through all current month's weeks
+  for (let i = firstWeekOfMonth; i <= lastWeekOfMonth; i++) {
+    weekHours.push({
+      week: `viikko ${i}`,
+      // If weeklyTotals[i] has a value, use it
+      // Otherwise default to 0
+      tunnit: (weeklyTotals[i] || 0).toFixed(2) // Round to two decimals
+    })
+  }
 
   return {
     weekHours
