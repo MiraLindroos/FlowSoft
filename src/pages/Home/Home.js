@@ -6,7 +6,7 @@ import useStatistics from "../../hooks/useStatistics"
 import Card from "../../components/Card/Card"
 
 const Home = () => {
-  const { data } = useStatistics();
+  const { weekHours } = useStatistics();
 
   return (
     <div className="home">
@@ -18,7 +18,7 @@ const Home = () => {
             title={'Tunnit'}
             description={'Tarkastele kuukauden tunteja'}
             variant="blue"
-          > <HoursThisMonth data={data}/>
+          > <HoursThisMonth data={weekHours}/>
           </Card>
         </div>
 

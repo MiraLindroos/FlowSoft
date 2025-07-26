@@ -42,9 +42,9 @@ const TimeManagement = () => {
     const start = time(data.startTime, date)
     const end = time(data.endTime, date)
     // Counting hours between startTime and endTime, abs returns the absolute positive value
-    const diffMs = Math.abs(end - start)  // This value is in milliseconds
+    const diffMs = Math.abs(end - start) // This value is in milliseconds
     // Counting hours, there are (1000 * 60 * 60) millisecond in an hour
-    const totalHours = (diffMs / (1000 * 60 * 60)).toFixed(2)  // Rounding up to two decimals
+    const totalHours = (diffMs / (1000 * 60 * 60)).toFixed(2) // Rounding up to two decimals
 
     addTimeEntry({...data, startTime: start, endTime: end, hours: totalHours})
     closeModal()

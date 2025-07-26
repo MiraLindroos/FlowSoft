@@ -54,56 +54,42 @@ const Statistics = () => {
     }
   }, [])
   
+  // Convert hour string e.g. "3.30" to 3.5
   const parseHours = (hoursString) => {
     const [hours, minutes] = hoursString.split('.').map(Number)
     return hours + minutes / 60
   }
 
-  const weekHours = {}
+  // Empty object to contain weekly hours
+  const weeklyTotals = {}
 
+  // Go through each hours entry
   hours.forEach((entry) => {
-    const date = new Date(entry.date.seconds * 1000)
-    const week = getISOWeek(date)
-    const parsed = parseHours(entry.hours)
-    if (!weekHours[week]) {
-      weekHours[week] = 0
+    const date = new Date(entry.date.seconds * 1000) // Convert Firestore timestamp to Date
+    const week = getISOWeek(date) // Get ISO week number using date-fns library
+    const parsedHours = parseHours(entry.hours) // Convert hours to decimal
+
+    // If it's the first time this week appears, initialize it
+    // so we can later add hours in there
+    if (!weeklyTotals[week]) {
+      weeklyTotals[week] = 0
     }
-    weekHours[week] += parsed
+
+    // Add hours to this week's total 
+    weeklyTotals[week] += parsedHours
   })
+
+  // Convert weeklytotals to an array with objects for showing data correctly in HoursThisMonth component
+  const weekHours = Object.entries(weeklyTotals).map(([week, tunnit]) => ({
+    week: `viikko ${week}`,
+    tunnit: tunnit.toFixed(2) // Round up to two decimals
+  }))
 
   console.log(weekHours)
 
-  const data = [
-    {
-      name: 'Vko 1',
-      dateRange: '1.–7.6.',
-      tunnit: 25,
-    },
-    {
-      name: 'Vko 2',
-      dateRange: '8.–14.6.',
-      tunnit: 35,
-    },
-    {
-      name: 'Vko 3',
-      dateRange: '15.–21.6.',
-      tunnit: 31,
-    },
-    {
-      name: 'Vko 4',
-      dateRange: '22.–28.6.',
-      tunnit: 30,
-    },
-    {
-      name: 'Vko 5',
-      dateRange: '29.–30.6.',
-      tunnit: 9,
-    },
-  ]
-
 
   return {
-    data
+    weekHours
   }
 }
 
