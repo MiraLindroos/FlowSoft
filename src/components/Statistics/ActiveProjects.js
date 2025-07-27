@@ -6,18 +6,23 @@ const ActiveProjects = () => {
   const { activeProjects } = useProjects()
 
   return (
-    <ResponsiveContainer width="100%" height={150}>
-      <PieChart margin={{top: 15}}>
-        <Pie
-          data={activeProjects}
-          dataKey="value"
-          outerRadius={50}
-          fill="#014639"
-          label={({ name, value }) => `${name}: ${value}h`}
-          labelLine={false}
-        />
-      </PieChart>
-    </ResponsiveContainer>
+    <ul className="active-projects">
+      {activeProjects.map((project, index) => {
+        return <p key={index}>{project.name} - {project.value}h</p>
+      })}
+    </ul>
+    // <ResponsiveContainer width="100%" height={150}>
+    //   <PieChart margin={{top: 15}}>
+    //     <Pie
+    //       data={activeProjects}
+    //       dataKey="value"
+    //       outerRadius={50}
+    //       fill="#014639"
+    //       label={({ name, value }) => `${name}: ${value}h`}
+    //       labelLine={false}
+    //     />
+    //   </PieChart>
+    // </ResponsiveContainer>
   )
 }
 

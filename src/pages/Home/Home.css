@@ -29,9 +29,16 @@
   }
   .statistics.projects {
     grid-area: b;
+    margin-right: 0;
   }
   .statistics.travels {
     grid-area: c;
+    margin-left: 0;
+  }
+  .statistics.projects,
+  .statistics.travels {
+    display: flex;
+    flex-direction: column;
   }
 }
 

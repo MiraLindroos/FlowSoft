@@ -1,0 +1,31 @@
+.active-projects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+
+.active-projects p {
+  padding: 3px;
+  margin: 4px 3px;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  font-size: 14px;
+  width: 80%;
+}
+
+@media (min-width: 768px) {
+  .active-projects {
+    display: grid;
+    grid-template-rows: repeat(5, min-content);
+    grid-auto-flow: column;
+    justify-items: center;
+    margin: 0;
+    padding: 2px;
+  }
+
+  .active-projects p {
+    font-size: 15px;
+  }
+}

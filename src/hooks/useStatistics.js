@@ -88,7 +88,7 @@ const Statistics = () => {
   // Go through all current month's weeks
   for (let i = firstWeekOfMonth; i <= lastWeekOfMonth; i++) {
     weekHours.push({
-      week: `viikko ${i}`,
+      week: `vk ${i}`,
       // If weeklyTotals[i] has a value, use it
       // Otherwise default to 0
       tunnit: (weeklyTotals[i] || 0).toFixed(2) // Round to two decimals
