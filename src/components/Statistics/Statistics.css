@@ -25,25 +25,20 @@
     grid-auto-flow: column;
     justify-items: center;
     padding: 2px;
-    overflow-y: auto;
   }
 
   .active-projects li {
+    position: relative;
     font-size: 15px;
     padding: 6px 2px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    height: 45px;
     width: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
-@media (min-width: 1024px) {
-  .active-projects {
-    grid-template-rows: repeat(6, 1fr);
-  }
-  .active-projects li {
-    padding: 3px 6px;
-    width: 90%;
-  }
+@media (min-width: 1440px) {
+
 }
