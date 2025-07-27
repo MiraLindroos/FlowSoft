@@ -40,5 +40,11 @@
 }
 
 @media (min-width: 1440px) {
+  .active-projects {
+    padding: 0;
+  }
 
+  .active-projects li {
+    padding: 0 2px;
+  }
 }

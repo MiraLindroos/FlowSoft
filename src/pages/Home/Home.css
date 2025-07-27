@@ -22,39 +22,23 @@
   }
 }
 
-/* @media (min-width: 1024px) {
+@media (min-width: 1440px) {
   .statistics {
     display: grid;
     grid-template-areas:
-      "a a"
-      "b c";
-    margin: 0 10px 30px;
+    "a b"
+    "a c";
+    margin: 0 30px 35px;
+    gap: 5px;
   }
   .statistics.hours {
     grid-area: a;
   }
   .statistics.projects {
     grid-area: b;
-    margin-right: 0;
   }
   .statistics.travels {
     grid-area: c;
-    margin-left: 0;
-  }
-  .statistics.projects,
-  .statistics.travels {
-    display: flex;
-    flex-direction: column;
-  }
-} */
-
-@media (min-width: 1440px) {
-  .statistics {
-    grid-template-areas:
-    "a b"
-    "a c";
-    margin: 0 30px 35px;
-    gap: 5px;
   }
   .statistics.hours,
   .statistics.projects,
