@@ -8,7 +8,7 @@ const ActiveProjects = () => {
   return (
     <ul className="active-projects">
       {activeProjects.map((project, index) => {
-        return <p key={index}>{project.name} - {project.value}h</p>
+        return <li key={index}>{project.name} - {project.value}h</li>
       })}
     </ul>
     // <ResponsiveContainer width="100%" height={150}>
