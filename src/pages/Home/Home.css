@@ -29,7 +29,6 @@
     "a a"
     "b c";
     margin: 10px 30px 35px;
-    gap: 5px;
   }
   .statistics.hours {
     grid-area: a;
@@ -37,15 +36,19 @@
   .statistics.projects {
     grid-area: b;
     margin-right: 0;
+    max-width: 600px;
+    min-width: 400px;
   }
+
   .statistics.travels {
     grid-area: c;
     margin-left: 0;
+    min-width: 400px;
   }
   .statistics.hours,
   .statistics.projects,
   .statistics.travels {
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
   }
@@ -53,8 +56,13 @@
 
 @media (min-width: 1600px) {
   .statistics {
-    gap: 20px;
+    gap: 15px;
     margin: 10px 40px 35px;
+  }
+
+  .statistics.projects {
+    max-width: 900px;
+    min-width: 500px;
   }
 }
 

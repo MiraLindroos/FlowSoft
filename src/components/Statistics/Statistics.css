@@ -1,12 +1,17 @@
-.active-projects {
+.active-projects,
+.active-projects-over5 {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0;
   margin: 0;
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: auto;
 }
 
-.active-projects li {
+.active-projects li,
+.active-projects-over5 li {
   list-style: none;
   padding: 4px 2px;
   margin: 4px 3px;
@@ -15,7 +20,7 @@
   border-radius: 6px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.05);
   font-size: 14px;
-  width: 85%;
+  width: 92%;
 }
 
 .no-active-projects {
@@ -23,15 +28,17 @@
 }
 
 @media (min-width: 768px) {
-  .active-projects {
+  .active-projects-over5 {
     display: grid;
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(7, 1fr);
     grid-auto-flow: column;
     justify-items: center;
     padding: 2px;
+    max-width: 100%;
   }
 
-  .active-projects li {
+  .active-projects li,
+  .active-projects-over5 li {
     position: relative;
     font-size: 15px;
     padding: 6px 2px;
@@ -44,11 +51,17 @@
 }
 
 @media (min-width: 1440px) {
-  .active-projects {
+  .active-projects,
+  .active-projects-over5 {
     padding: 0;
   }
 
-  .active-projects li {
+  .active-projects-over5 li {
+    height: 55px;
+  }
+
+  .active-projects li,
+  .active-projects-over5 li {
     padding: 0 2px;
   }
 
