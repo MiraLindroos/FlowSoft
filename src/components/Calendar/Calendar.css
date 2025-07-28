@@ -2,7 +2,7 @@
   margin: 20px 5px;
   border: 2px solid #013746;
   border-radius: 15px;
-  padding: 8px;
+  padding: 6px;
   background-color: #fff;
 }
 
@@ -20,11 +20,13 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  padding: 5px;
+  padding: 1px;
   border: 1px solid #013746;
   background-color: #fff;
   border-radius: 10px;
   min-height: 60px;
+  max-height: 65px;
+  overflow-y: scroll;
 }
 
 .grid-square:hover {
@@ -37,6 +39,7 @@
   color: #013746;
   font-size: 0.9rem;
   text-align: end;
+  padding: 2px;
 }
 
 /* CalendarHeader.js styling */
@@ -88,8 +91,8 @@
 
 .time-entry p {
   margin: 0;
-  padding: 2px;
-  font-size: 0.8rem;
+  padding: 3px 1px;
+  font-size: 0.6rem;
   background-color: #dae5e5;
   border-left: 2px solid #013746;
   border-radius: 4px;
@@ -115,10 +118,13 @@
 
   .grid-square {
     min-height: 75px;
+    max-height: 80px;
+    padding: 5px;
   }
 
   .grid-day {
     font-size: 1rem;
+    padding: 0;
   }
 
   .calendar-header {
@@ -132,6 +138,11 @@
   .time-entry {
     gap: 8px;
     margin-top: 4px;
+  }
+
+  .time-entry p {
+    padding: 2px;
+    font-size: 0.8rem;
   }
 }
 
@@ -147,6 +158,11 @@
 
   .grid {
     gap: 10px;
+  }
+
+  .grid-square {
+    min-height: 80px;
+    max-height: 85px;
   }
 
   .grid-day {
