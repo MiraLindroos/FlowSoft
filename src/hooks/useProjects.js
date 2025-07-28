@@ -46,7 +46,7 @@ const useProjects = () => {
 
   // Filter projects that have onGoing=true and save the projects name + hours
   const activeProjects = projects
-    .filter((p) => !p.onGoing)
+    .filter((p) => p.onGoing)
     .map((p) => ({name: p.name, value: p.hours, id: p.id}))
 
   // Function for adding and updating project data to Firestore
