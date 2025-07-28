@@ -16,6 +16,7 @@
 .project-item {
   text-decoration: none;
   color: #013746;
+  text-align: start;
 }
 
 .edit {
