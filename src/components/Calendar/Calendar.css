@@ -26,7 +26,7 @@
   border-radius: 10px;
   min-height: 60px;
   max-height: 65px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .grid-square:hover {
