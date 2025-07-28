@@ -6,13 +6,19 @@ const ActiveProjects = () => {
   const { activeProjects } = useProjects()
 
   return (
-    <ul className="active-projects">
-      {activeProjects.map((project, index) => (
-        <li key={index}>
-          {project.name} - {project.value}h
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul className="active-projects">
+        {activeProjects.map((project, index) => (
+          <li key={index}>
+            {project.name} - {project.value}h
+          </li>
+        ))}
+      </ul>
+      {activeProjects.length === 0 && (
+        <p>Ei aktiivisia projekteja!</p>
+      )}
+    </>
+
     // <ResponsiveContainer width="100%" height={150}>
     //   <PieChart margin={{top: 15}}>
     //     <Pie
