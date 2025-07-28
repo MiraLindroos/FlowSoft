@@ -7,7 +7,6 @@
   margin: 0;
   max-height: 300px;
   overflow-y: auto;
-  overflow-x: auto;
 }
 
 .active-projects li,
@@ -34,7 +33,6 @@
     grid-auto-flow: column;
     justify-items: center;
     padding: 2px;
-    max-width: 100%;
   }
 
   .active-projects li,

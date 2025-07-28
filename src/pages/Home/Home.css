@@ -71,4 +71,9 @@
     gap: 30px;
     margin: 10px 80px;
   }
+
+    .statistics.projects {
+    max-width: 1000px;
+    min-width: 700px;
+  }
 }
