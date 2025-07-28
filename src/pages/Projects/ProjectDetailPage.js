@@ -1,6 +1,6 @@
 import "./Projects.css"
 import ProjectDetail from "../../components/Projects/ProjectDetail"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import useProjectDetail from "../../hooks/useProjectDetail"
 import Modal from "../../components/Modal/Modal"
 import { useForm, FormProvider } from "react-hook-form"
@@ -9,10 +9,12 @@ import Form from "../../components/Forms/Form"
 import addProjectFields from "../../data/addProjectFields"
 import useProjects from "../../hooks/useProjects"
 import Button from "../../components/Button/Button"
+import { FiArrowLeft } from "react-icons/fi"
 
 const ProjectDetailPage = () => {
   const {id} = useParams()
   const { project } = useProjectDetail(id)
+  const navigate = useNavigate()
 
   const {
     showModal,
@@ -65,7 +67,8 @@ const ProjectDetailPage = () => {
   }
   return (
     <div>
-      <h3>Projekti: {project.name}</h3>
+      <button className="go-back" onClick={() => navigate(-1)}><FiArrowLeft /></button>
+      <h3 className="project-title">Projekti: {project.name}</h3>
       <Button title={'Muokkaa'} onClick={editProjectClick} />
       <ProjectDetail
         project={project}

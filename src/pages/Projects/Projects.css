@@ -11,6 +11,22 @@
   background-color: #fff;
 }
 
+.project-title {
+  padding: 10px;
+  margin: 5px;
+}
+
+.go-back {
+  color: #fff;
+  border: none;
+  background-color: #013746;
+  font-size: 1.1rem;
+  margin-top: 10px;
+  display: flex;
+  margin-left: 15px;
+  border-radius: 4px;
+}
+
 @media (min-width: 768px) {
   .projects-view {
     margin: 22px 16px;
