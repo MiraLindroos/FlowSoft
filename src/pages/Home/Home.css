@@ -26,9 +26,9 @@
   .statistics {
     display: grid;
     grid-template-areas:
-    "a b"
-    "a c";
-    margin: 0 30px 35px;
+    "a a"
+    "b c";
+    margin: 10px 30px 35px;
     gap: 5px;
   }
   .statistics.hours {
@@ -36,9 +36,11 @@
   }
   .statistics.projects {
     grid-area: b;
+    margin-right: 0;
   }
   .statistics.travels {
     grid-area: c;
+    margin-left: 0;
   }
   .statistics.hours,
   .statistics.projects,
@@ -47,22 +49,18 @@
     display: flex;
     flex-direction: column;
   }
-
-  .statistics.projects,
-  .statistics.travels {
-    margin: 0 30px 5px 0;
-  }
 }
 
 @media (min-width: 1600px) {
   .statistics {
-    gap: 10px;
+    gap: 20px;
+    margin: 10px 40px 35px;
   }
 }
 
 @media (min-width: 1920px) {
   .statistics {
-    gap: 20px;
-    margin: 0 45px;
+    gap: 30px;
+    margin: 10px 80px;
   }
 }

@@ -18,6 +18,10 @@
   width: 85%;
 }
 
+.no-active-projects {
+  padding-bottom: 16px;
+}
+
 @media (min-width: 768px) {
   .active-projects {
     display: grid;
@@ -46,5 +50,15 @@
 
   .active-projects li {
     padding: 0 2px;
+  }
+
+  .no-active-projects {
+    padding: 50px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .no-active-projects {
+    padding: 50px 80px;
   }
 }

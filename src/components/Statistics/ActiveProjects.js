@@ -14,7 +14,10 @@ const ActiveProjects = () => {
         ))}
       </ul>
       {activeProjects.length === 0 && (
-        <p>Ei aktiivisia projekteja!</p>
+        <div className="no-active-projects">
+          <p>Ei aktiivisia projekteja!</p>
+        </div>
+
       )}
     </>
   )
