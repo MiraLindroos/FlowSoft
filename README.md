@@ -1,5 +1,5 @@
 # FlowSoft
-Time management and electronic billing project
+Time management project made with React
 
 # Getting Started with Create React App
 
