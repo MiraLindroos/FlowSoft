@@ -1,4 +1,4 @@
-import { collection, where, Timestamp, query, setDoc, doc, deleteDoc, onSnapshot } from "firebase/firestore"
+import { collection, where, Timestamp, query, setDoc, doc, deleteDoc, onSnapshot, updateDoc, increment} from "firebase/firestore"
 import { db } from "../firebase/index"
 import { useEffect } from "react"
 import toast from "react-hot-toast"
@@ -74,6 +74,11 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
         error: 'Tuntien lisääminen epäonnistui'
       }
     )
+
+    const projectRef = doc(db, 'projects', data.projectId)
+    await updateDoc(projectRef, {
+      hours: increment(data.hours)
+    })
   }
 
   // Delete a time entry from Firestore
