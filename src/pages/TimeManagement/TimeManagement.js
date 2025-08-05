@@ -46,7 +46,19 @@ const TimeManagement = () => {
     // Counting hours, there are (1000 * 60 * 60) millisecond in an hour
     const totalHours = (diffMs / (1000 * 60 * 60)).toFixed(2) // Rounding up to two decimals
 
-    addTimeEntry({...data, startTime: start, endTime: end, hours: totalHours})
+    // The selected project is a JSON string so we need to parse it
+    const selectedProject = JSON.parse(data.project)
+    // Replace data.project to hold the project's name
+    data.project = selectedProject.name
+    // Store the project's ID
+    data.projectId = selectedProject.id
+
+    addTimeEntry({
+      ...data,
+      startTime: start,
+      endTime: end,
+      hours: totalHours,
+    })
     closeModal()
   }
 
