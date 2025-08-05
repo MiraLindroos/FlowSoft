@@ -63,7 +63,7 @@ const useProjects = () => {
         hourRate: data.hourRate,
         fixedRate: data.fixedRate,
         memo: data.memo,
-        created: new Date(),
+        modified: new Date(),
         onGoing: (new Date(data.startDate) <= new Date() && new Date() <= new Date(data.endDate)) ? true : false,
         userId: currentUser,
         hours: 0
