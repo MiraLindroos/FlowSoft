@@ -91,7 +91,7 @@ const TimeManagement = () => {
     openModal({
       message: `Haluatko varmasti poistaa tuntilisäyksen projektille ${entry.project}?`,
       onConfirm: () => {
-        deleteTimeEntry(entry.id)
+        deleteTimeEntry(entry)
         closeModal()
       },
       onCancel: closeModal,
@@ -99,6 +99,8 @@ const TimeManagement = () => {
       confirmButton: "Vahvista",
       width: "85%"
     })
+
+
   }
 
   const handleEntryClick = (date, entry) => {

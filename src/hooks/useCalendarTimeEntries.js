@@ -82,15 +82,19 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
   }
 
   // Delete a time entry from Firestore
-  const deleteTimeEntry = async (id) => {
+  const deleteTimeEntry = async (entry) => {
     await toast.promise(
-      deleteDoc(doc(db, 'timeEntries', id)),
+      deleteDoc(doc(db, 'timeEntries', entry.id)),
       {
         loading: 'Poistetaan tunteja..',
         success: 'Tuntien poisto onnistui!',
         error: 'Tuntien poistaminen epäonnistui'
       }
     )
+    const projectRef = doc(db, 'projects', entry.projectId)
+      await updateDoc(projectRef, {
+        hours: increment(-(entry.hours))
+    })
   }
 
   return {
