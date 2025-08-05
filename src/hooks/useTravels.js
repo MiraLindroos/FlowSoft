@@ -12,18 +12,22 @@ const useTravels = () => {
     // Initialize an empty unsubscribe function to be safely called later
     // This prevents "unsubscribe is not a function" errors if for some reason onSnapshot fails or doesn't run
     let unsubscribe = () => {}
+    // Fetch travels from Firestore and listen for real-time updates
     try {
+      // Get all documents for the current user from the travels collection
       const q = query(
         collection(db, 'travels'),
         where('userId', '==', userId)
       )
-
+      // Start listening to real-time updates from Firestore
       unsubscribe = onSnapshot(q, (querySnapshot) => {
         const travelsArray = []
-
+        // Go through each document and push its data to the travelsArray
         querySnapshot.forEach((doc) => {
+          // doc.data() returs the document data as an object
           travelsArray.push({id: doc.id, ...doc.data()})
         })
+        // Update the state with the fetched travels
         setTravels(travelsArray)
       })
     } catch (e) {
