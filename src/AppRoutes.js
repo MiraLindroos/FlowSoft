@@ -4,7 +4,7 @@ import TimeManagement from "./pages/TimeManagement/TimeManagement"
 import Projects from "./pages/Projects/Projects"
 import ProjectDetailPage from "./pages/Projects/ProjectDetailPage"
 import Profile from './pages/Profile/Profile'
-import Travel from './pages/Travel/Travel'
+import Travels from './pages/Travels/Travels'
 
 const AppRoutes = ({ setIsLoggedIn }) => {
   return (
@@ -15,7 +15,7 @@ const AppRoutes = ({ setIsLoggedIn }) => {
       <Route path="/Projektit" element={<Projects />} />
       <Route path="/Projekti/:id" element={<ProjectDetailPage />} />
       <Route path="/Profiili" element={<Profile />} />
-      <Route path="/Matkat" element={<Travel />} />
+      <Route path="/Matkat" element={<Travels />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   )
