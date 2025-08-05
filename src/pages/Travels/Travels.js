@@ -5,10 +5,13 @@ const Travels = () => {
   const { travels } = useTravels()
   console.log(travels)
   return (
-    <div>
+    <>
       <h3>Matkakulut</h3>
-      <TravelsList />
-    </div>
+      {travels && travels.length > 0 ? (
+        <TravelsList />
+      ) : <p>Ei matkakuluja</p>
+      }
+    </>
   )
 }
 
