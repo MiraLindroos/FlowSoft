@@ -14,7 +14,6 @@ const ProjectDetail = ({project}) => {
             {label: "Projekti", value: project.name},
             {label: "Alkamispäivä", value: project.startDate.toDate().toLocaleDateString('fi-FI', { weekday: 'short', day: 'numeric', month: 'numeric', year: 'numeric' })},
             {label: "Loppumispäivä", value: project.endDate.toDate().toLocaleDateString('fi-FI', { weekday: 'short', day: 'numeric', month: 'numeric' })},
-            {label: "Lisätty", value: project.created.toDate().toLocaleDateString('fi-FI', { weekday: 'short', day: 'numeric', month: 'numeric' })},
             {label: project.hourRate.length > 0 ? "Tuntihinta" : "Kiinteä hinta", value: project.hourRate.length > 0 ? project.hourRate : project.fixedRate },
             {label: "Muistiinpanot", value: project.memo}
           ]}
@@ -39,9 +38,9 @@ const ProjectDetail = ({project}) => {
           icon='💳'
         > <CardSection
             fields={[
-              {label: "Muuta tietoo", value: "testitesti"},
-              {label: "testi", value: "liibalaabaluuba"},
-              {label: "testi 3", value: "lorem ipsum...lorem ipsum...lorem ipsum..."},
+              {label: "Yhteyshenkilö", value: "testitesti"},
+              {label: "Viitenumero", value: "liibalaabaluuba"},
+              {label: "Operaattori", value: "lorem ipsum...lorem ipsum"},
             ]}
           />
         </Card>
