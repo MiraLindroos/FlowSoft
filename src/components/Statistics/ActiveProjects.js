@@ -15,7 +15,7 @@ const ActiveProjects = () => {
       {activeProjects.length > 0 && (
         <ul className={activeProjects.length <= 5 ? "active-projects" : "active-projects-over5"}>
           {activeProjects.map((project, index) => (
-              <Link to={`/Projekti/${project.id}`} className="list-item">{project.name} - {project.value}h</Link>
+              <Link key={index} to={`/Projekti/${project.id}`} className="list-item">{project.name} - {project.value}h</Link>
           ))}
         </ul>
       )}

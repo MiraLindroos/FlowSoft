@@ -13,30 +13,27 @@ const useProjects = () => {
     // Initialize an empty unsubscribe function to be safely called later
     // This prevents "unsubscribe is not a function" errors if for some reason onSnapshot fails or doesn't run
     let unsubscribe = () => {}
-    // Async function to fetch projects from Firestore and listen for real-time updates
-    const fetchProjects = () => {
-      try {
-        // Get all documents for the current user from the projects collection
-        const q = query(
-          collection(db, "projects"),
-          where('userId', '==', currentUser)
-        )
-        // Start listening to real-time updates from Firestore
-        unsubscribe = onSnapshot(q, (querySnapshot) => {
-          const projectsArray = []
-          // Go through each document and push its data to the projectsArray
-          querySnapshot.forEach((doc) => {
-            // doc.data() returs the document data as an object
-            projectsArray.push({ id: doc.id, ...doc.data()})
-          })
-          // Update the state with the fetched projects
-          setProjects(projectsArray)
+    // Fetch projects from Firestore and listen for real-time updates
+    try {
+      // Get all documents for the current user from the projects collection
+      const q = query(
+        collection(db, "projects"),
+        where('userId', '==', currentUser)
+      )
+      // Start listening to real-time updates from Firestore
+      unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const projectsArray = []
+        // Go through each document and push its data to the projectsArray
+        querySnapshot.forEach((doc) => {
+          // doc.data() returs the document data as an object
+          projectsArray.push({ id: doc.id, ...doc.data()})
         })
-      } catch (e) {
-        console.error(e)
-      }
+        // Update the state with the fetched projects
+        setProjects(projectsArray)
+      })
+    } catch (e) {
+      console.error(e)
     }
-    fetchProjects()
     // Cleanup function runs when the component is unmounted
     return () => {
     // Stop listening to real-time Firestore updates to prevent memory leaks and duplicate listeners
@@ -44,7 +41,7 @@ const useProjects = () => {
     }
   }, [])
 
-  // Filter projects that have onGoing=true and save the projects name + hours
+  // Filter projects that have onGoing=true and save the projects name + hours + id
   const activeProjects = projects
     .filter((p) => p.onGoing)
     .map((p) => ({name: p.name, value: p.hours, id: p.id}))
