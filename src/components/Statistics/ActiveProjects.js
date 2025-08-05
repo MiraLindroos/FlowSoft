@@ -1,5 +1,6 @@
 import "./Statistics.css";
 import useProjects from "../../hooks/useProjects"
+import { Link } from "react-router-dom"
 
 const ActiveProjects = () => {
   const { activeProjects } = useProjects()
@@ -14,9 +15,7 @@ const ActiveProjects = () => {
       {activeProjects.length > 0 && (
         <ul className={activeProjects.length <= 5 ? "active-projects" : "active-projects-over5"}>
           {activeProjects.map((project, index) => (
-            <li key={index}>
-              {project.name} - {project.value}h
-            </li>
+              <Link to={`/Projekti/${project.id}`} className="list-item">{project.name} - {project.value}h</Link>
           ))}
         </ul>
       )}
