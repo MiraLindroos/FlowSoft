@@ -74,7 +74,7 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
         error: 'Tuntien lisääminen epäonnistui'
       }
     )
-
+    // Increment the selected project's hours when a time entry is added
     const projectRef = doc(db, 'projects', data.projectId)
     await updateDoc(projectRef, {
       hours: increment(data.hours)
@@ -91,6 +91,7 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
         error: 'Tuntien poistaminen epäonnistui'
       }
     )
+    // Decrement the selected project's hours when a time entry is deleted
     const projectRef = doc(db, 'projects', entry.projectId)
       await updateDoc(projectRef, {
         hours: increment(-(entry.hours))
