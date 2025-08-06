@@ -8,7 +8,7 @@ const addProjectFields = [
   {name:"reference", label: "Viitenumero", type: "number"},
   {name:"operator", label: "Operaattori", type: "text"},
   {name:"memo", label: "Muistiinpanot", type: "textarea"},
-  {name: "file", label: "Lisää liitteitä", type: "file"},
+  // {name: "file", label: "Lisää liitteitä", type: "file"},
   {name: "onGoing", label: "Projekti käynnissä?", type: "checkbox"},
 ]
 
