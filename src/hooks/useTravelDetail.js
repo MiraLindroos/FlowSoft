@@ -1,25 +1,26 @@
-import { doc, onSnapshot } from "firebase/firestore"
+import { useState, useEffect } from "react"
 import { db } from "../firebase/index"
-import { useEffect, useState } from "react"
+import { doc, onSnapshot } from "firebase/firestore"
 
-const useProjectDetail = (id) => {
-  const [project, setProject] = useState()
+const useTravelDetail = (id) => {
+  const [travel, setTravel] = useState()
+
   useEffect(() => {
     // Initialize an empty unsubscribe function to be safely called later
     // This prevents "unsubscribe is not a function" errors if for some reason onSnapshot fails or doesn't run
     let unsubscribe = () => {}
-    // Fetch the project from Firestore and listen for real-time updates
+    // Fetch the travel from Firestore and listen for real-time updates
     try {
       // Start listening to real-time updates from Firestore
-      // Find project document with given id
+      // Find travel document with given id
       unsubscribe = onSnapshot(
-        doc(db, 'projects', id),
+        doc(db, 'travels', id),
         (documentSnapshot) => {
           if (documentSnapshot.exists()) {
             // Update state with the data from Firestore
-            setProject({ id: documentSnapshot.id, ...documentSnapshot.data()})
+            setTravel({id: documentSnapshot.id, ...documentSnapshot.data()})
           } else {
-            console.log('cant find document')
+            console.log("Can't find travel")
           }
         }
       )
@@ -28,14 +29,14 @@ const useProjectDetail = (id) => {
     }
     // Cleanup function runs when the component is unmounted or when id changes
     return () => {
-    // Stop listening to real-time Firestore updates to prevent memory leaks and duplicate listeners
+      // Stop listening to real-time Firestore updates to prevent memory leaks and duplicate listeners
       unsubscribe()
     }
   }, [id])
 
   return {
-    project
+    travel
   }
 }
 
-export default useProjectDetail
+export default useTravelDetail
