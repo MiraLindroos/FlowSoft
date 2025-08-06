@@ -14,8 +14,9 @@ const ProjectDetail = ({project}) => {
             {label: "Projekti", value: project.name},
             {label: "Alkamispäivä", value: project.startDate ? project.startDate.toDate().toLocaleDateString('fi-FI', { weekday: 'short', day: 'numeric', month: 'numeric', year: 'numeric' }) : 'Ei alkamispäivää annettu'},
             {label: "Loppumispäivä", value: project.endDate ? project.endDate.toDate().toLocaleDateString('fi-FI', { weekday: 'short', day: 'numeric', month: 'numeric' }) : 'Ei loppumispäivää annettu'},
-            {label: project.hourRate.length > 0 ? "Tuntihinta" : "Kiinteä hinta", value: project.hourRate.length > 0 ? project.hourRate : project.fixedRate },
-            {label: "Muistiinpanot", value: project.memo}
+            {label: "Projekti käynnissä", value: project.onGoing ? "Kyllä" : "Ei"},
+            {label: project.hourRate ? "Tuntihinta" : project.fixedRate ? "Kiinteä hinta" : "Hintaa ei ole merkattu", value: project.hourRate ? project.hourRate : project.fixedRate ? project.fixedRate : 0 },
+            {label: "Muistiinpanot", value: project.memo ? project.memo : "Ei muistiinpanoja"}
           ]}
         />
         </Card>
