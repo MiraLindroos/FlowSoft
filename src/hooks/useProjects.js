@@ -55,15 +55,14 @@ const useProjects = () => {
     await toast.promise(
       setDoc(docRef, {
         name: data.name,
-        startDate: new Date(data.startDate),
-        endDate: new Date(data.endDate),
+        startDate: data.startDate ? new Date(data.startDate) : '',
+        endDate: data.endDate ? new Date(data.endDate) : '',
         hourRate: data.hourRate,
         fixedRate: data.fixedRate,
         memo: data.memo,
         modified: new Date(),
         onGoing: (new Date(data.startDate) <= new Date() && new Date() <= new Date(data.endDate)) ? true : false,
         userId: currentUser,
-        hours: 0
       }),
       {
         loading: 'Tallennetaan...',
