@@ -42,6 +42,20 @@
   padding: 2px;
 }
 
+.grid-today {
+  background-color: #013746;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  width: 19px;
+  height: 19px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+}
+
 /* CalendarHeader.js styling */
 
 .calendar-header {
@@ -127,6 +141,12 @@
     padding: 0;
   }
 
+  .grid-today {
+    font-size: 1rem;
+    width: 22px;
+    height: 22px;
+  }
+
   .calendar-header {
     font-size: 1.1rem;
   }
@@ -163,10 +183,6 @@
   .grid-square {
     min-height: 80px;
     max-height: 85px;
-  }
-
-  .grid-day {
-    font-size: 1rem;
   }
 }
 
