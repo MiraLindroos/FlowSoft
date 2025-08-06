@@ -1,17 +1,21 @@
-import TravelsList from "../../components/Travels/TravelsList"
+import List from "../../components/List/List"
 import useTravels from "../../hooks/useTravels"
+import Button from "../../components/Button/Button"
+import "./Travels.css"
 
 const Travels = () => {
   const { travels } = useTravels()
-  console.log(travels)
+
   return (
-    <>
+<div className="travels-view">
       <h3>Matkakulut</h3>
-      {travels && travels.length > 0 ? (
-        <TravelsList />
-      ) : <p>Ei matkakuluja</p>
-      }
-    </>
+      <div className="travel-buttons">
+        <Button title={'LISÄÄ UUSI'} />
+      </div>
+      <div className="travels-list">
+        <List items={travels} path={'Matka'} />
+      </div>
+    </div>
   )
 }
 

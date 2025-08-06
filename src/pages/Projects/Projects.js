@@ -1,4 +1,4 @@
-import ProjectsList from "../../components/Projects/ProjectsList"
+import List from "../../components/List/List"
 import useProjects from "../../hooks/useProjects"
 import "./Projects.css"
 import Modal from "../../components/Modal/Modal"
@@ -8,8 +8,12 @@ import Form from "../../components/Forms/Form"
 import addProjectFields from "../../data/addProjectFields"
 import { Toaster } from "react-hot-toast"
 import Button from "../../components/Button/Button"
+import { useAtomValue } from "jotai"
+import { projectsAtom } from "../../jotai/atoms"
 
 const Projects = () => {
+  const projects = useAtomValue(projectsAtom)
+
   const {
     addProject,
     deleteProject
@@ -66,7 +70,7 @@ const Projects = () => {
         <Button title={'LISÄÄ UUSI'} onClick={addProjectClick} />
       </div>
       <div className="projects-list">
-        <ProjectsList onDelete={onDelete} />
+        <List onDelete={onDelete} items={projects} path={'Projekti'} />
       </div>
       {showModal &&
         <Modal

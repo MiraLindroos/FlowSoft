@@ -1,8 +1,22 @@
-const TravelsList = () => {
+import { Link } from "react-router-dom"
+import { FiTrash } from "react-icons/fi"
+
+const TravelsList = ({travels}) => {
+  console.log(travels)
   return (
-    <div>
-      matkalista
-    </div>
+    <>
+      {travels && travels.length > 0 ? (
+        <div className="travels-list">
+          {travels.map((travel) => (
+            <div key={travel.id} className="travel-row">
+              <Link>{travel.name}</Link>
+              <button><FiTrash /></button>
+            </div>
+          ))}
+        </div>
+        ) : <p>Ei matkakuluja</p>
+      }
+    </>
   )
 }
 

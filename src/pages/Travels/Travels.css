@@ -1,0 +1,37 @@
+.travels-view {
+  margin: 20px 8px;
+}
+
+.travel-buttons {
+  text-align: end;
+  margin-bottom: 15px;
+}
+
+.travels-list {
+  background-color: #fff;
+  border: 1px solid #e3e1e1;
+}
+
+@media (min-width: 768px) {
+  .travels-view {
+    margin: 22px 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .travels-view {
+    margin: 26px 22px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .travels-view {
+    margin: 30px 40px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .travels-view {
+    margin: 35px 50px;
+  }
+}
