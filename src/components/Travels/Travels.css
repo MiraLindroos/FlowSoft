@@ -1,0 +1,31 @@
+.travel-detail {
+  margin: 0 0 20px;
+}
+
+@media (min-width: 768px) {
+  .travel-detail {
+    margin: 0 20px 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .travel-detail {
+    display: grid;
+    grid-template-areas: "a b";
+    margin: 0 10px 20px;
+  }
+  .project-detail.info {
+    grid-area: a;
+  }
+
+  .project-detail.money {
+    grid-area: b;
+  }
+
+  .project-detail.info,
+  .project-detail.money {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}

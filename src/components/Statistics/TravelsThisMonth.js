@@ -6,25 +6,25 @@ const TravelsThisMonth = () => {
     {
       name: 'ma',
       dateRange: '1.–7.6.',
-      tunnit: 30,
+      km: 30,
       raha: 40,
     },
     {
       name: 'ti',
       dateRange: '1.–7.6.',
-      tunnit: 65,
+      km: 65,
       raha: 90,
     },
         {
       name: 'ke',
       dateRange: '1.–7.6.',
-      tunnit: 23,
+      km: 23,
       raha: 32,
     },
     {
       name: 'to',
       dateRange: '1.–7.6.',
-      tunnit: 53,
+      km: 53,
       raha:79,
     },
   ]
@@ -43,8 +43,7 @@ const TravelsThisMonth = () => {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="tunnit" stroke="#013746" />
-        <Line type="monotone" dataKey="raha" stroke="#1a0146" />
+        <Line type="monotone" dataKey="km" stroke="#013746" />
       </LineChart>
     </ResponsiveContainer>
 
