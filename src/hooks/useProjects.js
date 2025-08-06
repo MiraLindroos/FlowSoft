@@ -61,7 +61,7 @@ const useProjects = () => {
         fixedRate: data.fixedRate,
         memo: data.memo,
         modified: new Date(),
-        onGoing: (new Date(data.startDate) <= new Date() && new Date() <= new Date(data.endDate)) ? true : false,
+        onGoing: data.onGoing,
         userId: currentUser,
       }),
       {

@@ -28,7 +28,22 @@ const ProjectDetailPage = () => {
   const methods = useForm()
 
   const onSubmit = (data) => {
-    addProject(data)
+    const today = new Date()
+    const start = data.startDate ? new Date(data.startDate) : null
+    const end = data.endDate ? new Date(data.endDate) : null
+
+    let onGoing
+
+    if (start && end) {
+        // If both dates are given, define onGoing based on the dates
+        onGoing = (start <= today && today <= end)
+      } else {
+        console.log('leige')
+        // Else use the value given by the checkbox
+        onGoing = data.onGoing
+    }
+
+    addProject({...data, onGoing: onGoing})
     closeModal()
   }
   // Function to convert Date object to 'YYYY-MM-DD' format for input type=date field
