@@ -5,6 +5,7 @@ import Projects from "./pages/Projects/Projects"
 import ProjectDetailPage from "./pages/Projects/ProjectDetailPage"
 import Profile from './pages/Profile/Profile'
 import Travels from './pages/Travels/Travels'
+import TravelDetailPage from "./pages/Travels/TravelDetailPage"
 
 const AppRoutes = ({ setIsLoggedIn }) => {
   return (
@@ -16,6 +17,7 @@ const AppRoutes = ({ setIsLoggedIn }) => {
       <Route path="/Projekti/:id" element={<ProjectDetailPage />} />
       <Route path="/Profiili" element={<Profile />} />
       <Route path="/Matkat" element={<Travels />} />
+      <Route path="/Matka/:id" element={<TravelDetailPage />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   )
