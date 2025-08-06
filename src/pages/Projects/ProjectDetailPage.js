@@ -38,7 +38,6 @@ const ProjectDetailPage = () => {
         // If both dates are given, define onGoing based on the dates
         onGoing = (start <= today && today <= end)
       } else {
-        console.log('leige')
         // Else use the value given by the checkbox
         onGoing = data.onGoing
     }
