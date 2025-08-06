@@ -45,8 +45,8 @@ const ProjectDetailPage = () => {
     methods.reset({ // Reset methods with projet values
       ...project,
       // Convert Firestore Timestamps to input type=date strings
-      startDate: dateToInputValue(project.startDate.toDate()),
-      endDate: dateToInputValue(project.endDate.toDate())
+      startDate: project.startDate ? dateToInputValue(project.startDate.toDate()) : null,
+      endDate: project.endDate ? dateToInputValue(project.endDate.toDate()) : null
     })
     openModal({
       message: `Muokkaa projektia: ${project.name}`,
