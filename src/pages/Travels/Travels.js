@@ -22,6 +22,7 @@ const Travels = () => {
 
   const onSubmit = (data) => {
     addTravel(data)
+    closeModal()
   }
 
   const addTravelClick = () => {
