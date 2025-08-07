@@ -9,7 +9,7 @@ import { useForm, FormProvider } from "react-hook-form"
 import addTravelFields from "../../data/addTravelFields"
 
 const Travels = () => {
-  const { travels, addTravel } = useTravels()
+  const { travels, addTravel, deleteTravel } = useTravels()
 
   const {
     showModal,
@@ -23,6 +23,20 @@ const Travels = () => {
   const onSubmit = (data) => {
     addTravel(data)
     closeModal()
+  }
+
+  const onDelete = (travel) => {
+    openModal({
+      message: `Haluatko varmasti poistaa matkan: ${travel.name}?`,
+      onConfirm: () => {
+        deleteTravel(travel.id)
+        closeModal()
+      },
+      onCancel: closeModal,
+      cancelButton: "Peruuta",
+      confirmButton: "Vahvista",
+      width: "85%"
+    })
   }
 
   const addTravelClick = () => {
@@ -48,7 +62,7 @@ const Travels = () => {
         <Button title={'LISÄÄ UUSI'} onClick={addTravelClick} />
       </div>
       <div className="travels-list">
-        <List items={travels} path={'Matka'} />
+        <List onDelete={onDelete} items={travels} path={'Matka'} />
       </div>
       {showModal &&
         <Modal

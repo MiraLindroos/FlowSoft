@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { db } from "../firebase/index"
-import { setDoc, onSnapshot, query, collection, where, doc } from "firebase/firestore"
+import { setDoc, onSnapshot, query, collection, where, doc, deleteDoc } from "firebase/firestore"
 import { currentUserAtom } from "../jotai/atoms"
 import { useAtomValue } from "jotai"
 import toast from "react-hot-toast"
@@ -61,9 +61,21 @@ const useTravels = () => {
     )
   }
 
+  const deleteTravel = async (id) => {
+    await toast.promise(
+      deleteDoc(doc(db, 'travels', id)),
+      {
+        loading: 'Poistetaan...',
+        success: 'Poisto onnistui!',
+        error: 'Posto epäonnistui'
+      }
+    )
+  }
+
   return {
     travels,
     addTravel,
+    deleteTravel
   }
 }
 
