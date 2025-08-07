@@ -28,7 +28,7 @@ const ProjectDetail = ({project}) => {
         > <CardSection
             fields={[
               {label: "Tunnit tässä kuussa", value: "20"},
-              {label: "tunnit yhteensä", value: project.hours},
+              {label: "tunnit yhteensä", value: project.hours.toFixed(2)},
             ]}
           />
         </Card>

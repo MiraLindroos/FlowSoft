@@ -11,7 +11,10 @@ const TravelDetail = ({travel}) => {
           icon='🚙'
         > <CardSection
           fields={[
-
+            {label: "Päivämäärä", value: "20.7."},
+            {label: "Mistä", value: "tampere"},
+            {label: "Mihin", value: "helsinki"},
+            {label: "Kilometrit", value: "248km"}
           ]}
         />
         </Card>
@@ -22,7 +25,8 @@ const TravelDetail = ({travel}) => {
           icon='💳'
         > <CardSection
             fields={[
-
+              {label: "Päiväraha", value: "200€"},
+              {label: "Kilometrikorvaus", value: "239€"},
             ]}
           />
         </Card>
