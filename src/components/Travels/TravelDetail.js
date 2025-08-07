@@ -9,14 +9,16 @@ const TravelDetail = ({travel}) => {
         <Card
           title='Matkan tiedot'
           icon='🚙'
-        > <CardSection
-          fields={[
-            {label: "Päivämäärä", value: "20.7."},
-            {label: "Mistä", value: "tampere"},
-            {label: "Mihin", value: "helsinki"},
-            {label: "Kilometrit", value: "248km"}
-          ]}
-        />
+        > {travel && (
+          <CardSection
+            fields={[
+              {label: "Päivämäärä", value: "20.7."},
+              {label: "Mistä", value: travel.from ? travel.from : "Ei lähtöpaikkaa annettu"},
+              {label: "Mihin", value: travel.destination ? travel.destination : "Ei kohdetta annettu"},
+              {label: "Kilometrit", value: travel.kilometers}
+            ]}
+          />
+        )}
         </Card>
       </div>
       <div className="travel-detail money">
