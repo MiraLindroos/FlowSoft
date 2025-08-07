@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 import { db } from "../firebase/index"
-import { setDoc, onSnapshot, query, collection, where } from "firebase/firestore"
+import { setDoc, onSnapshot, query, collection, where, doc } from "firebase/firestore"
 import { currentUserAtom } from "../jotai/atoms"
 import { useAtomValue } from "jotai"
+import toast from "react-hot-toast"
 
 const useTravels = () => {
   const userId = useAtomValue(currentUserAtom)
@@ -40,8 +41,29 @@ const useTravels = () => {
     }
   }, [])
 
+  const addTravel = async (data) => {
+    const docRef = doc(collection(db, 'travels'))
+    await toast.promise(
+      setDoc(docRef, {
+        date: new Date(data.date),
+        kilometers: data.km,
+        userId: userId,
+        from: data.from,
+        destination: data.to,
+        project: 'testi',
+        name: `${data.date} - ${data.km}km`
+      }),
+      {
+        loading: "Matkaa lisätään...",
+        success: "Matka lisätty",
+        error: "Matkan lisääminen epäonnistui"
+      }
+    )
+  }
+
   return {
     travels,
+    addTravel,
   }
 }
 

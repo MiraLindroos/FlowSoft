@@ -9,7 +9,7 @@ import { useForm, FormProvider } from "react-hook-form"
 import addTravelFields from "../../data/addTravelFields"
 
 const Travels = () => {
-  const { travels } = useTravels()
+  const { travels, addTravel } = useTravels()
 
   const {
     showModal,
@@ -20,8 +20,8 @@ const Travels = () => {
 
   const methods = useForm()
 
-  const onSubmit = () => {
-    console.log('täällä')
+  const onSubmit = (data) => {
+    addTravel(data)
   }
 
   const addTravelClick = () => {
