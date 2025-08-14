@@ -97,10 +97,13 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
         }
       )
       // Decrement the selected project's hours when a time entry is deleted
-      const projectRef = doc(db, 'projects', entry.projectId)
-        await updateDoc(projectRef, {
-          hours: increment(-(entry.hours))
-      })
+      if (entry.projectId) {
+        const projectRef = doc(db, 'projects', entry.projectId)
+          await updateDoc(projectRef, {
+            hours: increment(-(entry.hours))
+        })
+      }
+
     } catch (e) {
       console.error(e)
     }
