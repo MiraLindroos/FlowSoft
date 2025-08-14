@@ -37,7 +37,7 @@ const Home = () => {
           <Card
             icon={'🚙'}
             title={'Matkat'}
-            description={'Tarkastele kuukauden matkoja'}
+            description={'Tarkastele kuukauden matkoja (EI VIELÄ OIKEETA DATAA)'}
             variant="purple"
           > <TravelsThisMonth />
           </Card>
