@@ -8,7 +8,7 @@
   }
 
   .project-detail.hours,
-  .project-detail.else {
+  .project-detail.billing {
     margin-top: 25px;
   }
 }
@@ -29,20 +29,20 @@
     grid-area: b;
   }
 
-  .project-detail.else {
+  .project-detail.billing {
     grid-area: c;
   }
 
   .project-detail.info,
   .project-detail.hours,
-  .project-detail.else {
+  .project-detail.billing {
     height: 100%;
     display: flex;
     flex-direction: column;
   }
 
   .project-detail.hours,
-  .project-detail.else {
+  .project-detail.billing {
     margin-top: 0;
   }
 }

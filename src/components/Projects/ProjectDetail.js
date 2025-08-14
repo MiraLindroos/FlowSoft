@@ -16,6 +16,7 @@ const ProjectDetail = ({project}) => {
             {label: "Loppumispäivä", value: project.endDate ? project.endDate.toDate().toLocaleDateString('fi-FI', { weekday: 'short', day: 'numeric', month: 'numeric' }) : 'Ei loppumispäivää annettu'},
             {label: "Projekti käynnissä", value: project.onGoing ? "Kyllä" : "Ei"},
             {label: project.hourRate ? "Tuntihinta" : project.fixedRate ? "Kiinteä hinta" : "Hintaa ei ole merkattu", value: project.hourRate ? project.hourRate : project.fixedRate ? project.fixedRate : 0 },
+            {label: "Laskettu hinta (Alv 0)", value: project.hourRate ? project.hourRate * project.hours : project.fixedRate ? (project.fixedRate / (project.hours === 0 ? 1 : project.hours)).toFixed(2) : "Ei hintaa" },
             {label: "Muistiinpanot", value: project.memo ? project.memo : "Ei muistiinpanoja"}
           ]}
         />
@@ -33,7 +34,7 @@ const ProjectDetail = ({project}) => {
           />
         </Card>
       </div>
-      <div className="project-detail else">
+      <div className="project-detail billing">
         <Card
           title='Laskutustiedot'
           icon='💳'
@@ -42,7 +43,6 @@ const ProjectDetail = ({project}) => {
               {label: "Yhteyshenkilö", value: project.contact ? project.contact : "Ei yhteyshenkilöä"},
               {label: "Viitenumero", value: project.reference ? project.reference : "Ei viitenumeroa"},
               {label: "Operaattori", value: project.operator ? project.operator : "Ei operaattoria"},
-              {label: "Alv 0 hinta", value: project.hourRate ? project.hourRate * project.hours : project.fixedRate ? (project.fixedRate / (project.hours === 0 ? 1 : project.hours)).toFixed(2) : "Ei hintaa" }
             ]}
           />
         </Card>
