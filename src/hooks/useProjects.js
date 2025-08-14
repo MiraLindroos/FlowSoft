@@ -58,11 +58,15 @@ const useProjects = () => {
         startDate: data.startDate ? new Date(data.startDate) : '',
         endDate: data.endDate ? new Date(data.endDate) : '',
         hourRate: data.hourRate,
+        hours: 0,
         fixedRate: data.fixedRate,
         memo: data.memo,
         modified: new Date(),
         onGoing: data.onGoing,
         userId: currentUser,
+        contact: data.contact,
+        reference: data.reference,
+        operator: data.operator
       }),
       {
         loading: 'Tallennetaan...',
