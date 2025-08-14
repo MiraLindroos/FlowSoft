@@ -63,8 +63,8 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
         endTime: data.endTime,
         project: data.project,
         projectId: data.projectId,
-        travels: data.travel,
-        hourRate: data.hourRate,
+        travels: data.travels,
+        travelRate: data.travelRate,
         hours: data.hours,
         memo: data.memo,
         userId: currentUser

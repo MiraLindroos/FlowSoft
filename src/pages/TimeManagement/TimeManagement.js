@@ -104,11 +104,18 @@ const TimeManagement = () => {
   }
 
   const handleEntryClick = (date, entry) => {
+    // Find the project field from the form addHoursFields array
+    const projectField = addHoursFields.find(f => f.name === "project")
+    // Find the project option by matching the name to the entry.project
+    // This is needed because the select form expects a JSON string of the whole project object as its value
+    const selectedProject = projectField.options.find(option => option.name === entry.project)
+
     const formattedDate = date.toLocaleDateString('fi-FI', { day: 'numeric', month: 'numeric' })
     methods.reset({ // Reset methods with entry values
       ...entry,
       startTime: entry.startTime.toDate().toTimeString().slice(0, 5),
-      endTime: entry.endTime.toDate().toTimeString().slice(0, 5)
+      endTime: entry.endTime.toDate().toTimeString().slice(0, 5),
+      project: JSON.stringify(selectedProject),
     })
     openModal({
       message: `Muokkaa tunteja päivälle ${formattedDate} (Projekti: ${entry.project})`,
