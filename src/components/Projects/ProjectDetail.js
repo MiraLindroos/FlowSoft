@@ -39,9 +39,9 @@ const ProjectDetail = ({project}) => {
           icon='💳'
         > <CardSection
             fields={[
-              {label: "Yhteyshenkilö", value: "ei vielä oikeeta dataa"},
-              {label: "Viitenumero", value: "ei vielä oikeeta data"},
-              {label: "Operaattori", value: "ei vielä oikeeta data"},
+              {label: "Yhteyshenkilö", value: project.contact ? project.contact : "Ei yhteyshenkilöä"},
+              {label: "Viitenumero", value: project.reference ? project.reference : "Ei viitenumeroa"},
+              {label: "Operaattori", value: project.operator ? project.operator : "Ei operaattoria"},
             ]}
           />
         </Card>
