@@ -27,7 +27,7 @@ const ProjectDetail = ({project}) => {
           icon='⌚️'
         > <CardSection
             fields={[
-              {label: "Tunnit tässä kuussa", value: "20"},
+              {label: "Tunnit tässä kuussa", value: "ei vielä oikeeta dataa"},
               {label: "tunnit yhteensä", value: project.hours.toFixed(2)},
             ]}
           />
@@ -39,9 +39,9 @@ const ProjectDetail = ({project}) => {
           icon='💳'
         > <CardSection
             fields={[
-              {label: "Yhteyshenkilö", value: "testitesti"},
-              {label: "Viitenumero", value: "liibalaabaluuba"},
-              {label: "Operaattori", value: "lorem ipsum...lorem ipsum"},
+              {label: "Yhteyshenkilö", value: "ei vielä oikeeta dataa"},
+              {label: "Viitenumero", value: "ei vielä oikeeta data"},
+              {label: "Operaattori", value: "ei vielä oikeeta data"},
             ]}
           />
         </Card>
