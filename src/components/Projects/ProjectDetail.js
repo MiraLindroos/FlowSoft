@@ -17,6 +17,7 @@ const ProjectDetail = ({project}) => {
             {label: "Projekti käynnissä", value: project.onGoing ? "Kyllä" : "Ei"},
             {label: project.hourRate ? "Tuntihinta" : project.fixedRate ? "Kiinteä hinta" : "Hintaa ei ole merkattu", value: project.hourRate ? project.hourRate : project.fixedRate ? project.fixedRate : 0 },
             {label: "Laskettu hinta (Alv 0)", value: project.hourRate ? project.hourRate * project.hours : project.fixedRate ? (project.fixedRate / (project.hours === 0 ? 1 : project.hours)).toFixed(2) : "Ei hintaa" },
+            {label: "Laskettu hinta (Alvillinen)", value: project.hourRate ? (project.hourRate * project.hours) * 1.25 : project.fixedRate ? (project.fixedRate * 1.25).toFixed(2) : "Ei hintaa" },
             {label: "Muistiinpanot", value: project.memo ? project.memo : "Ei muistiinpanoja"}
           ]}
         />
