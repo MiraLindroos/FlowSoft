@@ -48,51 +48,59 @@ const useProjects = () => {
 
   // Function for adding and updating project data to Firestore
   const addProject = async (data) => {
-    const docRef = data.id
-    ? doc(db, 'projects', data.id) // If id, edit the existing doc
-    : doc(collection(db, 'projects')) // Create new doc if no id
+    try {
+      const docRef = data.id
+      ? doc(db, 'projects', data.id) // If id, edit the existing doc
+      : doc(collection(db, 'projects')) // Create new doc if no id
 
-    const projectData = {
-      name: data.name,
-      startDate: data.startDate ? new Date(data.startDate) : '',
-      endDate: data.endDate ? new Date(data.endDate) : '',
-      hourRate: data.hourRate,
-      fixedRate: data.fixedRate,
-      memo: data.memo,
-      modified: new Date(),
-      onGoing: data.onGoing,
-      userId: currentUser,
-      contact: data.contact,
-      reference: data.reference,
-      operator: data.operator,
-    }
-
-    // Add hours only if project is new
-    if (!data.id) {
-      projectData.hours = 0
-    }
-
-    await toast.promise(
-      // Update the given fields and leave the rest as they are
-      setDoc(docRef, projectData, {merge: true}),
-      {
-        loading: 'Tallennetaan...',
-        success: 'Tallennus onnistui!',
-        error: 'Tallennus epäonnistui'
+      const projectData = {
+        name: data.name,
+        startDate: data.startDate ? new Date(data.startDate) : '',
+        endDate: data.endDate ? new Date(data.endDate) : '',
+        hourRate: data.hourRate,
+        fixedRate: data.fixedRate,
+        memo: data.memo,
+        modified: new Date(),
+        onGoing: data.onGoing,
+        userId: currentUser,
+        contact: data.contact,
+        reference: data.reference,
+        operator: data.operator,
       }
-    )
+
+      // Add hours field with value 0 only if project is new
+      if (!data.id) {
+        projectData.hours = 0
+      }
+
+      await toast.promise(
+        // Update the given fields and leave the rest as they are
+        setDoc(docRef, projectData, {merge: true}),
+        {
+          loading: 'Tallennetaan...',
+          success: 'Tallennus onnistui!',
+          error: 'Tallennus epäonnistui'
+        }
+      )
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   // Function for deleting a project from Firestore
   const deleteProject = async (id) => {
-    await toast.promise(
-      deleteDoc(doc(db, 'projects', id)),
-      {
-        loading: 'Poistetaan...',
-        success: 'Poisto onnistui!',
-        error: 'Posto epäonnistui'
-      }
-    )
+    try {
+      await toast.promise(
+        deleteDoc(doc(db, 'projects', id)),
+        {
+          loading: 'Poistetaan...',
+          success: 'Poisto onnistui!',
+          error: 'Posto epäonnistui'
+        }
+      )
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   return {
