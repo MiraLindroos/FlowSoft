@@ -52,50 +52,58 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
 
   // Add new document to firestore collection 'timeEntries' with following data
   const addTimeEntry = async (data) => {
-    const docRef = data.id
-      ? doc(db, 'timeEntries', data.id) // If id, edit the existing doc
-      : doc(collection(db, 'timeEntries')) // Create new doc if no id
+    try {
+      const docRef = data.id
+        ? doc(db, 'timeEntries', data.id) // If id, edit the existing doc
+        : doc(collection(db, 'timeEntries')) // Create new doc if no id
 
-    await toast.promise(
-      setDoc(docRef, {
-      startTime: data.startTime,
-      endTime: data.endTime,
-      project: data.project,
-      projectId: data.projectId,
-      travels: data.travel,
-      hourRate: data.hourRate,
-      hours: data.hours,
-      memo: data.memo,
-      userId: currentUser
-      }),
-      {
-        loading: 'Tallennetaan tunteja..',
-        success: 'Tuntien lisääminen onnistui!',
-        error: 'Tuntien lisääminen epäonnistui'
-      }
-    )
-    // Increment the selected project's hours when a time entry is added
-    const projectRef = doc(db, 'projects', data.projectId)
-    await updateDoc(projectRef, {
-      hours: increment(data.hours)
-    })
+      await toast.promise(
+        setDoc(docRef, {
+        startTime: data.startTime,
+        endTime: data.endTime,
+        project: data.project,
+        projectId: data.projectId,
+        travels: data.travel,
+        hourRate: data.hourRate,
+        hours: data.hours,
+        memo: data.memo,
+        userId: currentUser
+        }),
+        {
+          loading: 'Tallennetaan tunteja..',
+          success: 'Tuntien lisääminen onnistui!',
+          error: 'Tuntien lisääminen epäonnistui'
+        }
+      )
+      // Increment the selected project's hours when a time entry is added
+      const projectRef = doc(db, 'projects', data.projectId)
+      await updateDoc(projectRef, {
+        hours: increment(data.hours)
+      })
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   // Delete a time entry from Firestore
   const deleteTimeEntry = async (entry) => {
-    await toast.promise(
-      deleteDoc(doc(db, 'timeEntries', entry.id)),
-      {
-        loading: 'Poistetaan tunteja..',
-        success: 'Tuntien poisto onnistui!',
-        error: 'Tuntien poistaminen epäonnistui'
-      }
-    )
-    // Decrement the selected project's hours when a time entry is deleted
-    const projectRef = doc(db, 'projects', entry.projectId)
-      await updateDoc(projectRef, {
-        hours: increment(-(entry.hours))
-    })
+    try {
+      await toast.promise(
+        deleteDoc(doc(db, 'timeEntries', entry.id)),
+        {
+          loading: 'Poistetaan tunteja..',
+          success: 'Tuntien poisto onnistui!',
+          error: 'Tuntien poistaminen epäonnistui'
+        }
+      )
+      // Decrement the selected project's hours when a time entry is deleted
+      const projectRef = doc(db, 'projects', entry.projectId)
+        await updateDoc(projectRef, {
+          hours: increment(-(entry.hours))
+      })
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   return {
