@@ -13,7 +13,6 @@ const useUserInfo = () => {
     const fetchUserInfo = async () => {
       const userRef = doc(db, 'users', currentUser)
       const userDoc = await getDoc(userRef)
-      console.log(userRef)
       if (userDoc.exists()) {
         setUserInfo({id: userDoc.id, ...userDoc.data()})
       } else {
