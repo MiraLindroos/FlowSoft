@@ -52,22 +52,29 @@ const useProjects = () => {
     ? doc(db, 'projects', data.id) // If id, edit the existing doc
     : doc(collection(db, 'projects')) // Create new doc if no id
 
+    const projectData = {
+      name: data.name,
+      startDate: data.startDate ? new Date(data.startDate) : '',
+      endDate: data.endDate ? new Date(data.endDate) : '',
+      hourRate: data.hourRate,
+      fixedRate: data.fixedRate,
+      memo: data.memo,
+      modified: new Date(),
+      onGoing: data.onGoing,
+      userId: currentUser,
+      contact: data.contact,
+      reference: data.reference,
+      operator: data.operator,
+    }
+
+    // Add hours only if project is new
+    if (!data.id) {
+      projectData.hours = 0
+    }
+
     await toast.promise(
-      setDoc(docRef, {
-        name: data.name,
-        startDate: data.startDate ? new Date(data.startDate) : '',
-        endDate: data.endDate ? new Date(data.endDate) : '',
-        hourRate: data.hourRate,
-        hours: 0,
-        fixedRate: data.fixedRate,
-        memo: data.memo,
-        modified: new Date(),
-        onGoing: data.onGoing,
-        userId: currentUser,
-        contact: data.contact,
-        reference: data.reference,
-        operator: data.operator
-      }),
+      // Update the given fields and leave the rest as they are
+      setDoc(docRef, projectData, {merge: true}),
       {
         loading: 'Tallennetaan...',
         success: 'Tallennus onnistui!',

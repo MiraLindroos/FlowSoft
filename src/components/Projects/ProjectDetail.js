@@ -42,6 +42,7 @@ const ProjectDetail = ({project}) => {
               {label: "Yhteyshenkilö", value: project.contact ? project.contact : "Ei yhteyshenkilöä"},
               {label: "Viitenumero", value: project.reference ? project.reference : "Ei viitenumeroa"},
               {label: "Operaattori", value: project.operator ? project.operator : "Ei operaattoria"},
+              {label: "Alv 0 hinta", value: project.hourRate ? project.hourRate * project.hours : project.fixedRate ? (project.fixedRate / (project.hours === 0 ? 1 : project.hours)).toFixed(2) : "Ei hintaa" }
             ]}
           />
         </Card>
