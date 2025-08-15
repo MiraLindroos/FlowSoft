@@ -28,9 +28,29 @@
   border-radius: 4px;
 }
 
+.project-edits {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 15px 6px;
+}
+
+.project-edits input {
+  width: 150px;
+  text-align: center;
+}
+
 @media (min-width: 768px) {
   .projects-view {
     margin: 22px 16px;
+  }
+
+  .project-edits {
+    justify-content: flex-end;
+    margin: 10px 55px 6px;
+  }
+
+  .project-edits input {
+    margin-left: 10px;
   }
 }
 

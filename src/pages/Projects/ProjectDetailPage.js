@@ -104,16 +104,18 @@ const ProjectDetailPage = () => {
     <div>
       <button className="go-back" onClick={() => navigate(-1)}><FiArrowLeft /></button>
       <h3 className="project-title">Projekti: {project.name}</h3>
-      <Button title={'Muokkaa'} onClick={editProjectClick} />
-      <DatePicker
-        selected={startDate}
-        onChange={onDateChange}
-        startDate={startDate}
-        endDate={endDate}
-        selectsRange
-        rangeSeparator=" - "
-        locale='fi'
-      />
+      <div className="project-edits">
+        <Button title={'Muokkaa'} onClick={editProjectClick} />
+        <DatePicker
+          selected={startDate}
+          onChange={onDateChange}
+          startDate={startDate}
+          endDate={endDate}
+          selectsRange
+          rangeSeparator=" - "
+          locale='fi'
+        />
+      </div>
       <ProjectDetail
         project={project} totalHours={totalHours} price={price} start={startDate} end={endDate}
       />
