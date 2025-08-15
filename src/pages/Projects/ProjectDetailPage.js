@@ -17,13 +17,15 @@ import { registerLocale } from  "react-datepicker";
 import { fi } from 'date-fns/locale';
 
 const ProjectDetailPage = () => {
+  // Dates for date range picker
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  registerLocale('fi', fi)
 
   const {id} = useParams()
-  const { project } = useProjectDetail(id)
+  const { project, fetchProjectHours, projectHours } = useProjectDetail(id)
   const navigate = useNavigate()
-  registerLocale('fi', fi)
+
 
   const {
     showModal,
@@ -89,10 +91,11 @@ const ProjectDetailPage = () => {
     return <div>Ladataan projektia...</div>;
   }
 
-  const onChange = (dates) => {
+  const onDateChange = (dates) => {
     const [start, end] = dates;
     setStartDate(start);
     setEndDate(end);
+    fetchProjectHours(start, end)
   };
 
 
@@ -103,7 +106,7 @@ const ProjectDetailPage = () => {
       <Button title={'Muokkaa'} onClick={editProjectClick} />
       <DatePicker
         selected={startDate}
-        onChange={onChange}
+        onChange={onDateChange}
         startDate={startDate}
         endDate={endDate}
         selectsRange

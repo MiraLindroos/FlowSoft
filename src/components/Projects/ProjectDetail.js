@@ -25,7 +25,7 @@ const ProjectDetail = ({project}) => {
       </div>
       <div className="project-detail hours">
         <Card
-          title='Projektin tunnit'
+          title='Projektin tunnit & hinta'
           icon='⌚️'
         > <CardSection
             fields={[

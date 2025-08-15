@@ -1,9 +1,10 @@
-import { doc, onSnapshot } from "firebase/firestore"
+import { collection, doc, onSnapshot, query, where, getDocs } from "firebase/firestore"
 import { db } from "../firebase/index"
 import { useEffect, useState } from "react"
 
 const useProjectDetail = (id) => {
   const [project, setProject] = useState()
+
   useEffect(() => {
     // Initialize an empty unsubscribe function to be safely called later
     // This prevents "unsubscribe is not a function" errors if for some reason onSnapshot fails or doesn't run
@@ -33,8 +34,29 @@ const useProjectDetail = (id) => {
     }
   }, [id])
 
+  const fetchProjectHours = async (start, end) => {
+    try {
+      const q = query(
+        collection(db, 'timeEntries'),
+        where('projectId', '==', id),
+        where('startTime', '>=', start),
+        where('startTime', '<=', end)
+      )
+      const hoursArray = []
+      const querySnapshot = await getDocs(q)
+      querySnapshot.forEach((doc) => {
+        hoursArray.push({...doc.data()})
+      })
+      const filteredHours = hoursArray.map((p) => Number(p.hours))
+      console.log(filteredHours)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   return {
-    project
+    project,
+    fetchProjectHours
   }
 }
 
