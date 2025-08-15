@@ -4,6 +4,8 @@ import { useEffect, useState } from "react"
 
 const useProjectDetail = (id) => {
   const [project, setProject] = useState()
+  const [totalHours, setTotalHours] = useState()
+  const [price, setPrice] = useState()
 
   useEffect(() => {
     // Initialize an empty unsubscribe function to be safely called later
@@ -34,6 +36,7 @@ const useProjectDetail = (id) => {
     }
   }, [id])
 
+  // Fetch the project's timeEntries between the given date range
   const fetchProjectHours = async (start, end) => {
     try {
       const q = query(
@@ -43,9 +46,21 @@ const useProjectDetail = (id) => {
         where('startTime', '<=', end)
       )
       const querySnapshot = await getDocs(q)
-      const hoursArray = querySnapshot.docs.map(doc => Number(doc.data().hours))
-      const totalHours = hoursArray.reduce((accumulator, hour) => accumulator + hour, 0)
-      console.log(totalHours)
+      // Add only hours to hoursArray and convert the hours into numbers
+      const hoursArray = querySnapshot.docs.map(doc => Number(doc.data().hours || 0))
+      // Calculate the sum of the hours
+      const summedHours = hoursArray.reduce((accumulator, hour) => accumulator + hour, 0)
+      setTotalHours(summedHours)
+
+      if (project?.hourRate) {
+        console.log(project.hourRate)
+        console.log(summedHours)
+        setPrice(project.hourRate * summedHours)
+      } else if (project?.fixedRate) {
+        setPrice(project.fixedRate)
+      } else {
+        setPrice('Ei hintaa')
+      }
     } catch (e) {
       console.error(e)
     }
@@ -53,7 +68,9 @@ const useProjectDetail = (id) => {
 
   return {
     project,
-    fetchProjectHours
+    fetchProjectHours,
+    totalHours,
+    price
   }
 }
 

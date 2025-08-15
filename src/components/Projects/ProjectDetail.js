@@ -2,7 +2,7 @@ import Card from "../Card/Card"
 import CardSection from "../Card/CardSection"
 import "./Projects.css"
 
-const ProjectDetail = ({project}) => {
+const ProjectDetail = ({project, totalHours, price, start, end}) => {
   return (
     <div className="project-detail">
       <div className="project-detail info">
@@ -29,7 +29,11 @@ const ProjectDetail = ({project}) => {
           icon='⌚️'
         > <CardSection
             fields={[
-              {label: "Tunnit tässä kuussa", value: "ei vielä oikeeta dataa"},
+              {label: start && end ? 
+                `Aikavälillä ${start.toLocaleDateString('fi-Fi', {day: 'numeric', month: 'numeric'})} - ${end.toLocaleDateString('fi-Fi', {day: 'numeric', month: 'numeric'})} tehdyt tunnit`
+                : 'Tunnit tässä kuussa',
+                value: start && end ? `${totalHours} h` : 'ei oikeeta dataa'},
+              {label: "hinta", value: price},
               {label: "tunnit yhteensä", value: project.hours.toFixed(2)},
             ]}
           />

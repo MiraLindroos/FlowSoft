@@ -19,11 +19,11 @@ import { fi } from 'date-fns/locale';
 const ProjectDetailPage = () => {
   // Dates for date range picker
   const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [endDate, setEndDate] = useState();
   registerLocale('fi', fi)
 
   const {id} = useParams()
-  const { project, fetchProjectHours, projectHours } = useProjectDetail(id)
+  const { project, fetchProjectHours, totalHours, price } = useProjectDetail(id)
   const navigate = useNavigate()
 
 
@@ -96,8 +96,9 @@ const ProjectDetailPage = () => {
     setStartDate(start);
     setEndDate(end);
     fetchProjectHours(start, end)
+    console.log(totalHours)
+    console.log(price)
   };
-
 
   return (
     <div>
@@ -114,7 +115,7 @@ const ProjectDetailPage = () => {
         locale='fi'
       />
       <ProjectDetail
-        project={project}
+        project={project} totalHours={totalHours} price={price} start={startDate} end={endDate}
       />
       {showModal && (
         <Modal
