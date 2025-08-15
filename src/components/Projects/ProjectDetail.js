@@ -15,7 +15,7 @@ const ProjectDetail = ({project, totalHours, price, start, end}) => {
             {label: "Alkamispäivä", value: project.startDate ? project.startDate.toDate().toLocaleDateString('fi-FI', { weekday: 'short', day: 'numeric', month: 'numeric', year: 'numeric' }) : 'Ei alkamispäivää annettu'},
             {label: "Loppumispäivä", value: project.endDate ? project.endDate.toDate().toLocaleDateString('fi-FI', { weekday: 'short', day: 'numeric', month: 'numeric' }) : 'Ei loppumispäivää annettu'},
             {label: "Projekti käynnissä", value: project.onGoing ? "Kyllä" : "Ei"},
-            {label: project.hourRate ? "Tuntihinta" : project.fixedRate ? "Kiinteä hinta" : "Hintaa ei ole merkattu", value: project.hourRate ? project.hourRate : project.fixedRate ? project.fixedRate : 0 },
+            {label: project.hourRate ? "Tuntihinta" : project.fixedRate ? "Kiinteä hinta" : "Hintaa ei ole merkattu", value: project.hourRate ? `${project.hourRate} €` : project.fixedRate ? `${project.fixedRate} €` : 0 },
             {label: "Laskettu hinta (Alv 0)", value: project.hourRate ? project.hourRate * project.hours : project.fixedRate ? (project.fixedRate / (project.hours === 0 ? 1 : project.hours)).toFixed(2) : "Ei hintaa" },
             {label: "Laskettu hinta (Alvillinen)", value: project.hourRate ? (project.hourRate * project.hours) * 1.25 : project.fixedRate ? (project.fixedRate * 1.25).toFixed(2) : "Ei hintaa" },
             {label: "Muistiinpanot", value: project.memo ? project.memo : "Ei muistiinpanoja"}
@@ -33,8 +33,8 @@ const ProjectDetail = ({project, totalHours, price, start, end}) => {
                 `Aikavälillä ${start.toLocaleDateString('fi-Fi', {day: 'numeric', month: 'numeric'})} - ${end.toLocaleDateString('fi-Fi', {day: 'numeric', month: 'numeric'})} tehdyt tunnit`
                 : 'Tunnit tässä kuussa',
                 value: start && end ? `${totalHours} h` : 'ei oikeeta dataa'},
-              {label: "hinta", value: price},
-              {label: "tunnit yhteensä", value: project.hours.toFixed(2)},
+              {label: "hinta", value: price ? price : 'Ei laskettua hintaa'},
+              {label: "Kaikki tehdyt tunnit yhteensä", value: `${project.hours.toFixed(1)} h`},
             ]}
           />
         </Card>
