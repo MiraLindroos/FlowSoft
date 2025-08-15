@@ -42,13 +42,10 @@ const useProjectDetail = (id) => {
         where('startTime', '>=', start),
         where('startTime', '<=', end)
       )
-      const hoursArray = []
       const querySnapshot = await getDocs(q)
-      querySnapshot.forEach((doc) => {
-        hoursArray.push({...doc.data()})
-      })
-      const filteredHours = hoursArray.map((p) => Number(p.hours))
-      console.log(filteredHours)
+      const hoursArray = querySnapshot.docs.map(doc => Number(doc.data().hours))
+      const totalHours = hoursArray.reduce((accumulator, hour) => accumulator + hour, 0)
+      console.log(totalHours)
     } catch (e) {
       console.error(e)
     }
