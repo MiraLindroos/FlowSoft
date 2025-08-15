@@ -10,11 +10,20 @@ import addProjectFields from "../../data/addProjectFields"
 import useProjects from "../../hooks/useProjects"
 import Button from "../../components/Button/Button"
 import { FiArrowLeft } from "react-icons/fi"
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useState } from "react"
+import { registerLocale } from  "react-datepicker";
+import { fi } from 'date-fns/locale';
 
 const ProjectDetailPage = () => {
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+
   const {id} = useParams()
   const { project } = useProjectDetail(id)
   const navigate = useNavigate()
+  registerLocale('fi', fi)
 
   const {
     showModal,
@@ -79,11 +88,28 @@ const ProjectDetailPage = () => {
   if (!project) {
     return <div>Ladataan projektia...</div>;
   }
+
+  const onChange = (dates) => {
+    const [start, end] = dates;
+    setStartDate(start);
+    setEndDate(end);
+  };
+
+
   return (
     <div>
       <button className="go-back" onClick={() => navigate(-1)}><FiArrowLeft /></button>
       <h3 className="project-title">Projekti: {project.name}</h3>
       <Button title={'Muokkaa'} onClick={editProjectClick} />
+      <DatePicker
+        selected={startDate}
+        onChange={onChange}
+        startDate={startDate}
+        endDate={endDate}
+        selectsRange
+        rangeSeparator=" - "
+        locale='fi'
+      />
       <ProjectDetail
         project={project}
       />
