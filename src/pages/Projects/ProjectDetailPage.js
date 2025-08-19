@@ -92,8 +92,6 @@ const ProjectDetailPage = () => {
     setStartDate(start);
     setEndDate(end);
     fetchProjectHours(start, end)
-    console.log(totalHours)
-    console.log(price)
   };
 
   return (

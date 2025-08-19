@@ -4,7 +4,6 @@ import ProjectHours from "./ProjectHours"
 import "./Projects.css"
 
 const ProjectDetail = ({project, totalHours, price, start, end, onChange}) => {
-  console.log(price)
   return (
     <div className="project-detail">
       <div className="project-detail info">
