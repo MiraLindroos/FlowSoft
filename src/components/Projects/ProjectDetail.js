@@ -4,6 +4,7 @@ import ProjectHours from "./ProjectHours"
 import "./Projects.css"
 
 const ProjectDetail = ({project, totalHours, price, start, end, onChange}) => {
+  console.log(price)
   return (
     <div className="project-detail">
       <div className="project-detail info">
@@ -17,8 +18,6 @@ const ProjectDetail = ({project, totalHours, price, start, end, onChange}) => {
             {label: "Loppumispäivä", value: project.endDate ? project.endDate.toDate().toLocaleDateString('fi-FI', { weekday: 'short', day: 'numeric', month: 'numeric' }) : 'Ei loppumispäivää annettu'},
             {label: "Projekti käynnissä", value: project.onGoing ? "Kyllä" : "Ei"},
             {label: project.hourRate ? "Tuntihinta" : project.fixedRate ? "Kiinteä hinta" : "Hintaa ei ole merkattu", value: project.hourRate ? `${project.hourRate} €` : project.fixedRate ? `${project.fixedRate} €` : 0 },
-            {label: "Laskettu hinta (Alv 0)", value: project.hourRate ? project.hourRate * project.hours : project.fixedRate ? (project.fixedRate / (project.hours === 0 ? 1 : project.hours)).toFixed(2) : "Ei hintaa" },
-            {label: "Laskettu hinta (Alvillinen)", value: project.hourRate ? (project.hourRate * project.hours) * 1.25 : project.fixedRate ? (project.fixedRate * 1.25).toFixed(2) : "Ei hintaa" },
             {label: "Muistiinpanot", value: project.memo ? project.memo : "Ei muistiinpanoja"}
           ]}
         />
@@ -33,8 +32,8 @@ const ProjectDetail = ({project, totalHours, price, start, end, onChange}) => {
             fields={[
               {label: start && end ? `Aikavälin ${start.toLocaleDateString('fi-Fi', {day: 'numeric', month: 'numeric'})} - ${end.toLocaleDateString('fi-Fi', {day: 'numeric', month: 'numeric'})} yhteenveto` : "Kokonaistuntien yhteenveto"},
               {label: "Tehdyt tunnit", value: start && end ? `${totalHours} h` : `${project.hours.toFixed(1)} h`},
-              {label: "Laskettu hinta (Alv 0)", value: price ? `${price.toFixed(2)} €` : 'Ei laskettua hintaa'},
-              {label: "Laskettu hinta (Alv 25,5%)", value: price ? `${(price * 1.25).toFixed(2)} €` : 'Ei laskettua hintaa'},
+              {label: "Laskettu hinta (Alv 0)", value: project.hourRate ? project.hourRate * (start && end ? totalHours : project.hours) : project.fixedRate ? project.fixedRate : "Ei hintaa" },
+              {label: "Laskettu hinta (Alv 25,5%)", value: project.hourRate ? ((project.hourRate * (start && end ? totalHours : project.hours)) * 1.255).toFixed(2) : project.fixedRate ? ((project.fixedRate) * 1.255).toFixed(2) : "Ei hintaa" },
               {label: "Kaikki projektille tehdyt tunnit", value: `${project.hours.toFixed(1)} h`},
             ]}
           />

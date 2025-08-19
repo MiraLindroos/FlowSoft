@@ -53,8 +53,6 @@ const useProjectDetail = (id) => {
       setTotalHours(summedHours)
 
       if (project?.hourRate) {
-        console.log(project.hourRate)
-        console.log(summedHours)
         setPrice(project.hourRate * summedHours)
       } else if (project?.fixedRate) {
         setPrice(project.fixedRate)
