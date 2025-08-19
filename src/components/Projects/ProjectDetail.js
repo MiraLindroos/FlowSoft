@@ -31,12 +31,11 @@ const ProjectDetail = ({project, totalHours, price, start, end, onChange}) => {
         > <ProjectHours start={start} end={end} onChange={onChange} />
           <CardSection
             fields={[
-              {label: start && end ? 
-                `Aikavälillä ${start.toLocaleDateString('fi-Fi', {day: 'numeric', month: 'numeric'})} - ${end.toLocaleDateString('fi-Fi', {day: 'numeric', month: 'numeric'})} tehdyt tunnit`
-                : 'Tunnit tässä kuussa',
-                value: start && end ? `${totalHours} h` : 'ei oikeeta dataa'},
-              {label: "hinta", value: price ? price : 'Ei laskettua hintaa'},
-              {label: "Kaikki tehdyt tunnit yhteensä", value: `${project.hours.toFixed(1)} h`},
+              {label: start && end ? `Aikavälin ${start.toLocaleDateString('fi-Fi', {day: 'numeric', month: 'numeric'})} - ${end.toLocaleDateString('fi-Fi', {day: 'numeric', month: 'numeric'})} yhteenveto` : "Kokonaistuntien yhteenveto"},
+              {label: "Tehdyt tunnit", value: start && end ? `${totalHours} h` : `${project.hours.toFixed(1)} h`},
+              {label: "Laskettu hinta (Alv 0)", value: price ? `${price.toFixed(2)} €` : 'Ei laskettua hintaa'},
+              {label: "Laskettu hinta (Alv 25,5%)", value: price ? `${(price * 1.25).toFixed(2)} €` : 'Ei laskettua hintaa'},
+              {label: "Kaikki projektille tehdyt tunnit", value: `${project.hours.toFixed(1)} h`},
             ]}
           />
         </Card>
