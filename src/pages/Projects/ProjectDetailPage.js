@@ -10,17 +10,13 @@ import addProjectFields from "../../data/addProjectFields"
 import useProjects from "../../hooks/useProjects"
 import Button from "../../components/Button/Button"
 import { FiArrowLeft } from "react-icons/fi"
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react"
-import { registerLocale } from  "react-datepicker";
-import { fi } from 'date-fns/locale';
 
 const ProjectDetailPage = () => {
   // Dates for date range picker
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState();
-  registerLocale('fi', fi)
 
   const {id} = useParams()
   const { project, fetchProjectHours, totalHours, price } = useProjectDetail(id)
@@ -104,20 +100,9 @@ const ProjectDetailPage = () => {
     <div>
       <button className="go-back" onClick={() => navigate(-1)}><FiArrowLeft /></button>
       <h3 className="project-title">Projekti: {project.name}</h3>
-      <div className="project-edits">
-        <Button title={'Muokkaa'} onClick={editProjectClick} />
-        <DatePicker
-          selected={startDate}
-          onChange={onDateChange}
-          startDate={startDate}
-          endDate={endDate}
-          selectsRange
-          rangeSeparator=" - "
-          locale='fi'
-        />
-      </div>
+      <Button title={'Muokkaa'} onClick={editProjectClick} />
       <ProjectDetail
-        project={project} totalHours={totalHours} price={price} start={startDate} end={endDate}
+        project={project} totalHours={totalHours} price={price} start={startDate} end={endDate} onChange={onDateChange}
       />
       {showModal && (
         <Modal

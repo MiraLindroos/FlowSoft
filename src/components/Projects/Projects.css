@@ -2,6 +2,15 @@
   margin: 0 0 20px;
 }
 
+.project-daterange {
+  padding-bottom: 10px;
+}
+
+.project-daterange input {
+  width: 160px;
+  text-align: center;
+}
+
 @media (min-width: 768px) {
   .project-detail {
     margin: 0 20px 0;
@@ -10,6 +19,14 @@
   .project-detail.hours,
   .project-detail.billing {
     margin-top: 25px;
+  }
+
+  .project-daterange {
+    padding-bottom: 12px;
+  }
+
+  .project-daterange input {
+    width: 170px;
   }
 }
 
