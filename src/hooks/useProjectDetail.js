@@ -57,7 +57,6 @@ const useProjectDetail = (id) => {
       // Calculate the sum of the kilometers
       const summedTravels = travelsArray.reduce((accumulator, travel) => accumulator + travel, 0)
       setTotalKilometers(summedTravels)
-      console.log(summedTravels)
     } catch (e) {
       console.error(e)
     }
