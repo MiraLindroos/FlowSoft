@@ -71,6 +71,7 @@ const useProjects = () => {
       // Add hours field with value 0 only if project is new
       if (!data.id) {
         projectData.hours = 0
+        projectData.kilometers = 0
       }
 
       await toast.promise(

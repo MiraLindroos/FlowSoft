@@ -114,7 +114,6 @@ const TimeManagement = () => {
   }
 
   const handleEntryClick = (date, entry) => {
-    console.log(entry)
     // Find the project field from the form addHoursFields array
     const projectField = addHoursFields.find(f => f.name === "project")
     // Find the project option by matching the name to the entry.project

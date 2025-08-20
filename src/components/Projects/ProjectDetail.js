@@ -34,7 +34,7 @@ const ProjectDetail = ({project, totalHours, totalTravels, start, end, onChange}
               {label: "Alviton hinta (Alv 0)", value: project.hourRate ? `${project.hourRate * (start && end ? totalHours : project.hours).toFixed(2)} €` : project.fixedRate ? `${project.fixedRate} €` : "Ei hintaa" },
               {label: "Alvin määrä (Alv 25,5%)", value: project.hourRate ? `${((project.hourRate * (start && end ? totalHours : project.hours)) * 0.255).toFixed(2)} €` : project.fixedRate ? `${((project.fixedRate) * 0.255).toFixed(2)} €` : "Ei hintaa" },
               {label: "Kokonaishinta", value: project.hourRate ? `${((project.hourRate * (start && end ? totalHours : project.hours)) * 1.255).toFixed(2)} €` : project.fixedRate ? `${((project.fixedRate) * 1.255).toFixed(2)} €` : "Ei hintaa" },
-              {label: "Kilometrit yhteensä", value: start && end ? `${totalTravels} km` : ""},
+              {label: "Kilometrit yhteensä", value: start && end ? `${totalTravels} km` : `${project.kilometers} km`},
             ]}
           />
         </Card>

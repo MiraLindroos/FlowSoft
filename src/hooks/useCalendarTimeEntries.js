@@ -78,7 +78,8 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
       // Increment the selected project's hours when a time entry is added
       const projectRef = doc(db, 'projects', data.projectId)
       await updateDoc(projectRef, {
-        hours: increment(data.hours)
+        hours: increment(data.hours),
+        kilometers: increment(data.kilometers)
       })
     } catch (e) {
       console.error(e)
