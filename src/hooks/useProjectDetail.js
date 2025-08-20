@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 
 const useProjectDetail = (id) => {
   const [project, setProject] = useState()
+  const [projectsEntries, setProjectsEntries] = useState()
   const [totalHours, setTotalHours] = useState()
   const [totalKilometers, setTotalKilometers] = useState()
 
@@ -46,6 +47,10 @@ const useProjectDetail = (id) => {
         where('startTime', '<=', end)
       )
       const querySnapshot = await getDocs(q)
+      // Save all the entry data to projectEntries
+      const entriesArray = querySnapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
+      setProjectsEntries(entriesArray)
+      console.log(entriesArray)
       // Add only hours to hoursArray and convert the hours into numbers
       const hoursArray = querySnapshot.docs.map(doc => Number(doc.data().hours || 0))
       // Calculate the sum of the hours
@@ -65,6 +70,7 @@ const useProjectDetail = (id) => {
   return {
     project,
     fetchProjectHours,
+    projectsEntries,
     totalHours,
     totalKilometers
   }

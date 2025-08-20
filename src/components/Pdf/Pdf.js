@@ -8,15 +8,24 @@ const styles = StyleSheet.create({
   }
 })
 
-const Pdf = ({project}) => (
+const Pdf = ({project, projectsEntries, start, end}) => (
   <Document>
     <Page size="A4">
       <View>
-        <Text style={styles.section}>{project.name}</Text>
+        <Text style={styles.section}>Työtunnit projektille: {project.name}</Text>
+        <Text style={styles.section}>Aikaväliltä : {start} - {end}</Text>
       </View>
-      <View>
-        <Text style={styles.section}>Testi</Text>
-      </View>
+      {projectsEntries.map((entry) => {
+          return (
+            <View key={entry.id}>
+              <Text style={styles.section}>{entry.startTime.toDate().toLocaleDateString()}</Text>
+              <Text style={styles.section}>{entry.memo}</Text>
+            </View>
+          )
+        }
+      )
+      }
+
     </Page>
   </Document>
 )

@@ -5,7 +5,8 @@ import "./Projects.css"
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import Pdf from "../../components/Pdf/Pdf"
 
-const ProjectDetail = ({project, totalHours, totalTravels, start, end, onChange}) => {
+const ProjectDetail = ({project, projectsEntries, totalHours, totalTravels, start, end, onChange}) => {
+  console.log(start)
   return (
     <div className="project-detail">
       <div className="project-detail info">
@@ -35,7 +36,7 @@ const ProjectDetail = ({project, totalHours, totalTravels, start, end, onChange}
           <div className="project-range-pdf">
             <ProjectHours start={start} end={end} onChange={onChange} />
             { start && end && (
-              <PDFDownloadLink document={<Pdf project={project} />} fileName="testi.pdf">
+              <PDFDownloadLink document={<Pdf project={project} projectsEntries={projectsEntries} start={start.toLocaleDateString()} end={end.toLocaleDateString()} />} fileName="testi.pdf">
                 {({ blob, url, loading, error }) =>
                   loading ? 'Ladataan...' : 'Luo PDF'
                 }
