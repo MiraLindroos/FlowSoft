@@ -11,7 +11,7 @@ const TravelDetailPage = () => {
   return (
     <div>
       <button className="go-back" onClick={() => navigate(-1)}><FiArrowLeft /></button>
-      {travel && <h3 className="travel-title">Matka: {travel.from} - {travel.destination}</h3>}
+      {travel && <h3 className="travel-title">Matka: {travel.name}</h3>}
       <Button title={'Muokkaa'} />
       <TravelDetail travel={travel}/>
     </div>

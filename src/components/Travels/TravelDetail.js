@@ -12,10 +12,12 @@ const TravelDetail = ({travel}) => {
         > {travel && (
           <CardSection
             fields={[
-              {label: "Päivämäärä", value: "20.7."},
+              {label: "Päivämäärä", value: travel.date.toDate().toLocaleDateString('fi-FI', { weekday: 'short', day: 'numeric', month: 'numeric', year: 'numeric' })},
+              {label: "Projektille", value: travel.project},
               {label: "Mistä", value: travel.from ? travel.from : "Ei lähtöpaikkaa annettu"},
               {label: "Mihin", value: travel.destination ? travel.destination : "Ei kohdetta annettu"},
-              {label: "Kilometrit", value: travel.kilometers}
+              {label: "Kilometrit", value: `${travel.kilometers} km`},
+              {label: "Muistiinpanot", value: travel.memo ? travel.memo : "Ei muistiinpanoja"}
             ]}
           />
         )}
@@ -27,8 +29,8 @@ const TravelDetail = ({travel}) => {
           icon='💳'
         > <CardSection
             fields={[
-              {label: "Päiväraha", value: "200€"},
-              {label: "Kilometrikorvaus", value: "239€"},
+              {label: "Päiväraha", value: travel.travelRate ? travel.travelRate : "Ei kilometrihintaa annettu"},
+              {label: "Kilometrikorvaus", value: "ei oikeeta dataa"},
             ]}
           />
         </Card>
