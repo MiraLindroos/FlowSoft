@@ -12,7 +12,7 @@
   .travel-detail {
     display: grid;
     grid-template-areas: "a b";
-    margin: 0 10px 20px;
+    margin: 10px 10px 20px;
   }
   .project-detail.info {
     grid-area: a;
