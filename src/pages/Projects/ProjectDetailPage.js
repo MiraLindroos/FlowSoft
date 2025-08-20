@@ -19,7 +19,7 @@ const ProjectDetailPage = () => {
   const [endDate, setEndDate] = useState();
 
   const {id} = useParams()
-  const { project, fetchProjectHours, totalHours, price } = useProjectDetail(id)
+  const { project, fetchProjectHours, totalHours, totalKilometers } = useProjectDetail(id)
   const navigate = useNavigate()
 
 
@@ -106,7 +106,7 @@ const ProjectDetailPage = () => {
       <h3 className="project-title">Projekti: {project.name}</h3>
       <Button title={'Muokkaa'} onClick={editProjectClick} />
       <ProjectDetail
-        project={project} totalHours={totalHours} price={price} start={startDate} end={endDate} onChange={onDateChange}
+        project={project} totalHours={totalHours} totalTravels={totalKilometers} start={startDate} end={endDate} onChange={onDateChange}
       />
       {showModal && (
         <Modal

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 const useProjectDetail = (id) => {
   const [project, setProject] = useState()
   const [totalHours, setTotalHours] = useState()
-  const [price, setPrice] = useState()
+  const [totalKilometers, setTotalKilometers] = useState()
 
   useEffect(() => {
     // Initialize an empty unsubscribe function to be safely called later
@@ -52,13 +52,12 @@ const useProjectDetail = (id) => {
       const summedHours = hoursArray.reduce((accumulator, hour) => accumulator + hour, 0)
       setTotalHours(summedHours)
 
-      if (project?.hourRate) {
-        setPrice(project.hourRate * summedHours)
-      } else if (project?.fixedRate) {
-        setPrice(project.fixedRate)
-      } else {
-        setPrice('Ei hintaa')
-      }
+      // Add only kilometers to travelsArray and convert the kilometers into numbers
+      const travelsArray = querySnapshot.docs.map(doc => Number(doc.data().kilometers || 0))
+      // Calculate the sum of the kilometers
+      const summedTravels = travelsArray.reduce((accumulator, travel) => accumulator + travel, 0)
+      setTotalKilometers(summedTravels)
+
     } catch (e) {
       console.error(e)
     }
@@ -68,7 +67,7 @@ const useProjectDetail = (id) => {
     project,
     fetchProjectHours,
     totalHours,
-    price
+    totalKilometers
   }
 }
 

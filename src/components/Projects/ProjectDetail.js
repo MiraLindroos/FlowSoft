@@ -3,7 +3,7 @@ import CardSection from "../Card/CardSection"
 import ProjectHours from "./ProjectHours"
 import "./Projects.css"
 
-const ProjectDetail = ({project, totalHours, price, start, end, onChange}) => {
+const ProjectDetail = ({project, totalHours, totalTravels, start, end, onChange}) => {
   return (
     <div className="project-detail">
       <div className="project-detail info">
@@ -34,7 +34,7 @@ const ProjectDetail = ({project, totalHours, price, start, end, onChange}) => {
               {label: "Alviton hinta (Alv 0)", value: project.hourRate ? `${project.hourRate * (start && end ? totalHours : project.hours).toFixed(2)} €` : project.fixedRate ? `${project.fixedRate} €` : "Ei hintaa" },
               {label: "Alvin määrä (Alv 25,5%)", value: project.hourRate ? `${((project.hourRate * (start && end ? totalHours : project.hours)) * 0.255).toFixed(2)} €` : project.fixedRate ? `${((project.fixedRate) * 0.255).toFixed(2)} €` : "Ei hintaa" },
               {label: "Kokonaishinta", value: project.hourRate ? `${((project.hourRate * (start && end ? totalHours : project.hours)) * 1.255).toFixed(2)} €` : project.fixedRate ? `${((project.fixedRate) * 1.255).toFixed(2)} €` : "Ei hintaa" },
-              {label: "Kaikki projektille tehdyt tunnit", value: `${project.hours.toFixed(1)} h`},
+              {label: "Kilometrit yhteensä", value: start && end ? `${totalTravels} km` : ""},
             ]}
           />
         </Card>
