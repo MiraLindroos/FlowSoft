@@ -6,10 +6,13 @@ import useModal from "../../hooks/useModal"
 import Modal from "../../components/Modal/Modal"
 import Form from "../../components/Forms/Form"
 import { useForm, FormProvider } from "react-hook-form"
-import addTravelFields from "../../data/addTravelFields"
+import useAddTravelsForm from "../../hooks/useAddTravelsForm"
+import { use } from "react"
 
 const Travels = () => {
   const { travels, addTravel, deleteTravel } = useTravels()
+
+  const { addTravelFields } = useAddTravelsForm()
 
   const {
     showModal,
@@ -21,6 +24,14 @@ const Travels = () => {
   const methods = useForm()
 
   const onSubmit = (data) => {
+    data.date = new Date(data.date)
+    // The selected project is a JSON string so we need to parse it
+    const selectedProject = JSON.parse(data.project)
+    // Replace data.project to hold the project's name
+    data.project = selectedProject.name
+    // Store the project's ID
+    data.projectId = selectedProject.id
+
     addTravel(data)
     closeModal()
   }
