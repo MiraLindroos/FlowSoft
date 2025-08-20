@@ -67,7 +67,7 @@ const Travels = () => {
   }
 
   return (
-<div className="travels-view">
+    <div className="travels-view">
       <h3>Matkakulut (ei vielä täysin toiminnassa)</h3>
       <div className="travel-buttons">
         <Button title={'LISÄÄ UUSI'} onClick={addTravelClick} />

@@ -2,6 +2,11 @@
   margin: 20px 8px;
 }
 
+.travel-title {
+  margin: 5px;
+  padding: 10px;
+}
+
 .travel-buttons {
   text-align: end;
   margin-bottom: 15px;

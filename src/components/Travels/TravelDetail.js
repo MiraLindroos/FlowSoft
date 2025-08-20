@@ -27,12 +27,14 @@ const TravelDetail = ({travel}) => {
         <Card
           title='Matkan rahat'
           icon='💳'
-        > <CardSection
+        > {travel && (
+          <CardSection
             fields={[
               {label: "Päiväraha", value: travel.travelRate ? travel.travelRate : "Ei kilometrihintaa annettu"},
               {label: "Kilometrikorvaus", value: "ei oikeeta dataa"},
             ]}
           />
+        )}
         </Card>
       </div>
     </div>
