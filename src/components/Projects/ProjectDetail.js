@@ -2,6 +2,8 @@ import Card from "../Card/Card"
 import CardSection from "../Card/CardSection"
 import ProjectHours from "./ProjectHours"
 import "./Projects.css"
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import Pdf from "../../components/Pdf/Pdf"
 
 const ProjectDetail = ({project, totalHours, totalTravels, start, end, onChange}) => {
   return (
@@ -26,7 +28,20 @@ const ProjectDetail = ({project, totalHours, totalTravels, start, end, onChange}
         <Card
           title='Projektin tunnit & hinta'
           icon='⌚️'
-        > <ProjectHours start={start} end={end} onChange={onChange} />
+        >
+          {!end && (
+            <small className="range-info">valitse aikaväli luodaksesi PDF</small>
+          )}
+          <div className="project-range-pdf">
+            <ProjectHours start={start} end={end} onChange={onChange} />
+            { start && end && (
+              <PDFDownloadLink document={<Pdf project={project} />} fileName="testi.pdf">
+                {({ blob, url, loading, error }) =>
+                  loading ? 'Ladataan...' : 'Luo PDF'
+                }
+              </PDFDownloadLink>
+            )}
+          </div>
           <CardSection
             fields={[
               {label: start && end ? `Aikavälin ${start.toLocaleDateString('fi-Fi', {day: 'numeric', month: 'numeric'})} - ${end.toLocaleDateString('fi-Fi', {day: 'numeric', month: 'numeric'})} yhteenveto` : "Kokonaistuntien yhteenveto"},
