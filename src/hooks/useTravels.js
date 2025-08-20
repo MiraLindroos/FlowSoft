@@ -46,13 +46,13 @@ const useTravels = () => {
     await toast.promise(
       setDoc(docRef, {
         date: data.date,
-        kilometers: data.km,
+        kilometers: data.kilometers,
         userId: userId,
         from: data.from ? data.from : "",
         destination: data.to ? data.to : "",
         projectId: data.projectId,
         project: data.project,
-        name: `${data.project} : ${data.date.toLocaleDateString()} - ${data.km}km`,
+        name: `${data.project} : ${data.date.toLocaleDateString()} - ${data.kilometers}km`,
         travelRate: data.travelRate,
         memo: data.memo
       }),
