@@ -89,6 +89,12 @@ const ProjectDetailPage = () => {
 
   const onDateChange = (dates) => {
     const [start, end] = dates;
+    if (start) {
+      start.setHours(0, 0, 0, 0)
+    }
+    if (end) {
+      end.setHours(23, 59, 59, 999)
+    }
     setStartDate(start);
     setEndDate(end);
     fetchProjectHours(start, end)

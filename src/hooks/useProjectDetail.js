@@ -38,6 +38,8 @@ const useProjectDetail = (id) => {
 
   // Fetch the project's timeEntries between the given date range
   const fetchProjectHours = async (start, end) => {
+    console.log(start)
+    console.log(end)
     try {
       const q = query(
         collection(db, 'timeEntries'),
