@@ -6,19 +6,22 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import Pdf from "../../components/Pdf/Pdf"
 
 const ProjectDetail = ({project, projectsEntries, totalHours, totalTravels, start, end, onChange}) => {
-  console.log(start)
   return (
     <div className="project-detail">
       <div className="project-detail info">
+        {/* Card for displaying info about the project */}
         <Card
           title='Projektin tiedot'
           icon='📂'
         > <CardSection
           fields={[
             {label: "Projekti", value: project.name},
+            // If project has startDate and/or endDate, display them and convert them to be displayed in this format 'pe 8.8.2025'
+            // If project has no start and/or endDate, display a text that they are not given
             {label: "Alkamispäivä", value: project.startDate ? project.startDate.toDate().toLocaleDateString('fi-FI', { weekday: 'short', day: 'numeric', month: 'numeric', year: 'numeric' }) : 'Ei alkamispäivää annettu'},
             {label: "Loppumispäivä", value: project.endDate ? project.endDate.toDate().toLocaleDateString('fi-FI', { weekday: 'short', day: 'numeric', month: 'numeric' }) : 'Ei loppumispäivää annettu'},
             {label: "Projekti käynnissä", value: project.onGoing ? "Kyllä" : "Ei"},
+            // If project has a hourRate or fixedRate, display them, otherwise display 'Hintaa ei ole merkattu'
             {label: project.hourRate ? "Tuntihinta" : project.fixedRate ? "Kiinteä hinta" : "Hintaa ei ole merkattu", value: project.hourRate ? `${project.hourRate} €` : project.fixedRate ? `${project.fixedRate} €` : 0 },
             {label: "Muistiinpanot", value: project.memo ? project.memo : "Ei muistiinpanoja"}
           ]}
@@ -26,17 +29,23 @@ const ProjectDetail = ({project, projectsEntries, totalHours, totalTravels, star
         </Card>
       </div>
       <div className="project-detail hours">
+        {/* Card for displaying a date range picker + hours and prices for the selected range */}
         <Card
           title='Projektin tunnit & hinta'
           icon='⌚️'
         >
+          {/* If range is picked, allow user to create a PDF for the time entries between the selected range */}
           {!end && (
             <small className="range-info">valitse aikaväli luodaksesi PDF</small>
           )}
           <div className="project-range-pdf">
             <ProjectHours start={start} end={end} onChange={onChange} />
+            {/* After the user has selected the range, display the download link for the PDF */}
             { start && end && (
-              <PDFDownloadLink document={<Pdf project={project} projectsEntries={projectsEntries} start={start.toLocaleDateString()} end={end.toLocaleDateString()} />} fileName="testi.pdf">
+              <PDFDownloadLink
+                document={<Pdf project={project} projectsEntries={projectsEntries} start={start.toLocaleDateString()} end={end.toLocaleDateString()} />}
+                fileName="testi.pdf"
+              >
                 {({ blob, url, loading, error }) =>
                   loading ? 'Ladataan...' : 'Luo PDF'
                 }
@@ -56,6 +65,7 @@ const ProjectDetail = ({project, projectsEntries, totalHours, totalTravels, star
         </Card>
       </div>
       <div className="project-detail billing">
+        {/* Card for displaying billing information */}
         <Card
           title='Laskutustiedot'
           icon='💳'
