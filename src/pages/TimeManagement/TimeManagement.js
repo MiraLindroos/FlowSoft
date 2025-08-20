@@ -9,6 +9,7 @@ import { useForm, FormProvider } from "react-hook-form"
 import useCalendarTimeEntries from "../../hooks/useCalendarTimeEntries"
 import { Toaster } from "react-hot-toast"
 import Button from "../../components/Button/Button"
+import useTravels from "../../hooks/useTravels"
 
 const TimeManagement = () => {
 
@@ -30,6 +31,8 @@ const TimeManagement = () => {
   const { addHoursFields } = useAddHoursForm()
 
   const { addTimeEntry, deleteTimeEntry } = useCalendarTimeEntries(currentMonth, currentYear)
+
+  const { addTravel } = useTravels()
 
   const methods = useForm()
 
@@ -59,6 +62,13 @@ const TimeManagement = () => {
       endTime: end,
       hours: totalHours,
     })
+
+    if (data.km) {
+      addTravel({
+        ...data,
+        date: start
+      })
+    }
     closeModal()
   }
 

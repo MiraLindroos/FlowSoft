@@ -9,7 +9,7 @@ const useAddHoursForm = () => {
     {name:"startTime", label: "Aloitusaika", type: "time", required: true},
     {name:"endTime", label: "Lopetusaika", type: "time", required: true},
     {name:"project", label: "Projekti", type: "select", options: activeProjects, required: true},
-    {name:"travels", label: "Kilometrit", type: "number"},
+    {name:"km", label: "Kilometrit", type: "number"},
     {name:"travelRate", label: "Kilometrihinta", type: "number"},
     {name:"memo", label: "Muistiinpanot", type: "textarea"}
   ]

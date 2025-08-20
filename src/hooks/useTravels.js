@@ -45,13 +45,16 @@ const useTravels = () => {
     const docRef = doc(collection(db, 'travels'))
     await toast.promise(
       setDoc(docRef, {
-        date: new Date(data.date),
+        date: data.date,
         kilometers: data.km,
         userId: userId,
-        from: data.from,
-        destination: data.to,
-        project: 'testi',
-        name: `${data.date} - ${data.km}km`
+        from: data.from ? data.from : "",
+        destination: data.to ? data.to : "",
+        projectId: data.projectId,
+        project: data.project,
+        name: `${data.project} : ${data.date.toLocaleDateString()} - ${data.km}km`,
+        travelRate: data.travelRate,
+        memo: data.memo
       }),
       {
         loading: "Matkaa lisätään...",
