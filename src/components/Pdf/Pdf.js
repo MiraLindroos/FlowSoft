@@ -1,30 +1,39 @@
 import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 
 const styles = StyleSheet.create({
-  section: {
+  title: {
     margin: 10,
     padding: 10,
-    flexGrow: 1
+    textAlign: 'center'
+  },
+  section: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderTop: '1px solid black'
+  },
+  text: {
+    padding: 5,
   }
 })
 
 const Pdf = ({project, projectsEntries, start, end}) => (
   <Document>
     <Page size="A4">
-      <View style={styles.section}>
+      <View style={styles.title}>
         <Text>Työtunnit projektille: {project.name}</Text>
         <Text>Aikaväliltä : {start} - {end}</Text>
       </View>
-      <View style={styles.section}>
+      <View>
         <Text>Päivä | Tunnit | Kilometrit | Muistiinpanot</Text>
       </View>
       {projectsEntries.map((entry) => {
           return (
             <View key={entry.id} style={styles.section}>
-              <Text>{entry.startTime.toDate().toLocaleDateString()}</Text>
-              <Text>{entry.hours}</Text>
-              <Text>{entry.kilometers}</Text>
-              <Text>{entry.memo}</Text>
+              <Text style={styles.text}>{entry.startTime.toDate().toLocaleDateString()}</Text>
+              <Text style={styles.text}>{entry.hours} h</Text>
+              <Text style={styles.text}>{entry.kilometers} km</Text>
+              <Text style={styles.text}>{entry.memo}</Text>
             </View>
           )
         }
