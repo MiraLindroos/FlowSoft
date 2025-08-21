@@ -11,15 +11,20 @@ const styles = StyleSheet.create({
 const Pdf = ({project, projectsEntries, start, end}) => (
   <Document>
     <Page size="A4">
-      <View>
-        <Text style={styles.section}>Työtunnit projektille: {project.name}</Text>
-        <Text style={styles.section}>Aikaväliltä : {start} - {end}</Text>
+      <View style={styles.section}>
+        <Text>Työtunnit projektille: {project.name}</Text>
+        <Text>Aikaväliltä : {start} - {end}</Text>
+      </View>
+      <View style={styles.section}>
+        <Text>Päivä | Tunnit | Kilometrit | Muistiinpanot</Text>
       </View>
       {projectsEntries.map((entry) => {
           return (
-            <View key={entry.id}>
-              <Text style={styles.section}>{entry.startTime.toDate().toLocaleDateString()}</Text>
-              <Text style={styles.section}>{entry.memo}</Text>
+            <View key={entry.id} style={styles.section}>
+              <Text>{entry.startTime.toDate().toLocaleDateString()}</Text>
+              <Text>{entry.hours}</Text>
+              <Text>{entry.kilometers}</Text>
+              <Text>{entry.memo}</Text>
             </View>
           )
         }
