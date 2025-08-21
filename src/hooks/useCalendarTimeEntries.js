@@ -53,9 +53,8 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
   // Add new document to firestore collection 'timeEntries' with following data
   const addTimeEntry = async (data) => {
     try {
-      const docRef = data.id
-        ? doc(db, 'timeEntries', data.id) // If id, edit the existing doc
-        : doc(collection(db, 'timeEntries')) // Create new doc if no id
+      const docRef = doc(collection(db, 'timeEntries')) // Create new doc if no id
+        // ? doc(db, 'timeEntries', data.id) // If id, edit the existing doc
 
       await toast.promise(
         setDoc(docRef, {
@@ -78,12 +77,40 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
       // Increment the selected project's hours when a time entry is added
       const projectRef = doc(db, 'projects', data.projectId)
       await updateDoc(projectRef, {
-        hours: increment(data.hours),
-        kilometers: increment(data.kilometers)
+        hours: increment(Number(data.hours) || 0),
+        kilometers: increment(Number(data.kilometers) || 0)
       })
     } catch (e) {
       console.error(e)
     }
+  }
+
+  const updateTimeEntry = async (data) => {
+    try {
+      console.log(data)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+    const incremetHours = async (data) => {
+      // Increment the selected project's hours when a time entry is added
+      const projectRef = doc(db, 'projects', data.projectId)
+      await updateDoc(projectRef, {
+        hours: increment(Number(data.hours) || 0),
+        kilometers: increment(Number(data.kilometers) || 0)
+      })
+  }
+
+  const decrementHours = async (data, projectId) => {
+    // Decrement the old selected project's hours and kilometers when time entry's selectedProject is modified
+    console.log(data.hours)
+    console.log(data.kilometers)
+    const oldProjectRef = doc(db, 'projects', projectId)
+    await updateDoc(oldProjectRef, {
+      hours: increment(-(Number(data.hours)) || 0),
+      kilometers: increment(-(Number(data.kilometers)) || 0)
+    })
   }
 
   // Delete a time entry from Firestore
@@ -112,7 +139,9 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
 
   return {
     addTimeEntry,
-    deleteTimeEntry
+    updateTimeEntry,
+    deleteTimeEntry,
+    decrementHours
   }
 }
 

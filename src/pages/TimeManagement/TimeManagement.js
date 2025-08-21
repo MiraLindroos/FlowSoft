@@ -12,7 +12,6 @@ import Button from "../../components/Button/Button"
 import useTravels from "../../hooks/useTravels"
 
 const TimeManagement = () => {
-
   const {
     currentMonth,
     currentYear,
@@ -30,7 +29,7 @@ const TimeManagement = () => {
 
   const { addHoursFields } = useAddHoursForm()
 
-  const { addTimeEntry, deleteTimeEntry } = useCalendarTimeEntries(currentMonth, currentYear)
+  const { addTimeEntry, updateTimeEntry, deleteTimeEntry, decrementHours } = useCalendarTimeEntries(currentMonth, currentYear)
 
   const { addTravel } = useTravels()
 
@@ -41,7 +40,7 @@ const TimeManagement = () => {
     return new Date(date.getFullYear(), date.getMonth(), date.getDate(), hours, minutes)
   }
 
-  const onSubmit = (data, date) => {
+  const onSubmit = (data, date, projectId, startTimeValue, endTimeValue, originalEntry) => {
     const start = time(data.startTime, date)
     const end = time(data.endTime, date)
     // Counting hours between startTime and endTime, abs returns the absolute positive value
@@ -56,20 +55,58 @@ const TimeManagement = () => {
     // Store the project's ID
     data.projectId = selectedProject.id
 
-    addTimeEntry({
-      ...data,
-      startTime: start,
-      endTime: end,
-      hours: totalHours,
-    })
+    const originalStart = originalEntry.startTime.toDate()
+    const originalEnd = originalEntry.endTime.toDate()
+    console.log(start.getTime())
+    console.log(originalStart.getTime())
 
-    if (data.kilometers) {
-      addTravel({
+    if (originalStart.getTime() !== start.getTime() || originalEnd.getTime() !== end.getTime()) {
+      console.log('eroaa')
+    }
+    if (data.id) {
+      console.log(originalEntry)
+      console.log(data)
+      // updateTimeEntry({...data})
+    } else {
+      addTimeEntry({
         ...data,
-        date: start
+        startTime: start,
+        endTime: end,
+        hours: totalHours,
       })
     }
-    closeModal()
+    // if (projectId !== undefined && projectId !== data.projectId) {
+    //   console.log(projectId)
+    //   console.log(data.projectId)
+    //   decrementHours(data, projectId)
+    // }
+
+    // console.log(date)
+    // console.log(start)
+    // console.log(end)
+
+    // if(startTimeValue !== start || endTimeValue !== end) {
+    //   console.log('täällä')
+    //   console.log(startTimeValue)
+    //   console.log(start)
+    //   console.log(endTimeValue)
+    //   console.log(end)
+    // }
+
+    // addTimeEntry({
+    //   ...data,
+    //   startTime: start,
+    //   endTime: end,
+    //   hours: totalHours,
+    // })
+
+    // if (data.kilometers) {
+    //   addTravel({
+    //     ...data,
+    //     date: start
+    //   })
+    // }
+    // closeModal()
   }
 
   const handleDayClick = (date) => {
@@ -114,6 +151,8 @@ const TimeManagement = () => {
   }
 
   const handleEntryClick = (date, entry) => {
+    console.log(entry)
+
     // Find the project field from the form addHoursFields array
     const projectField = addHoursFields.find(f => f.name === "project")
     // Find the project option by matching the name to the entry.project
@@ -121,6 +160,9 @@ const TimeManagement = () => {
     const selectedProject = projectField.options.find(option => option.name === entry.project)
 
     const formattedDate = date.toLocaleDateString('fi-FI', { day: 'numeric', month: 'numeric' })
+    const startTimeValue = entry.startTime.toDate()
+    const endTimeValue = entry.endTime.toDate()
+
     methods.reset({ // Reset methods with entry values
       ...entry,
       startTime: entry.startTime.toDate().toTimeString().slice(0, 5),
@@ -136,7 +178,7 @@ const TimeManagement = () => {
           <Form fields={addHoursFields} />
         </FormProvider>
       </>,
-      onConfirm: methods.handleSubmit((data) => onSubmit(data, date)),
+      onConfirm: methods.handleSubmit((data) => onSubmit(data, date, selectedProject.id, startTimeValue, endTimeValue, entry)),
       onCancel: closeModal,
       cancelButton: "Peruuta",
       confirmButton: "Tallenna",
