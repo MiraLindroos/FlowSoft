@@ -19,7 +19,7 @@ const ProjectDetail = ({project, projectsEntries, totalHours, totalTravels, star
             // If project has startDate and/or endDate, display them and convert them to be displayed in this format 'pe 8.8.2025'
             // If project has no start and/or endDate, display a text that they are not given
             {label: "Alkamispäivä", value: project.startDate ? project.startDate.toDate().toLocaleDateString('fi-FI', { weekday: 'short', day: 'numeric', month: 'numeric', year: 'numeric' }) : 'Ei alkamispäivää annettu'},
-            {label: "Loppumispäivä", value: project.endDate ? project.endDate.toDate().toLocaleDateString('fi-FI', { weekday: 'short', day: 'numeric', month: 'numeric' }) : 'Ei loppumispäivää annettu'},
+            {label: "Loppumispäivä", value: project.endDate ? project.endDate.toDate().toLocaleDateString('fi-FI', { weekday: 'short', day: 'numeric', month: 'numeric', year: 'numeric' }) : 'Ei loppumispäivää annettu'},
             {label: "Projekti käynnissä", value: project.onGoing ? "Kyllä" : "Ei"},
             // If project has a hourRate or fixedRate, display them, otherwise display 'Hintaa ei ole merkattu'
             {label: project.hourRate ? "Tuntihinta" : project.fixedRate ? "Kiinteä hinta" : "Hintaa ei ole merkattu", value: project.hourRate ? `${project.hourRate} €` : project.fixedRate ? `${project.fixedRate} €` : 0 },

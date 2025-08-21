@@ -53,10 +53,16 @@ const useProjects = () => {
       ? doc(db, 'projects', data.id) // If id, edit the existing doc
       : doc(collection(db, 'projects')) // Create new doc if no id
 
+      // Modifying startDate to start at 00:00 and endDate to end at 23:59
+      const startDate = new Date(data.startDate)
+      startDate.setHours(0, 0, 0, 0)
+      const endDate = new Date(data.endDate)
+      endDate.setHours(23, 59, 59, 999)
+
       const projectData = {
         name: data.name,
-        startDate: data.startDate ? new Date(data.startDate) : '',
-        endDate: data.endDate ? new Date(data.endDate) : '',
+        startDate: data.startDate ? startDate : '',
+        endDate: data.endDate ? endDate : '',
         hourRate: data.hourRate,
         fixedRate: data.fixedRate,
         memo: data.memo,
