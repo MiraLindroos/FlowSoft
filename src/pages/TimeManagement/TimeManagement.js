@@ -29,7 +29,7 @@ const TimeManagement = () => {
 
   const { addHoursFields } = useAddHoursForm()
 
-  const { addTimeEntry, updateTimeEntry, deleteTimeEntry, decrementHours } = useCalendarTimeEntries(currentMonth, currentYear)
+  const { addTimeEntry, updateTimeEntry, deleteTimeEntry, decrementHoursKm, incremetHoursKm } = useCalendarTimeEntries(currentMonth, currentYear)
 
   const { addTravel } = useTravels()
 
@@ -55,17 +55,29 @@ const TimeManagement = () => {
     // Store the project's ID
     data.projectId = selectedProject.id
 
-    const originalStart = originalEntry.startTime.toDate()
-    const originalEnd = originalEntry.endTime.toDate()
-    console.log(start.getTime())
-    console.log(originalStart.getTime())
+    // const originalStart = originalEntry.startTime.toDate()
+    // const originalEnd = originalEntry.endTime.toDate()
+    // console.log(start.getTime())
+    // console.log(originalStart.getTime())
 
-    if (originalStart.getTime() !== start.getTime() || originalEnd.getTime() !== end.getTime()) {
-      console.log('eroaa')
-    }
     if (data.id) {
-      console.log(originalEntry)
-      console.log(data)
+
+      const hoursDiff = totalHours - originalEntry.hours
+      const kmDiff = data.kilometers - originalEntry.kilometers
+      const projectChanged = originalEntry.projectId !== data.projectId
+
+      if (projectChanged) {
+        console.log('projekti vaihtu')
+        decrementHoursKm(originalEntry.projectId, originalEntry.hours, originalEntry.kilometers)
+        incremetHoursKm(data.projectId, totalHours, data.kilometers)
+      } else if (hoursDiff !== 0 || kmDiff !== 0) {
+        console.log('tuntiero ' + hoursDiff)
+        console.log('erotus kilsat ' + kmDiff)
+        incremetHoursKm(data.projectId, hoursDiff, kmDiff)
+      }
+      // if (originalStart.getTime() !== start.getTime() || originalEnd.getTime() !== end.getTime()) {
+      //   console.log('ajat eroaa')
+      // }
       // updateTimeEntry({...data})
     } else {
       addTimeEntry({
@@ -151,8 +163,6 @@ const TimeManagement = () => {
   }
 
   const handleEntryClick = (date, entry) => {
-    console.log(entry)
-
     // Find the project field from the form addHoursFields array
     const projectField = addHoursFields.find(f => f.name === "project")
     // Find the project option by matching the name to the entry.project
