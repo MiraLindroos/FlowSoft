@@ -1,5 +1,7 @@
 import "./Forms.css"
 import { useFormContext } from "react-hook-form"
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const Form = ({fields}) => {
   const { register } = useFormContext()
@@ -21,7 +23,13 @@ const Form = ({fields}) => {
           ) : field.type==="textarea" ? (
             <textarea {...register(`${field.name}`, { required: field.required })} />
           ) : (
-            <input {...register(`${field.name}`, { required: field.required })} type={field.type} />
+            <input 
+              {...register(`${field.name}`, { required: field.required })}
+              type={field.type}
+              step={field.type === "time" ? "1800" : "5"}
+              min={field.type === "time" ? "06:00" : undefined}
+              max={field.type === "time" ? "20:30" : undefined}
+              />
           )}
         </div>
       )}
