@@ -51,10 +51,10 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
   }, [currentMonth, currentYear])
 
   // Add new document to firestore collection 'timeEntries' with following data
-  const addTimeEntry = async (data) => {
+  const saveTimeEntry = async (data) => {
     try {
-      const docRef = doc(collection(db, 'timeEntries')) // Create new doc if no id
-        // ? doc(db, 'timeEntries', data.id) // If id, edit the existing doc
+      const docRef = data.id ? doc(db, 'timeEntries', data.id) // If id, edit the existing doc
+        : doc(collection(db, 'timeEntries')) // Create new doc if no id
 
       await toast.promise(
         setDoc(docRef, {
@@ -74,20 +74,6 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
           error: 'Tuntien lisääminen epäonnistui'
         }
       )
-      // Increment the selected project's hours when a time entry is added
-      const projectRef = doc(db, 'projects', data.projectId)
-      await updateDoc(projectRef, {
-        hours: increment(Number(data.hours) || 0),
-        kilometers: increment(Number(data.kilometers) || 0)
-      })
-    } catch (e) {
-      console.error(e)
-    }
-  }
-
-  const updateTimeEntry = async (data) => {
-    try {
-      console.log(data)
     } catch (e) {
       console.error(e)
     }
@@ -95,26 +81,20 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
 
     const incremetHoursKm = async (id, hours, km) => {
       // Increment the selected project's hours when a time entry is added
-      console.log(id)
-      console.log(hours)
-      console.log(km)
-      // const projectRef = doc(db, 'projects', id)
-      // await updateDoc(projectRef, {
-      //   hours: increment(Number(hours) || 0),
-      //   kilometers: increment(Number(km) || 0)
-      // })
+      const projectRef = doc(db, 'projects', id)
+      await updateDoc(projectRef, {
+        hours: increment(Number(hours) || 0),
+        kilometers: increment(Number(km) || 0)
+      })
   }
 
   const decrementHoursKm = async (id, hours, km) => {
     // Decrement the old selected project's hours and kilometers when time entry's selectedProject is modified
-    console.log(hours)
-    console.log(km)
-    console.log(id)
-    // const oldProjectRef = doc(db, 'projects', id)
-    // await updateDoc(oldProjectRef, {
-    //   hours: increment(-(Number(hours)) || 0),
-    //   kilometers: increment(-(Number(km)) || 0)
-    // })
+    const oldProjectRef = doc(db, 'projects', id)
+    await updateDoc(oldProjectRef, {
+      hours: increment(-(Number(hours)) || 0),
+      kilometers: increment(-(Number(km)) || 0)
+    })
   }
 
   // Delete a time entry from Firestore
@@ -142,8 +122,7 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
   }
 
   return {
-    addTimeEntry,
-    updateTimeEntry,
+    saveTimeEntry,
     deleteTimeEntry,
     incremetHoursKm,
     decrementHoursKm

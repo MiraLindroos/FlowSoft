@@ -29,7 +29,7 @@ const TimeManagement = () => {
 
   const { addHoursFields } = useAddHoursForm()
 
-  const { addTimeEntry, updateTimeEntry, deleteTimeEntry, decrementHoursKm, incremetHoursKm } = useCalendarTimeEntries(currentMonth, currentYear)
+  const { saveTimeEntry, deleteTimeEntry, decrementHoursKm, incremetHoursKm } = useCalendarTimeEntries(currentMonth, currentYear)
 
   const { addTravel } = useTravels()
 
@@ -40,7 +40,7 @@ const TimeManagement = () => {
     return new Date(date.getFullYear(), date.getMonth(), date.getDate(), hours, minutes)
   }
 
-  const onSubmit = (data, date, projectId, startTimeValue, endTimeValue, originalEntry) => {
+  const onSubmit = (data, date, originalEntry) => {
     const start = time(data.startTime, date)
     const end = time(data.endTime, date)
     // Counting hours between startTime and endTime, abs returns the absolute positive value
@@ -55,70 +55,41 @@ const TimeManagement = () => {
     // Store the project's ID
     data.projectId = selectedProject.id
 
-    // const originalStart = originalEntry.startTime.toDate()
-    // const originalEnd = originalEntry.endTime.toDate()
-    // console.log(start.getTime())
-    // console.log(originalStart.getTime())
-
     if (data.id) {
-
       const hoursDiff = totalHours - originalEntry.hours
       const kmDiff = data.kilometers - originalEntry.kilometers
       const projectChanged = originalEntry.projectId !== data.projectId
 
       if (projectChanged) {
-        console.log('projekti vaihtu')
         decrementHoursKm(originalEntry.projectId, originalEntry.hours, originalEntry.kilometers)
         incremetHoursKm(data.projectId, totalHours, data.kilometers)
       } else if (hoursDiff !== 0 || kmDiff !== 0) {
-        console.log('tuntiero ' + hoursDiff)
-        console.log('erotus kilsat ' + kmDiff)
         incremetHoursKm(data.projectId, hoursDiff, kmDiff)
       }
-      // if (originalStart.getTime() !== start.getTime() || originalEnd.getTime() !== end.getTime()) {
-      //   console.log('ajat eroaa')
-      // }
-      // updateTimeEntry({...data})
-    } else {
-      addTimeEntry({
+      saveTimeEntry({
         ...data,
         startTime: start,
         endTime: end,
         hours: totalHours,
       })
+    } else {
+      saveTimeEntry({
+        ...data,
+        startTime: start,
+        endTime: end,
+        hours: totalHours,
+      })
+      incremetHoursKm(data.projectId, totalHours, data.kilometers)
     }
-    // if (projectId !== undefined && projectId !== data.projectId) {
-    //   console.log(projectId)
-    //   console.log(data.projectId)
-    //   decrementHours(data, projectId)
-    // }
 
-    // console.log(date)
-    // console.log(start)
-    // console.log(end)
+    if (data.kilometers) {
+      addTravel({
+        ...data,
+        date: start
+      })
+    }
 
-    // if(startTimeValue !== start || endTimeValue !== end) {
-    //   console.log('täällä')
-    //   console.log(startTimeValue)
-    //   console.log(start)
-    //   console.log(endTimeValue)
-    //   console.log(end)
-    // }
-
-    // addTimeEntry({
-    //   ...data,
-    //   startTime: start,
-    //   endTime: end,
-    //   hours: totalHours,
-    // })
-
-    // if (data.kilometers) {
-    //   addTravel({
-    //     ...data,
-    //     date: start
-    //   })
-    // }
-    // closeModal()
+    closeModal()
   }
 
   const handleDayClick = (date) => {
@@ -170,8 +141,6 @@ const TimeManagement = () => {
     const selectedProject = projectField.options.find(option => option.name === entry.project)
 
     const formattedDate = date.toLocaleDateString('fi-FI', { day: 'numeric', month: 'numeric' })
-    const startTimeValue = entry.startTime.toDate()
-    const endTimeValue = entry.endTime.toDate()
 
     methods.reset({ // Reset methods with entry values
       ...entry,
@@ -188,7 +157,7 @@ const TimeManagement = () => {
           <Form fields={addHoursFields} />
         </FormProvider>
       </>,
-      onConfirm: methods.handleSubmit((data) => onSubmit(data, date, selectedProject.id, startTimeValue, endTimeValue, entry)),
+      onConfirm: methods.handleSubmit((data) => onSubmit(data, date, entry)),
       onCancel: closeModal,
       cancelButton: "Peruuta",
       confirmButton: "Tallenna",
