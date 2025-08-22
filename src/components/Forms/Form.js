@@ -1,7 +1,5 @@
 import "./Forms.css"
 import { useFormContext } from "react-hook-form"
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
 const Form = ({fields}) => {
   const { register } = useFormContext()
