@@ -83,20 +83,28 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
   // Increment the selected project's hours when a time entry is added OR
   // entry's project is changed OR entry's hours or kilometers change
   const incremetHoursKm = async (id, hours, km) => {
-    const projectRef = doc(db, 'projects', id)
-    await updateDoc(projectRef, {
-      hours: increment(Number(hours) || 0),
-      kilometers: increment(Number(km) || 0)
-    })
+    try {
+      const projectRef = doc(db, 'projects', id)
+      await updateDoc(projectRef, {
+        hours: increment(Number(hours) || 0),
+        kilometers: increment(Number(km) || 0)
+      })
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   // Decrement the old selected project's hours and kilometers when time entry's selectedProject is modified
   const decrementHoursKm = async (id, hours, km) => {
-    const oldProjectRef = doc(db, 'projects', id)
-    await updateDoc(oldProjectRef, {
-      hours: increment(-(Number(hours)) || 0),
-      kilometers: increment(-(Number(km)) || 0)
-    })
+    try {
+      const oldProjectRef = doc(db, 'projects', id)
+      await updateDoc(oldProjectRef, {
+        hours: increment(-(Number(hours)) || 0),
+        kilometers: increment(-(Number(km)) || 0)
+      })
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   // Delete a time entry from Firestore
@@ -114,7 +122,6 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
       if (entry.projectId) {
         decrementHoursKm(entry.projectId, entry.hours, entry.kilometers)
       }
-
     } catch (e) {
       console.error(e)
     }
