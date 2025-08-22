@@ -50,7 +50,7 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
     }
   }, [currentMonth, currentYear])
 
-  // Add new document to firestore collection 'timeEntries' with following data
+  // Update an existing document or add a new one to firestore collection 'timeEntries' with the following data
   const saveTimeEntry = async (data) => {
     try {
       const docRef = data.id ? doc(db, 'timeEntries', data.id) // If id, edit the existing doc
@@ -68,6 +68,7 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
         memo: data.memo,
         userId: currentUser
         }),
+        // Toasts for telling the user if it was a success or not
         {
           loading: 'Tallennetaan tunteja..',
           success: 'Tuntien lisääminen onnistui!',
@@ -79,17 +80,18 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
     }
   }
 
-    const incremetHoursKm = async (id, hours, km) => {
-      // Increment the selected project's hours when a time entry is added
-      const projectRef = doc(db, 'projects', id)
-      await updateDoc(projectRef, {
-        hours: increment(Number(hours) || 0),
-        kilometers: increment(Number(km) || 0)
-      })
+  // Increment the selected project's hours when a time entry is added OR
+  // entry's project is changed OR entry's hours or kilometers change
+  const incremetHoursKm = async (id, hours, km) => {
+    const projectRef = doc(db, 'projects', id)
+    await updateDoc(projectRef, {
+      hours: increment(Number(hours) || 0),
+      kilometers: increment(Number(km) || 0)
+    })
   }
 
+  // Decrement the old selected project's hours and kilometers when time entry's selectedProject is modified
   const decrementHoursKm = async (id, hours, km) => {
-    // Decrement the old selected project's hours and kilometers when time entry's selectedProject is modified
     const oldProjectRef = doc(db, 'projects', id)
     await updateDoc(oldProjectRef, {
       hours: increment(-(Number(hours)) || 0),
@@ -108,7 +110,7 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
           error: 'Tuntien poistaminen epäonnistui'
         }
       )
-      // Decrement the selected project's hours when a time entry is deleted
+      // Decrement the selected project's hours and kilometers when a time entry is deleted
       if (entry.projectId) {
         decrementHoursKm(entry.projectId, entry.hours, entry.kilometers)
       }
