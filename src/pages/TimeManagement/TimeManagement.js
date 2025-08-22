@@ -55,23 +55,33 @@ const TimeManagement = () => {
     // Store the project's ID
     data.projectId = selectedProject.id
 
+    // If editing an existing time entry
     if (data.id) {
+      // Calculating if hours or kilometers have changed from original values
       const hoursDiff = totalHours - originalEntry.hours
       const kmDiff = data.kilometers - originalEntry.kilometers
+      // Checking if project has been changed for the entry
       const projectChanged = originalEntry.projectId !== data.projectId
 
+      // If project has been changed for the entry
       if (projectChanged) {
+        // We have to decrement the hours and kilometers from the original given project
         decrementHoursKm(originalEntry.projectId, originalEntry.hours, originalEntry.kilometers)
+        // Then we have to add to the current selected project the entry's totalHours and kilometers
         incremetHoursKm(data.projectId, totalHours, data.kilometers)
+        // If project hasn't changed but the hours or the kilometers have
       } else if (hoursDiff !== 0 || kmDiff !== 0) {
+        // Let's increment the selected project's hours or kilometers with the difference
         incremetHoursKm(data.projectId, hoursDiff, kmDiff)
       }
+      // Update the entry data with the current data
       saveTimeEntry({
         ...data,
         startTime: start,
         endTime: end,
         hours: totalHours,
       })
+      // If entry doesn't have id yet, we will create a new document for the entry
     } else {
       saveTimeEntry({
         ...data,
@@ -79,16 +89,18 @@ const TimeManagement = () => {
         endTime: end,
         hours: totalHours,
       })
+      // Increment the selected project's hours and kilometers
       incremetHoursKm(data.projectId, totalHours, data.kilometers)
     }
 
+    // If user enters kilometers for the entry, let's create a document for the kilometers as well
     if (data.kilometers) {
       addTravel({
         ...data,
         date: start
       })
     }
-
+    // At the end of it all let's close the modal
     closeModal()
   }
 
