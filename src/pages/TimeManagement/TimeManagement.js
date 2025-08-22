@@ -91,14 +91,14 @@ const TimeManagement = () => {
       })
       // Increment the selected project's hours and kilometers
       incremetHoursKm(data.projectId, totalHours, data.kilometers)
-    }
 
-    // If user enters kilometers for the entry, let's create a document for the kilometers as well
-    if (data.kilometers) {
-      addTravel({
-        ...data,
-        date: start
-      })
+      // If user enters kilometers for the entry, let's create a document for the kilometers as well
+      if (data.kilometers) {
+        addTravel({
+          ...data,
+          date: start
+        })
+      }
     }
     // At the end of it all let's close the modal
     closeModal()
