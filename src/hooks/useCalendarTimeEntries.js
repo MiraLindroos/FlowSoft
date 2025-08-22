@@ -110,10 +110,7 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
       )
       // Decrement the selected project's hours when a time entry is deleted
       if (entry.projectId) {
-        const projectRef = doc(db, 'projects', entry.projectId)
-          await updateDoc(projectRef, {
-            hours: increment(-(entry.hours))
-        })
+        decrementHoursKm(entry.projectId, entry.hours, entry.kilometers)
       }
 
     } catch (e) {
