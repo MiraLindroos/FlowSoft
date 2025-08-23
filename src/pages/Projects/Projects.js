@@ -29,8 +29,11 @@ const Projects = () => {
   const methods = useForm()
 
   const onSubmit = (data) => {
+    // If user has given both start date and end date, check that end date isn't before start date
+    // If end is before start, show toast message
     if (data.endDate && data.startDate && data.endDate < data.startDate) {
       toast.error("Lopetuspäivä ei voi olla aloituspäivää ennen", {duration: 5000})
+    // If everything is okay, let's add the project to firestore
     } else {
       addProject(data)
       closeModal()
