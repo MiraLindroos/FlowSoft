@@ -6,7 +6,7 @@ import { useForm, FormProvider } from "react-hook-form"
 import useModal from "../../hooks/useModal"
 import Form from "../../components/Forms/Form"
 import addProjectFields from "../../data/addProjectFields"
-import { Toaster } from "react-hot-toast"
+import toast, { Toaster } from "react-hot-toast"
 import Button from "../../components/Button/Button"
 import { useAtomValue } from "jotai"
 import { projectsAtom } from "../../jotai/atoms"
@@ -29,8 +29,12 @@ const Projects = () => {
   const methods = useForm()
 
   const onSubmit = (data) => {
-    addProject(data)
-    closeModal()
+    if (data.endDate < data.startDate) {
+      toast.error("Lopetuspäivä ei voi olla aloituspäivää ennen", {duration: 5000})
+    } else {
+      addProject(data)
+      closeModal()
+    }
   }
 
   const addProjectClick = () => {
