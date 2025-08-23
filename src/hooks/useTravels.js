@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { db } from "../firebase/index"
-import { setDoc, onSnapshot, query, collection, where, doc, deleteDoc } from "firebase/firestore"
+import { setDoc, onSnapshot, query, collection, where, doc, deleteDoc, orderBy } from "firebase/firestore"
 import { currentUserAtom } from "../jotai/atoms"
 import { useAtomValue } from "jotai"
 import toast from "react-hot-toast"
@@ -18,7 +18,8 @@ const useTravels = () => {
       // Get all documents for the current user from the travels collection
       const q = query(
         collection(db, 'travels'),
-        where('userId', '==', userId)
+        where('userId', '==', userId),
+        orderBy('date', 'desc')
       )
       // Start listening to real-time updates from Firestore
       unsubscribe = onSnapshot(q, (querySnapshot) => {
