@@ -29,7 +29,7 @@ const Projects = () => {
   const methods = useForm()
 
   const onSubmit = (data) => {
-    if (data.endDate < data.startDate) {
+    if (data.endDate && data.startDate && data.endDate < data.startDate) {
       toast.error("Lopetuspäivä ei voi olla aloituspäivää ennen", {duration: 5000})
     } else {
       addProject(data)
