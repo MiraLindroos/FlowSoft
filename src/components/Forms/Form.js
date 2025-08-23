@@ -25,7 +25,7 @@ const Form = ({fields}) => {
               {...register(`${field.name}`, { required: field.required })}
               type={field.type}
               step={field.type === "time" ? "1800" : "5"}
-              min={field.type === "time" ? "06:00" : undefined}
+              min={field.type === "time" ? "06:00" : field.type === "number" ? "0" : undefined}
               max={field.type === "time" ? "20:30" : undefined}
               />
           )}
