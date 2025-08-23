@@ -26,7 +26,7 @@ const Projects = () => {
     closeModal
   } = useModal()
 
-  const methods = useForm()
+  const methods = useForm() // useForm is a custom hook for managing form state and validation
 
   const onSubmit = (data) => {
     // If user has given both start date and end date, check that end date isn't before start date
@@ -41,14 +41,16 @@ const Projects = () => {
   }
 
   const addProjectClick = () => {
-    methods.reset({})
+    methods.reset({}) // Reset form before opening
     openModal({
       message: "Lisää uusi projekti",
       children:
-      <FormProvider {...methods}>
+      // We need to wrap the form with FormProvide for useFormContext (which is used in the Form component) to work properly
+      // Pass all methods into the context
+      <FormProvider {...methods}> 
         <Form fields={addProjectFields}/>
       </FormProvider>,
-      onConfirm: methods.handleSubmit(onSubmit),
+      onConfirm: methods.handleSubmit(onSubmit), // Triggered when user clicks 'save'
       onCancel: closeModal,
       cancelButton: "Peruuta",
       confirmButton: "Tallenna",
@@ -56,11 +58,12 @@ const Projects = () => {
     })
   }
 
+  // Function for opening confirmation modal for deleting a project
   const onDelete = (project) => {
     openModal({
       message: `Haluatko varmasti poistaa projektin: ${project.name}?`,
       onConfirm: () => {
-        deleteProject(project.id)
+        deleteProject(project.id) // If user confirms, delete the project
         closeModal()
       },
       onCancel: closeModal,
