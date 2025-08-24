@@ -11,6 +11,16 @@
   text-align: center;
 }
 
+.project-range-pdf {
+  display: flex;
+  justify-content: space-around;
+}
+
+.range-info {
+  margin-bottom: 4px;
+  color: #585858;
+}
+
 @media (min-width: 768px) {
   .project-detail {
     margin: 0 20px 0;
