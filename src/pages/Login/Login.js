@@ -28,13 +28,13 @@ const Login = () => {
       <form onSubmit={signIn} className="login-form">
         <h3>Kirjaudu sisään</h3>
         <input
-          placeholder="sähköposti"
+          placeholder="Sähköposti"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
-          placeholder="salasana"
+          placeholder="Salasana"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
