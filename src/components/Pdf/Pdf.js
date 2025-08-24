@@ -8,28 +8,32 @@ const styles = StyleSheet.create({
   title: {
     margin: 10,
     padding: 10,
-    textAlign: 'center'
+    textAlign: 'center',
   },
   container: {
     border: '1px solid black',
-    borderTop: 'none',
     width: '95%'
   },
-  section: {
-    display: 'flex',
+  infoRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderTop: '1px solid black'
+    backgroundColor: '#f0f0f0'
+  },
+  section: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderTop: '1px solid #ccc'
   },
   text: {
     padding: 8,
     width: '25%',
     fontSize: '0.8rem',
-    textAlign: 'center'
+    textAlign: 'center',
+    borderLeft: '0.5px solid #ccc'
   }
 })
 
-const Pdf = ({project, projectsEntries, start, end}) => (
+const Pdf = ({project, projectsEntries, start, end, totalHours, totalTravels}) => (
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.title}>
@@ -37,7 +41,7 @@ const Pdf = ({project, projectsEntries, start, end}) => (
         <Text>Aikaväliltä : {start} - {end}</Text>
       </View>
       <View style={styles.container}>
-        <View style={styles.section}>
+        <View style={styles.infoRow}>
           <Text style={styles.text}>Päivä</Text>
           <Text style={styles.text}>Tunnit</Text>
           <Text style={styles.text}>Kilometrit</Text>
@@ -53,6 +57,12 @@ const Pdf = ({project, projectsEntries, start, end}) => (
             </View>
           )
         })}
+        <View style={[styles.infoRow, { borderTop: '1px solid #ccc'}]}>
+          <Text style={styles.text}>Yht.</Text>
+          <Text style={styles.text}>{totalHours} h</Text>
+          <Text style={styles.text}>{totalTravels ? totalTravels : 0} km</Text>
+          <Text style={styles.text}></Text>
+        </View>
       </View>
     </Page>
   </Document>

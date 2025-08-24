@@ -43,7 +43,16 @@ const ProjectDetail = ({project, projectsEntries, totalHours, totalTravels, star
             {/* After the user has selected the range, display the download link for the PDF */}
             { start && end && (
               <PDFDownloadLink
-                document={<Pdf project={project} projectsEntries={projectsEntries} start={start.toLocaleDateString()} end={end.toLocaleDateString()} />}
+                document={
+                  <Pdf
+                    project={project}
+                    projectsEntries={projectsEntries}
+                    start={start.toLocaleDateString()}
+                    end={end.toLocaleDateString()}
+                    totalHours={totalHours}
+                    totalTravels={totalTravels}
+                  />
+                }
                 fileName="testi.pdf"
               >
                 {({ blob, url, loading, error }) =>
