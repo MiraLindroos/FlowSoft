@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   title: {
     margin: 10,
     padding: 10,
-    textAlign: 'center',
+    alignItems: 'center'
   },
   container: {
     border: '1px solid black',
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   text: {
     padding: 8,
     width: '25%',
-    fontSize: '0.8rem',
+    fontSize: '0.75rem',
     textAlign: 'center',
     borderLeft: '0.5px solid #ccc'
   }
@@ -38,7 +38,7 @@ const Pdf = ({project, projectsEntries, start, end, totalHours, totalTravels}) =
     <Page size="A4" style={styles.page}>
       <View style={styles.title}>
         <Text>Työtunnit projektille: {project.name}</Text>
-        <Text>Aikaväliltä : {start} - {end}</Text>
+        <Text style={{fontSize: '0.85rem'}}>Aikaväliltä : {start} - {end}</Text>
       </View>
       <View style={styles.container}>
         <View style={styles.infoRow}>
