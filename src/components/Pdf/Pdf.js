@@ -2,7 +2,6 @@ import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 
 const styles = StyleSheet.create({
   page: {
-    margin: 10,
     display: 'flex',
     alignItems: 'center'
   },
@@ -13,19 +12,20 @@ const styles = StyleSheet.create({
   },
   container: {
     border: '1px solid black',
+    borderTop: 'none',
     width: '95%'
   },
   section: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    borderTop: '1px solid black'
   },
   text: {
     padding: 8,
     width: '25%',
     fontSize: '0.8rem',
-    textAlign: 'center',
-    borderTop: '1px solid black'
+    textAlign: 'center'
   }
 })
 
