@@ -51,7 +51,6 @@ const useProjectDetail = (id) => {
       // Save all the entry data to projectEntries, we display this data in the pdf
       const entriesArray = querySnapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
       setProjectsEntries(entriesArray)
-      console.log(entriesArray)
 
       // Add only hours to hoursArray and convert the hours into numbers
       const hoursArray = querySnapshot.docs.map(doc => Number(doc.data().hours || 0))
