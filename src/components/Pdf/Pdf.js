@@ -3,21 +3,25 @@ import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 const styles = StyleSheet.create({
   page: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingBottom: 65,
+    paddingHorizontal: 35
   },
-  title: {
+  header: {
     margin: 10,
     padding: 10,
     alignItems: 'center'
   },
   container: {
     border: '1px solid black',
-    width: '95%'
+    width: '95%',
+    marginBottom: 20
   },
   infoRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: '#f0f0f0'
+    backgroundColor: '#f0f0f0',
+    fontWeight: 'medium'
   },
   section: {
     flexDirection: 'row',
@@ -29,19 +33,29 @@ const styles = StyleSheet.create({
     width: '25%',
     fontSize: '0.75rem',
     textAlign: 'center',
-    borderLeft: '0.5px solid #ccc'
-  }
+    borderLeft: '0.5px solid #ccc',
+    justifyContent: 'center'
+  },
+  footer: {
+    position: 'absolute',
+    fontSize: 12,
+    bottom: 20,
+    left: 0,
+    right: 0,
+    textAlign: 'center',
+    color: 'grey',
+  },
 })
 
 const Pdf = ({project, projectsEntries, start, end, totalHours, totalTravels}) => (
   <Document>
     <Page size="A4" style={styles.page}>
-      <View style={styles.title}>
+      <View style={styles.header} fixed>
         <Text>Työtunnit projektille: {project.name}</Text>
         <Text style={{fontSize: '0.85rem'}}>Aikaväliltä : {start} - {end}</Text>
       </View>
       <View style={styles.container}>
-        <View style={styles.infoRow}>
+        <View style={styles.infoRow} fixed>
           <Text style={styles.text}>Päivä</Text>
           <Text style={styles.text}>Tunnit</Text>
           <Text style={styles.text}>Kilometrit</Text>
@@ -64,6 +78,7 @@ const Pdf = ({project, projectsEntries, start, end, totalHours, totalTravels}) =
           <Text style={styles.text}></Text>
         </View>
       </View>
+      <Text style={styles.footer} render={({ pageNumber, totalPages }) => (`Flowtec Oy - Sivu ${pageNumber} / ${totalPages}`)} fixed />
     </Page>
   </Document>
 )
