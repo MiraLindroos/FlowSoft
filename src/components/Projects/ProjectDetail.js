@@ -53,7 +53,7 @@ const ProjectDetail = ({project, projectsEntries, totalHours, totalTravels, star
                     totalTravels={totalTravels}
                   />
                 }
-                fileName="testi.pdf"
+                fileName={`${project.name}_${start.toLocaleDateString('fi-Fi', {day: 'numeric', month: 'numeric'})}-${end.toLocaleDateString('fi-Fi', {day: 'numeric', month: 'numeric', year: 'numeric'})}.pdf`}
               >
                 {({ blob, url, loading, error }) =>
                   loading ? 'Ladataan...' : 'Luo PDF'
