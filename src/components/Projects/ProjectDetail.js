@@ -53,6 +53,8 @@ const ProjectDetail = ({project, projectsEntries, totalHours, totalTravels, star
                     totalTravels={totalTravels}
                   />
                 }
+                // File name is project name without spaces e.g. Test Project -> TestProject + the date range
+                // The filename can be e.g. TestProject_7.8.-30.8.2025.pdf
                 fileName={`${project.name.replace(/\s+/g, '')}_${start.toLocaleDateString('fi-Fi', {day: 'numeric', month: 'numeric'})}-${end.toLocaleDateString('fi-Fi', {day: 'numeric', month: 'numeric', year: 'numeric'})}.pdf`}
               >
                 {({ blob, url, loading, error }) =>

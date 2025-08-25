@@ -3,10 +3,12 @@ import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 const Pdf = ({project, projectsEntries, start, end, totalHours, totalTravels}) => (
   <Document>
     <Page size="A4" style={styles.page}>
+      {/* Header of the page, fixed means that it is shown on every page */}
       <View style={styles.header} fixed>
         <Text>Työtunnit projektille: {project.name}</Text>
         <Text style={{fontSize: '0.85rem'}}>Aikaväliltä : {start} - {end}</Text>
       </View>
+      {/* Container for the project entries */}
       <View style={styles.container}>
         <View style={styles.infoRow} fixed>
           <Text style={[styles.text, styles.flex1]}>Päivä</Text>
@@ -31,6 +33,7 @@ const Pdf = ({project, projectsEntries, start, end, totalHours, totalTravels}) =
           <Text style={[styles.text, styles.flex2]}></Text>
         </View>
       </View>
+      {/* Display Flowtec Oy - Sivu x/x on the bottom of every page */}
       <Text style={styles.footer} render={({ pageNumber, totalPages }) => (`Flowtec Oy - Sivu ${pageNumber} / ${totalPages}`)} fixed />
     </Page>
   </Document>
