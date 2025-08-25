@@ -20,6 +20,7 @@ const Statistics = () => {
   endOfTheMonth.setHours(23, 59, 59, 999)
   const endOfTheMonthTs = Timestamp.fromDate(endOfTheMonth)
 
+  // Hours listener
   useEffect(() => {
     // Initialize an empty unsubscribe function to be safely called later
     // This prevents "unsubscribe is not a function" errors if for some reason onSnapshot fails or doesn't run
@@ -58,6 +59,7 @@ const Statistics = () => {
     }
   }, [])
 
+  // Travels listener
   useEffect(() => {
     // Initialize an empty unsubscribe function to be safely called later
     // This prevents "unsubscribe is not a function" errors if for some reason onSnapshot fails or doesn't run
@@ -65,19 +67,21 @@ const Statistics = () => {
 
     const fetchTravels = () => {
       try {
+        // Fetch all travels from current user that are in the current month
         const q = query(
           collection(db, 'travels'),
           where('userId', '==', currentUser),
           where('date', '>=', startOfTheMonth),
           where('date', '<=', endOfTheMonthTs)
         )
-
+        // Start listening to real-time updates from Firestore
         unsubscribe = onSnapshot(q, (querySnapshot) => {
           const travelsArray = []
-
+          // Go through each document and push its data to the travelsArray
           querySnapshot.forEach((doc) => {
             travelsArray.push({...doc.data()})
           })
+          // Map the data to be e.g. [{date: '12.8.', km: '100'}, {date: '14.8.', km: '150'}]
           const mappedTravels = travelsArray.map((travel) => ({date: travel.date.toDate().toLocaleDateString('fi-Fi', {day: 'numeric', month: 'numeric'}), km: travel.kilometers}))
           setTravels(mappedTravels)
         })
