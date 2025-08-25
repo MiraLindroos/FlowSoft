@@ -3,7 +3,7 @@ import { CartesianGrid, LineChart, XAxis, YAxis, Tooltip, Legend, Line, Responsi
 
 const TravelsThisMonth = ({data}) => {
   return (
-    <ResponsiveContainer width="100%" height="100%" minHeight={200} >
+    data.length > 0 ? <ResponsiveContainer width="100%" height="100%" minHeight={200} >
       <LineChart
         data={data}
         margin={{
@@ -20,7 +20,7 @@ const TravelsThisMonth = ({data}) => {
         <Line type="monotone" dataKey="km" stroke="#013746" />
       </LineChart>
     </ResponsiveContainer>
-
+    : <div className="no-travels">Ei matkoja tässä kuussa!</div>
   )
 }
 

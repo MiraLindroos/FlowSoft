@@ -21,7 +21,8 @@
   width: 92%;
 }
 
-.no-active-projects {
+.no-active-projects,
+.no-travels {
   padding-bottom: 16px;
 }
 
@@ -60,7 +61,8 @@
     padding: 0 2px;
   }
 
-  .no-active-projects {
+  .no-active-projects,
+  .no-travels {
     padding: 50px;
   }
 }
