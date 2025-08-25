@@ -16,6 +16,7 @@ const Statistics = () => {
   // Converting current date to timestamps
   const startOfTheMonth = Timestamp.fromDate(new Date(currentYear, currentMonth, 1))
   const endOfTheMonth = new Date(currentYear, currentMonth + 1, 0)
+  // Set endOfTheMonth hours to be 23:59 instead of 00:00
   endOfTheMonth.setHours(23, 59, 59, 999)
   const endOfTheMonthTs = Timestamp.fromDate(endOfTheMonth)
 
@@ -58,18 +59,34 @@ const Statistics = () => {
   }, [])
 
   useEffect(() => {
+    // Initialize an empty unsubscribe function to be safely called later
+    // This prevents "unsubscribe is not a function" errors if for some reason onSnapshot fails or doesn't run
     let unsubscribe = () => {}
 
     const fetchTravels = () => {
-      const q = query(
-        collection(db, 'travels'),
-        where('userId', '==', currentUser),
-        where('date', '>=', startOfTheMonth),
-        where('date', '<=', endOfTheMonthTs)
-      )
+      try {
+        const q = query(
+          collection(db, 'travels'),
+          where('userId', '==', currentUser),
+          where('date', '>=', startOfTheMonth),
+          where('date', '<=', endOfTheMonthTs)
+        )
+
+        unsubscribe = onSnapshot(q, (querySnapshot) => {
+          const travelsArray = []
+
+          querySnapshot.forEach((doc) => {
+            travelsArray.push({...doc.data()})
+          })
+          const mappedTravels = travelsArray.map((travel) => ({date: travel.date.toDate().toLocaleDateString('fi-Fi', {day: 'numeric', month: 'numeric'}), km: travel.kilometers}))
+          setTravels(mappedTravels)
+        })
+      } catch (e) {
+        console.error(e)
+      }
     }
 
-    // fetchTravels()
+    fetchTravels()
     // Cleanup function runs when the component is unmounted or when a depency changes
     return () => {
       // Stop listening to real-time Firestore updates to prevent memory leaks and duplicate listeners
@@ -119,7 +136,8 @@ const Statistics = () => {
   }
 
   return {
-    weekHours
+    weekHours,
+    travels
   }
 }
 

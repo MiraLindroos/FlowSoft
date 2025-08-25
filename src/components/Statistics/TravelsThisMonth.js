@@ -1,33 +1,7 @@
 import "./Statistics.css";
 import { CartesianGrid, LineChart, XAxis, YAxis, Tooltip, Legend, Line, ResponsiveContainer } from 'recharts'
 
-const TravelsThisMonth = () => {
-  const data = [
-    {
-      name: 'ma',
-      dateRange: '1.–7.6.',
-      km: 30,
-      raha: 40,
-    },
-    {
-      name: 'ti',
-      dateRange: '1.–7.6.',
-      km: 65,
-      raha: 90,
-    },
-        {
-      name: 'ke',
-      dateRange: '1.–7.6.',
-      km: 23,
-      raha: 32,
-    },
-    {
-      name: 'to',
-      dateRange: '1.–7.6.',
-      km: 53,
-      raha:79,
-    },
-  ]
+const TravelsThisMonth = ({data}) => {
   return (
     <ResponsiveContainer width="100%" height="100%" minHeight={200} >
       <LineChart
@@ -39,7 +13,7 @@ const TravelsThisMonth = () => {
         }}
       >
         <CartesianGrid strokeDasharray="5" />
-        <XAxis dataKey="name" />
+        <XAxis dataKey="date" />
         <YAxis />
         <Tooltip />
         <Legend />
