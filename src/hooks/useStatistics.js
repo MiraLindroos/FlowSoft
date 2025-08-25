@@ -8,13 +8,16 @@ import { getISOWeek } from 'date-fns'
 const Statistics = () => {
   const currentUser = useAtomValue(currentUserAtom)
   const [hours, setHours] = useState([])
+  const [travels, setTravels] = useState([])
 
   const currentDate = new Date()
   const currentMonth = currentDate.getMonth()
   const currentYear = currentDate.getFullYear()
   // Converting current date to timestamps
   const startOfTheMonth = Timestamp.fromDate(new Date(currentYear, currentMonth, 1))
-  const endOfTheMonth = Timestamp.fromDate(new Date(currentYear, currentMonth + 1, 0))
+  const endOfTheMonth = new Date(currentYear, currentMonth + 1, 0)
+  endOfTheMonth.setHours(23, 59, 59, 999)
+  const endOfTheMonthTs = Timestamp.fromDate(endOfTheMonth)
 
   useEffect(() => {
     // Initialize an empty unsubscribe function to be safely called later
@@ -28,7 +31,7 @@ const Statistics = () => {
           collection(db, 'timeEntries'),
           where('userId', '==', currentUser),
           where('startTime', '>=', startOfTheMonth),
-          where  ('startTime', '<=', endOfTheMonth)
+          where  ('startTime', '<=', endOfTheMonthTs)
         )
         // Start listening to real-time updates from Firestore
         unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -47,6 +50,26 @@ const Statistics = () => {
       }
     }
     fetchHours()
+    // Cleanup function runs when the component is unmounted or when a depency changes
+    return () => {
+      // Stop listening to real-time Firestore updates to prevent memory leaks and duplicate listeners
+      unsubscribe()
+    }
+  }, [])
+
+  useEffect(() => {
+    let unsubscribe = () => {}
+
+    const fetchTravels = () => {
+      const q = query(
+        collection(db, 'travels'),
+        where('userId', '==', currentUser),
+        where('date', '>=', startOfTheMonth),
+        where('date', '<=', endOfTheMonthTs)
+      )
+    }
+
+    // fetchTravels()
     // Cleanup function runs when the component is unmounted or when a depency changes
     return () => {
       // Stop listening to real-time Firestore updates to prevent memory leaks and duplicate listeners
