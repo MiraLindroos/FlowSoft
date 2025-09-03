@@ -5,8 +5,9 @@ const Pdf = ({project, projectsEntries, start, end, totalHours, totalTravels}) =
     <Page size="A4" style={styles.page}>
       {/* Header of the page, fixed means that it is shown on every page */}
       <View style={styles.header} fixed>
-        <Text>Työtunnit projektille: {project.name}</Text>
+        <Text>Flowtec Oy tunnit projektille: {project.name}</Text>
         <Text style={{fontSize: '0.85rem'}}>Aikaväliltä : {start} - {end}</Text>
+        <Text style={{fontSize: '0.8rem'}}>Jukka Lindroos</Text>
       </View>
       {/* Container for the project entries */}
       <View style={styles.container}>
@@ -34,7 +35,7 @@ const Pdf = ({project, projectsEntries, start, end, totalHours, totalTravels}) =
         </View>
       </View>
       {/* Display Flowtec Oy - Sivu x/x on the bottom of every page */}
-      <Text style={styles.footer} render={({ pageNumber, totalPages }) => (`Flowtec Oy - Sivu ${pageNumber} / ${totalPages}`)} fixed />
+      <Text style={styles.footer} render={({ pageNumber, totalPages }) => (`Sivu ${pageNumber} / ${totalPages}`)} fixed />
     </Page>
   </Document>
 )
