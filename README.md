@@ -15,3 +15,11 @@
 **Backend**: Firebase Firostore  
 **PDF**: @react-pdf/renderer  
 **Hosting**: Firebase Hosting
+
+# Pictures
+**Project detail page**  
+<img width="1151" height="660" alt="Näyttökuva 2025-09-04 kello 12 48 50" src="https://github.com/user-attachments/assets/b5decc6d-eafd-40e4-b4e0-79dee6ab1842" />
+
+**Editing a time entry**  
+<img width="1151" height="659" alt="Näyttökuva 2025-09-04 kello 12 48 04" src="https://github.com/user-attachments/assets/742c8780-4d55-49bc-a06d-13b6cedd6019" />
+
