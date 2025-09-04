@@ -44,8 +44,6 @@ const useTravels = () => {
 
   const addTravel = async (data) => {
     try {
-      console.log(data)
-      console.log(data.id)
       const docRef = data.id ? doc(db, 'travels', data.id) // If id, edit existing doc
       : doc(collection(db, 'travels')) // Create new doc if no id
       
