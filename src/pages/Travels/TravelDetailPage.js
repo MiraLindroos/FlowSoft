@@ -31,7 +31,14 @@ const TravelDetailPage = () => {
   const { dateToInputValue } = useDateUtils()
 
   const onSubmit = (data) => {
-    console.log(data)
+    // The selected project is a JSON string so we need to parse it
+    const selectedProject = JSON.parse(data.project)
+    // Replace data.project to hold the project's name
+    data.project = selectedProject.name
+    // Store the project's ID
+    data.projectId = selectedProject.id
+    addTravel(data)
+    closeModal()
   }
 
   const editTravelClick = () => {

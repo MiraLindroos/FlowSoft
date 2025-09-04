@@ -43,26 +43,42 @@ const useTravels = () => {
   }, [])
 
   const addTravel = async (data) => {
-    const docRef = doc(collection(db, 'travels'))
-    await toast.promise(
-      setDoc(docRef, {
-        date: data.date,
+    try {
+      console.log(data)
+      console.log(data.id)
+      const docRef = data.id ? doc(db, 'travels', data.id) // If id, edit existing doc
+      : doc(collection(db, 'travels')) // Create new doc if no id
+      
+      const travelData = {
         kilometers: data.kilometers,
         userId: userId,
         from: data.from ? data.from : "",
         destination: data.to ? data.to : "",
         projectId: data.projectId,
         project: data.project,
-        name: `${data.project} : ${data.date.toLocaleDateString()} - ${data.kilometers}km`,
         travelRate: data.travelRate,
         memo: data.memo
-      }),
-      {
-        loading: "Matkaa lisätään...",
-        success: "Matka lisätty",
-        error: "Matkan lisääminen epäonnistui"
       }
-    )
+
+      if (data.id) {
+        travelData.name = `${data.project} : ${data.date} - ${data.kilometers}km`
+        travelData.date = new Date(data.date)
+      } else {
+        travelData.name = `${data.project} : ${data.date.toLocaleDateString()} - ${data.kilometers}km`
+        travelData.date = data.date
+      }
+
+      await toast.promise(
+        setDoc(docRef, travelData),
+        {
+          loading: "Matkaa tallennetaan...",
+          success: "Matka tallennettu",
+          error: "Matkan tallentaminen epäonnistui"
+        }
+      )
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   const deleteTravel = async (id) => {
