@@ -12,6 +12,7 @@ import Button from "../../components/Button/Button"
 import { FiArrowLeft } from "react-icons/fi"
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react"
+import useDateUtils from "../../hooks/useDateUtils"
 
 const ProjectDetailPage = () => {
   // Dates for date range picker
@@ -34,6 +35,8 @@ const ProjectDetailPage = () => {
 
   const methods = useForm()
 
+  const { dateToInputValue } = useDateUtils()
+
   const onSubmit = (data) => {
     const today = new Date()
     const start = data.startDate ? new Date(data.startDate) : null
@@ -52,15 +55,6 @@ const ProjectDetailPage = () => {
     addProject({...data, onGoing: onGoing})
     closeModal()
   }
-  // Function to convert Date object to 'YYYY-MM-DD' format for input type=date field
-  const dateToInputValue = (date) => {
-    const year = date.getFullYear()
-    // Convert month (0–11) to 1–12, then add a zero in front if needed (e.g. "03")
-    const month = String(date.getMonth() + 1).padStart(2, '0') // e.g. month 11 already has two numbers so no zero needed in front
-    // Convert day number to string and add a zero in front if needed (e.g. "09")
-    const day = String(date.getDate()).padStart(2, '0')
-    return `${year}-${month}-${day}`
-  }
 
   const editProjectClick = () => {
     methods.reset({ // Reset methods with projet values
@@ -73,7 +67,7 @@ const ProjectDetailPage = () => {
       message: `Muokkaa projektia: ${project.name}`,
       children:
       <FormProvider {...methods}>
-        <Form fields={addProjectFields}/>
+        <Form fields={addProjectFields} />
       </FormProvider>,
       onConfirm: methods.handleSubmit(onSubmit),
       onCancel: closeModal,

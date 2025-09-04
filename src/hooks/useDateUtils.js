@@ -46,12 +46,23 @@ const useDateUtils = () => {
     setCurrentDate(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1))
   }
 
+  // Function to convert Date object to 'YYYY-MM-DD' format for input type=date field
+  const dateToInputValue = (date) => {
+    const year = date.getFullYear()
+    // Convert month (0–11) to 1–12, then add a zero in front if needed (e.g. "03")
+    const month = String(date.getMonth() + 1).padStart(2, '0') // e.g. month 11 already has two numbers so no zero needed in front
+    // Convert day number to string and add a zero in front if needed (e.g. "09")
+    const day = String(date.getDate()).padStart(2, '0')
+    return `${year}-${month}-${day}`
+  }
+
   return {
     currentMonth,
     currentYear,
     daysInAMonth,
     nextMonth,
     previousMonth,
+    dateToInputValue
   }
 }
 
