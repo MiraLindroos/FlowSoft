@@ -1,6 +1,6 @@
 import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 
-const Pdf = ({project, projectsEntries, start, end, totalHours, totalTravels}) => (
+const Pdf = ({project, projectsEntries = [], start, end, totalHours, totalTravels}) => (
   <Document>
     <Page size="A4" style={styles.page}>
       {/* Header of the page, fixed means that it is shown on every page */}
@@ -17,16 +17,16 @@ const Pdf = ({project, projectsEntries, start, end, totalHours, totalTravels}) =
           <Text style={[styles.text, styles.flex1]}>Kilometrit</Text>
           <Text style={[styles.text, styles.flex2]}>Muistiinpanot</Text>
         </View>
-        {projectsEntries.map((entry) => {
-          return (
-            <View key={entry.id} style={styles.section}>
-              <Text style={[styles.text, styles.flex1]}>{entry.startTime.toDate().toLocaleDateString()}</Text>
-              <Text style={[styles.text, styles.flex1]}>{entry.hours} h</Text>
-              <Text style={[styles.text, styles.flex1]}>{entry.kilometers ? entry.kilometers : 0} km</Text>
-              <Text style={[styles.text, styles.flex2]}>{entry.memo}</Text>
-            </View>
-          )
-        })}
+          {projectsEntries.map((entry) => {
+            return (
+              <View key={entry.id} style={styles.section}>
+                <Text style={[styles.text, styles.flex1]}>{entry.startTime.toDate().toLocaleDateString()}</Text>
+                <Text style={[styles.text, styles.flex1]}>{entry.hours} h</Text>
+                <Text style={[styles.text, styles.flex1]}>{entry.kilometers ? entry.kilometers : 0} km</Text>
+                <Text style={[styles.text, styles.flex2]}>{entry.memo}</Text>
+              </View>
+            )
+          })}
         <View style={[styles.infoRow, { borderTop: '1px solid #ccc'}]}>
           <Text style={[styles.text, styles.flex1]}>Yht.</Text>
           <Text style={[styles.text, styles.flex1]}>{totalHours} h</Text>
