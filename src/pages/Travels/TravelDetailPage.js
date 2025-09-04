@@ -35,9 +35,16 @@ const TravelDetailPage = () => {
   }
 
   const editTravelClick = () => {
+    // Find the project field from the form addTravelFields array
+    const projectField = addTravelFields.find(f => f.name === "project")
+    // Find the project option by matching the name to the travel.project
+    // This is needed because the select form expects a JSON string of the whole project object as its value
+    const selectedProject = projectField.options.find(option => option.name === travel.project)
+
     methods.reset({ // Reset methods with travel values
       ...travel,
-      date: travel.date ? dateToInputValue(travel.date.toDate()) : null
+      date: travel.date ? dateToInputValue(travel.date.toDate()) : null,
+      project: JSON.stringify(selectedProject)
     })
     openModal({
       message: `Muokkaa matkaa: ${travel.name}`,
