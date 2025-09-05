@@ -56,7 +56,7 @@ const useTravels = () => {
         project: data.project,
         travelRate: data.travelRate,
         memo: data.memo,
-        entryId: data.entryId
+        entryId: data.entryId ? data.entryId : ""
       }
 
       if (data.id) {
