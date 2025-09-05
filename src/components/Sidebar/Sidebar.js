@@ -1,5 +1,5 @@
 import "./Sidebar.css"
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { FiX } from "react-icons/fi"
 
 const Sidebar = ({setSidebarOpen, isMobile, visibleRoutes}) => {
@@ -11,9 +11,9 @@ const Sidebar = ({setSidebarOpen, isMobile, visibleRoutes}) => {
         {visibleRoutes.map((route, index) =>
           route.path ? (
             // Close the sidebar on mobile when a navigation link is clicked
-            <Link key={index} to={route.path} className="item" onClick={() => {if (isMobile) setSidebarOpen(false)}}>
+            <NavLink key={index} to={route.path} className="item" onClick={() => {if (isMobile) setSidebarOpen(false)}}>
               <span className="icon">{route.IconName}</span>{route.name}
-            </Link>
+            </NavLink>
           ) : (
           <button
             key={index}

@@ -45,6 +45,10 @@
   justify-content: center;
 }
 
+.item.active {
+  background-color: rgb(218, 229, 229);
+}
+
 @media (min-width: 898px) {
   .sidebar {
     width: 20%;
