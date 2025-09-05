@@ -58,7 +58,6 @@ const useAuth = (openModal, closeModal) => {
 
   return {
     isLoggedIn,
-    setIsLoggedIn,
     authChecked,
     handleLogOut
   }

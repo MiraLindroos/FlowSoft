@@ -7,11 +7,11 @@ import Profile from './pages/Profile/Profile'
 import Travels from './pages/Travels/Travels'
 import TravelDetailPage from "./pages/Travels/TravelDetailPage"
 
-const AppRoutes = ({ setIsLoggedIn }) => {
+const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/Etusivu" element={<Home setIsLoggedIn={setIsLoggedIn} />} />
+      <Route path="/Etusivu" element={<Home />} />
       <Route path="/Ajanhallinta" element={<TimeManagement />} />
       <Route path="/Projektit" element={<Projects />} />
       <Route path="/Projekti/:id" element={<ProjectDetailPage />} />

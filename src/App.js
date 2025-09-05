@@ -21,7 +21,6 @@ function App() {
 
   const {
     isLoggedIn,
-    setIsLoggedIn,
     authChecked,
     handleLogOut
   } = useAuth(openModal, closeModal, cancelButton, confirmButton)
@@ -44,8 +43,8 @@ function App() {
       {/* If user has not logged in, show login page */}
       {!isLoggedIn ? (
         <Routes>
-          <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path="/Kirjaudu" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/Kirjaudu" element={<Login />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       ) : (
@@ -68,7 +67,7 @@ function App() {
               />
             }
             <main className="page-content">
-              <AppRoutes setIsLoggedIn={setIsLoggedIn} />
+              <AppRoutes />
               {showModal &&
                 <Modal
                   message={modalContent.message}
