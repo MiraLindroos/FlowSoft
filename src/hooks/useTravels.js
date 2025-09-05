@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { db } from "../firebase/index"
-import { setDoc, onSnapshot, query, collection, where, doc, deleteDoc, orderBy, getDocs } from "firebase/firestore"
+import { setDoc, onSnapshot, query, collection, where, doc, deleteDoc, orderBy, getDocs, updateDoc } from "firebase/firestore"
 import { currentUserAtom } from "../jotai/atoms"
 import { useAtomValue } from "jotai"
 import toast from "react-hot-toast"
@@ -60,7 +60,7 @@ const useTravels = () => {
       }
 
       if (data.id) {
-        travelData.name = `${data.project} : ${data.date} - ${data.kilometers}km`
+        travelData.name = `${data.project} : ${new Date(data.date).toLocaleDateString()} - ${data.kilometers}km`
         travelData.date = new Date(data.date)
       } else {
         travelData.name = `${data.project} : ${data.date.toLocaleDateString()} - ${data.kilometers}km`
@@ -88,14 +88,14 @@ const useTravels = () => {
       )
       const querySnapshot = await getDocs(q)
       if (querySnapshot.empty) {
-        addTravel(data)
+        addTravel({...data, id: null})
         return
       }
       const docSnap = querySnapshot.docs[0]
       const docRef = doc(db, 'travels', docSnap.id)
 
       await toast.promise (
-        setDoc(docRef,
+        updateDoc(docRef,
           {
             kilometers: data.kilometers,
             projectId: data.projectId,
