@@ -6,7 +6,7 @@ const Navbar = ({setSidebarOpen, isMobile, onLogOutClick, items, logo}) => {
 
   return (
     <div className="navbar">
-      <Link className="navbar-logo" to={'/'}>{logo}</Link>
+      <Link className="navbar-logo" to={'/Etusivu'}>{logo}</Link>
       <div className="navbar-left">
         {/* If isMobile is false aka the window width is over 897px
             we will show profile icon on the navbar

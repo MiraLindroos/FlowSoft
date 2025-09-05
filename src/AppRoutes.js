@@ -10,7 +10,6 @@ import TravelDetailPage from "./pages/Travels/TravelDetailPage"
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
       <Route path="/Etusivu" element={<Home />} />
       <Route path="/Ajanhallinta" element={<TimeManagement />} />
       <Route path="/Projektit" element={<Projects />} />
@@ -18,7 +17,7 @@ const AppRoutes = () => {
       <Route path="/Profiili" element={<Profile />} />
       <Route path="/Matkat" element={<Travels />} />
       <Route path="/Matka/:id" element={<TravelDetailPage />} />
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route path="*" element={<Navigate to="/Etusivu" />} />
     </Routes>
   )
 }
