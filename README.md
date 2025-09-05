@@ -1,5 +1,6 @@
 # FlowSoft
 🌊FlowSoft is a lightweight React web application for managing projects, working hours, and travel entries. The application was built for Flowtec Oy, a one-person company that needed a simple and efficient solution for tracking working hours. Existing tools (such as Heeros) felt too heavy and complex for this use case, so FlowSoft was designed as an easy-to-use alternative.  
+
 🔥The app stores data in Firestore, supports PDF report generation, and is deployed on Firebase Hosting.  
 
 # Features  
