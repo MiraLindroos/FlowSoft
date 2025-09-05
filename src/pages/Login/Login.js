@@ -2,6 +2,7 @@ import { auth } from "../../firebase/index"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { useState } from "react"
 import "./Login.css"
+import toast, { Toaster } from "react-hot-toast"
 
 const Login = () => {
   const [email, setEmail] = useState("")
@@ -19,6 +20,7 @@ const Login = () => {
         const errorMessage = error.message
         console.log(errorCode)
         console.log(errorMessage)
+        toast.error("Sähköposti tai salasana väärin", {duration: 5000})
       })
   }
 
@@ -41,6 +43,7 @@ const Login = () => {
         />
         <button type="submit">Kirjaudu</button>
       </form>
+      <Toaster />
     </div>
   )
 }
