@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { db } from "../firebase/index"
-import { setDoc, onSnapshot, query, collection, where, doc, deleteDoc, orderBy } from "firebase/firestore"
+import { setDoc, onSnapshot, query, collection, where, doc, deleteDoc, orderBy, getDocs } from "firebase/firestore"
 import { currentUserAtom } from "../jotai/atoms"
 import { useAtomValue } from "jotai"
 import toast from "react-hot-toast"
@@ -55,7 +55,8 @@ const useTravels = () => {
         projectId: data.projectId,
         project: data.project,
         travelRate: data.travelRate,
-        memo: data.memo
+        memo: data.memo,
+        entryId: data.entryId
       }
 
       if (data.id) {
@@ -79,6 +80,43 @@ const useTravels = () => {
     }
   }
 
+  const onEntryEditTravel = async (data) => {
+    try {
+      const q = query(
+        collection(db, 'travels'),
+        where("entryId", "==", data.entryId)
+      )
+      const querySnapshot = await getDocs(q)
+      if (querySnapshot.empty) {
+        addTravel(data)
+        return
+      }
+      const docSnap = querySnapshot.docs[0]
+      const docRef = doc(db, 'travels', docSnap.id)
+
+      await toast.promise (
+        setDoc(docRef,
+          {
+            kilometers: data.kilometers,
+            projectId: data.projectId,
+            project: data.project,
+            travelRate: data.travelRate,
+            memo: data.memo,
+            name: `${data.project} : ${data.date.toLocaleDateString()} - ${data.kilometers}km`,
+            date: new Date(data.date),
+          }
+        ),
+        {
+          loading: "Matkaa tallennetaan...",
+          success: "Matkan muokkaus onnistui",
+          error: "Matkan muokkaus epäonnistui"
+        }
+      )
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   const deleteTravel = async (id) => {
     await toast.promise(
       deleteDoc(doc(db, 'travels', id)),
@@ -93,6 +131,7 @@ const useTravels = () => {
   return {
     travels,
     addTravel,
+    onEntryEditTravel,
     deleteTravel
   }
 }

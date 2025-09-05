@@ -31,7 +31,7 @@ const TimeManagement = () => {
 
   const { saveTimeEntry, deleteTimeEntry, decrementHoursKm, incremetHoursKm } = useCalendarTimeEntries(currentMonth, currentYear)
 
-  const { addTravel } = useTravels()
+  const { addTravel, onEntryEditTravel } = useTravels()
 
   const methods = useForm()
 
@@ -40,7 +40,7 @@ const TimeManagement = () => {
     return new Date(date.getFullYear(), date.getMonth(), date.getDate(), hours, minutes)
   }
 
-  const onSubmit = (data, date, originalEntry) => {
+  const onSubmit = async (data, date, originalEntry) => {
     const start = time(data.startTime, date)
     const end = time(data.endTime, date)
     // Counting hours between startTime and endTime, abs returns the absolute positive value
@@ -73,6 +73,14 @@ const TimeManagement = () => {
       } else if (hoursDiff !== 0 || kmDiff !== 0) {
         // Let's increment the selected project's hours or kilometers with the difference
         incremetHoursKm(data.projectId, hoursDiff, kmDiff)
+
+        if (kmDiff !== 0) {
+          onEntryEditTravel({
+            ...data,
+            date: start,
+            entryId: data.id
+          })
+        }
       }
       // Update the entry data with the current data
       saveTimeEntry({
@@ -83,20 +91,22 @@ const TimeManagement = () => {
       })
       // If entry doesn't have id yet, we will create a new document for the entry
     } else {
-      saveTimeEntry({
+      const entryId = await saveTimeEntry({
         ...data,
         startTime: start,
         endTime: end,
         hours: totalHours,
       })
+
       // Increment the selected project's hours and kilometers
       incremetHoursKm(data.projectId, totalHours, data.kilometers)
 
       // If user enters kilometers for the entry, let's create a document for the kilometers as well
-      if (data.kilometers) {
+      if (entryId && data.kilometers) {
         addTravel({
           ...data,
-          date: start
+          date: start,
+          entryId: entryId
         })
       }
     }

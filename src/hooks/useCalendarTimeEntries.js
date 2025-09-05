@@ -71,10 +71,11 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
         // Toasts for telling the user if it was a success or not
         {
           loading: 'Tallennetaan tunteja..',
-          success: 'Tuntien lisääminen onnistui!',
-          error: 'Tuntien lisääminen epäonnistui'
+          success: 'Tuntien tallentaminen onnistui!',
+          error: 'Tuntien tallentaminen epäonnistui'
         }
       )
+      return docRef.id
     } catch (e) {
       console.error(e)
     }
