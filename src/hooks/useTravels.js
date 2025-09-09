@@ -65,7 +65,6 @@ const useTravels = () => {
       } else {
         travelData.name = `${data.project} : ${data.date.toLocaleDateString()} - ${data.kilometers}km`
         travelData.date = data.date
-        incremetProjectKm(data.projectId, data.kilometers)
       }
 
       await toast.promise(
@@ -81,12 +80,24 @@ const useTravels = () => {
     }
   }
 
-  // Increment the selected project's kilometers when a travel is added
+  // Increment the selected project's kilometers
   const incremetProjectKm = async (id, km) => {
     try {
       const projectRef = doc(db, 'projects', id)
       await updateDoc(projectRef, {
         kilometers: increment(Number(km) || 0)
+      })
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  // Update the entry kilometers when a travel is modified
+  const updateEntryKm = async (id, km) => {
+    try {
+      const entryRef = doc(db, 'timeEntries', id)
+      await updateDoc(entryRef, {
+        kilometers: km
       })
     } catch (e) {
       console.error(e)
@@ -145,6 +156,7 @@ const useTravels = () => {
     travels,
     addTravel,
     incremetProjectKm,
+    updateEntryKm,
     onEntryEditTravel,
     deleteTravel
   }

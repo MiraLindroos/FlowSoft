@@ -26,7 +26,7 @@ const TravelDetailPage = () => {
 
   const methods = useForm()
 
-  const { addTravel, incremetProjectKm } = useTravels()
+  const { addTravel, incremetProjectKm, updateEntryKm } = useTravels()
 
   const { dateToInputValue } = useDateUtils()
 
@@ -42,6 +42,7 @@ const TravelDetailPage = () => {
     // If kilometers have changed -> update the selected project's kilometer count
     if (kmDiff !== 0) {
       incremetProjectKm(data.projectId, kmDiff)
+      updateEntryKm(travel.entryId, data.kilometers)
     }
     addTravel(data)
     closeModal()

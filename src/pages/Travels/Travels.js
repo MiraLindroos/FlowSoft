@@ -9,7 +9,7 @@ import { useForm, FormProvider } from "react-hook-form"
 import useAddTravelsForm from "../../hooks/useAddTravelsForm"
 
 const Travels = () => {
-  const { travels, addTravel, deleteTravel } = useTravels()
+  const { travels, addTravel, deleteTravel, incremetProjectKm } = useTravels()
 
   const { addTravelFields } = useAddTravelsForm()
 
@@ -30,7 +30,7 @@ const Travels = () => {
     data.project = selectedProject.name
     // Store the project's ID
     data.projectId = selectedProject.id
-
+    incremetProjectKm(data.projectId, data.kilometers)
     addTravel(data)
     closeModal()
   }

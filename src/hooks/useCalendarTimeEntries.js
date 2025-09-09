@@ -18,7 +18,10 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
       try {
         // Converting dates to timestamps
         const startOfTheMonth = Timestamp.fromDate(new Date(currentYear, currentMonth, 1))
-        const endOfTheMonth = Timestamp.fromDate(new Date(currentYear, currentMonth + 1, 0))
+        const endDate = new Date(currentYear, currentMonth + 1, 0)
+        // We have to set the hours at 23:59, otherwise the entries for the months last day won't show
+        endDate.setHours(23, 59, 59, 999)
+        const endOfTheMonth = Timestamp.fromDate(endDate)
 
         // Fetch all entries from current user that are in the current month
         const q = query(
