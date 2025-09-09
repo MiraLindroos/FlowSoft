@@ -30,8 +30,8 @@ const TravelDetail = ({travel}) => {
         > {travel && (
           <CardSection
             fields={[
-              {label: "Päiväraha", value: travel.travelRate ? `${travel.travelRate} €` : "Ei kilometrihintaa annettu"},
-              {label: "Kilometrikorvaus", value: "ei oikeeta dataa"},
+              {label: "Kilometrihinta", value: travel.travelRate ? `${travel.travelRate} €` : "Ei kilometrihintaa annettu"},
+              {label: "Kilometrikorvaus", value: travel.travelRate && travel.kilometers ? `${(travel.kilometers * travel.travelRate).toFixed(2)} €` : "Ei kilometrihintaa annettu"},
             ]}
           />
         )}
