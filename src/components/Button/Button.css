@@ -11,6 +11,10 @@
   cursor: pointer;
 }
 
+.button:disabled {
+  background-color: #01374651;
+}
+
 @media (min-width: 1024px) {
   .button {
     font-size: 0.9rem;
