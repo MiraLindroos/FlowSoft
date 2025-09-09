@@ -7,7 +7,6 @@ import Modal from "../../components/Modal/Modal"
 import Form from "../../components/Forms/Form"
 import { useForm, FormProvider } from "react-hook-form"
 import useAddTravelsForm from "../../hooks/useAddTravelsForm"
-import { use } from "react"
 
 const Travels = () => {
   const { travels, addTravel, deleteTravel } = useTravels()
