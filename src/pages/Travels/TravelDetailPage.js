@@ -26,17 +26,22 @@ const TravelDetailPage = () => {
 
   const methods = useForm()
 
-  const { addTravel } = useTravels()
+  const { addTravel, incremetProjectKm } = useTravels()
 
   const { dateToInputValue } = useDateUtils()
 
-  const onSubmit = (data) => {
+  const onSubmit = (data, travel) => {
     // The selected project is a JSON string so we need to parse it
     const selectedProject = JSON.parse(data.project)
     // Replace data.project to hold the project's name
     data.project = selectedProject.name
     // Store the project's ID
     data.projectId = selectedProject.id
+    // Check if kilometers have changed from original value (travel.kilometers)
+    const kmDiff = data.kilometers - travel.kilometers
+    if (kmDiff !== 0) {
+      incremetProjectKm(data.projectId, kmDiff)
+    }
     addTravel(data)
     closeModal()
   }
@@ -59,7 +64,7 @@ const TravelDetailPage = () => {
       <FormProvider {...methods}>
         <Form fields={addTravelFields} />
       </FormProvider>,
-      onConfirm: methods.handleSubmit(onSubmit),
+      onConfirm: methods.handleSubmit((data) => onSubmit(data, travel)),
       onCancel: closeModal,
       cancelButton: "Peruuta",
       confirmButton: "Tallenna",

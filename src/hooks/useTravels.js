@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { db } from "../firebase/index"
-import { setDoc, onSnapshot, query, collection, where, doc, deleteDoc, orderBy, getDocs, updateDoc } from "firebase/firestore"
+import { setDoc, onSnapshot, query, collection, where, doc, deleteDoc, orderBy, getDocs, updateDoc, increment } from "firebase/firestore"
 import { currentUserAtom } from "../jotai/atoms"
 import { useAtomValue } from "jotai"
 import toast from "react-hot-toast"
@@ -65,6 +65,7 @@ const useTravels = () => {
       } else {
         travelData.name = `${data.project} : ${data.date.toLocaleDateString()} - ${data.kilometers}km`
         travelData.date = data.date
+        incremetProjectKm(data.projectId, data.kilometers)
       }
 
       await toast.promise(
@@ -75,6 +76,18 @@ const useTravels = () => {
           error: "Matkan tallentaminen epäonnistui"
         }
       )
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  // Increment the selected project's kilometers when a travel is added
+  const incremetProjectKm = async (id, km) => {
+    try {
+      const projectRef = doc(db, 'projects', id)
+      await updateDoc(projectRef, {
+        kilometers: increment(Number(km) || 0)
+      })
     } catch (e) {
       console.error(e)
     }
@@ -131,6 +144,7 @@ const useTravels = () => {
   return {
     travels,
     addTravel,
+    incremetProjectKm,
     onEntryEditTravel,
     deleteTravel
   }
