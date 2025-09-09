@@ -39,6 +39,7 @@ const TravelDetailPage = () => {
     data.projectId = selectedProject.id
     // Check if kilometers have changed from original value (travel.kilometers)
     const kmDiff = data.kilometers - travel.kilometers
+    // If kilometers have changed -> update the selected project's kilometer count
     if (kmDiff !== 0) {
       incremetProjectKm(data.projectId, kmDiff)
     }
