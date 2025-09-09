@@ -10,6 +10,7 @@ import useModal from "../../hooks/useModal"
 import useAddTravelsForm from "../../hooks/useAddTravelsForm"
 import useTravels from "../../hooks/useTravels"
 import useDateUtils from "../../hooks/useDateUtils"
+import { Toaster } from "react-hot-toast"
 
 const TravelDetailPage = () => {
   const {id} = useParams()
@@ -91,6 +92,7 @@ const TravelDetailPage = () => {
           width={modalContent.width}
         />
       )}
+      <Toaster />
     </div>
   )
 }

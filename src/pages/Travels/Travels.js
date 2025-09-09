@@ -7,6 +7,7 @@ import Modal from "../../components/Modal/Modal"
 import Form from "../../components/Forms/Form"
 import { useForm, FormProvider } from "react-hook-form"
 import useAddTravelsForm from "../../hooks/useAddTravelsForm"
+import { Toaster } from "react-hot-toast"
 
 const Travels = () => {
   const { travels, addTravel, deleteTravel, incremetProjectKm } = useTravels()
@@ -85,6 +86,7 @@ const Travels = () => {
           width={modalContent.width}
         />
       }
+      <Toaster />
     </div>
   )
 }
