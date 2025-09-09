@@ -10,13 +10,16 @@ import toast, { Toaster } from "react-hot-toast"
 import Button from "../../components/Button/Button"
 import { useAtomValue } from "jotai"
 import { projectsAtom } from "../../jotai/atoms"
+import Pagination from "../../components/Pagination/Pagination"
 
 const Projects = () => {
   const projects = useAtomValue(projectsAtom)
 
   const {
     addProject,
-    deleteProject
+    deleteProject,
+    page,
+    setPage
   } = useProjects()
 
   const {
@@ -81,6 +84,9 @@ const Projects = () => {
       </div>
       <div className="projects-list">
         <List onDelete={onDelete} items={projects} path={'Projekti'} />
+      </div>
+      <div>
+        <Pagination page={page} setPage={setPage} />
       </div>
       {showModal &&
         <Modal
