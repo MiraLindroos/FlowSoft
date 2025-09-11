@@ -142,14 +142,18 @@ const useTravels = () => {
   }
 
   const deleteTravel = async (id) => {
-    await toast.promise(
-      deleteDoc(doc(db, 'travels', id)),
-      {
-        loading: 'Poistetaan...',
-        success: 'Poisto onnistui!',
-        error: 'Posto epäonnistui'
-      }
-    )
+    try {
+      await toast.promise(
+        deleteDoc(doc(db, 'travels', id)),
+        {
+          loading: 'Poistetaan...',
+          success: 'Poisto onnistui!',
+          error: 'Posto epäonnistui'
+        }
+      )
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   return {
