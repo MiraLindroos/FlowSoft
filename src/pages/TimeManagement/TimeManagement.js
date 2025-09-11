@@ -148,7 +148,10 @@ const TimeManagement = () => {
     openModal({
       message: `Haluatko varmasti poistaa tuntilisäyksen projektille ${entry.project}?`,
       onConfirm: () => {
+        // Delete the time entry
         deleteTimeEntry(entry)
+        // Delete the travel document linked to the entry
+        deleteTravelByEntry(entry)
         closeModal()
       },
       onCancel: closeModal,
