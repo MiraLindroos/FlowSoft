@@ -102,7 +102,7 @@ const TimeManagement = () => {
       incremetHoursKm(data.projectId, totalHours, data.kilometers)
 
       // If user enters kilometers for the entry, let's create a document for the kilometers as well
-      if (entryId && data.kilometers) {
+      if (entryId && data.kilometers > 0) {
         addTravel({
           ...data,
           date: start,
