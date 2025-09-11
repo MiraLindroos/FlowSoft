@@ -92,6 +92,19 @@ const useTravels = () => {
     }
   }
 
+
+  // Decrement the selected project's kilometers
+  const decrementProjectKm = async (id, km) => {
+    try {
+      const projectRef = doc(db, 'projects', id)
+      await updateDoc(projectRef, {
+        kilometers: increment(-Number(km) || 0)
+      })
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   // Update the entry kilometers when a travel is modified
   const updateEntryKm = async (id, km) => {
     try {
@@ -141,16 +154,19 @@ const useTravels = () => {
     }
   }
 
-  const deleteTravel = async (id) => {
+  const deleteTravel = async (travel) => {
     try {
       await toast.promise(
-        deleteDoc(doc(db, 'travels', id)),
+        deleteDoc(doc(db, 'travels', travel.id)),
         {
           loading: 'Poistetaan...',
           success: 'Poisto onnistui!',
           error: 'Posto epäonnistui'
         }
       )
+      if (travel.projectId) {
+        decrementProjectKm(travel.projectId, travel.kilometers)
+      }
     } catch (e) {
       console.error(e)
     }

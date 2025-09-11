@@ -40,7 +40,7 @@ const Travels = () => {
     openModal({
       message: `Haluatko varmasti poistaa matkan: ${travel.name}?`,
       onConfirm: () => {
-        deleteTravel(travel.id)
+        deleteTravel(travel)
         closeModal()
       },
       onCancel: closeModal,
