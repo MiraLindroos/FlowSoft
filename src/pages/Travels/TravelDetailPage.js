@@ -43,7 +43,9 @@ const TravelDetailPage = () => {
     // If kilometers have changed -> update the selected project's kilometer count
     if (kmDiff !== 0) {
       incremetProjectKm(data.projectId, kmDiff)
-      updateEntryKm(travel.entryId, data.kilometers)
+      if (travel.entryId) {
+        updateEntryKm(travel.entryId, data.kilometers)
+      }
     }
     addTravel(data)
     closeModal()
