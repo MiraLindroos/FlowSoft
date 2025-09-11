@@ -31,7 +31,7 @@ const TimeManagement = () => {
 
   const { saveTimeEntry, deleteTimeEntry, decrementHoursKm, incremetHoursKm } = useCalendarTimeEntries(currentMonth, currentYear)
 
-  const { addTravel, onEntryEditTravel } = useTravels()
+  const { addTravel, onEntryEditTravel, deleteTravelByEntry } = useTravels()
 
   const methods = useForm()
 
@@ -75,11 +75,17 @@ const TimeManagement = () => {
         incremetHoursKm(data.projectId, hoursDiff, kmDiff)
 
         if (kmDiff !== 0) {
-          onEntryEditTravel({
-            ...data,
-            date: start,
-            entryId: data.id
-          })
+          // If data.kilometers in greater than 0, edit travel doc
+          if (data.kilometers > 0) {
+            onEntryEditTravel({
+              ...data,
+              date: start,
+              entryId: data.id
+            })
+            // Else delete travel doc since there are no travelled kilometers for the entry anymore
+          } else {
+            deleteTravelByEntry(data)
+          }
         }
       }
       // Update the entry data with the current data

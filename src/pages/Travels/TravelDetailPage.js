@@ -43,6 +43,7 @@ const TravelDetailPage = () => {
     // If kilometers have changed -> update the selected project's kilometer count
     if (kmDiff !== 0) {
       incremetProjectKm(data.projectId, kmDiff)
+      // If the travel is linked to an entry, edit the entry's kilometers
       if (travel.entryId) {
         updateEntryKm(travel.entryId, data.kilometers)
       }

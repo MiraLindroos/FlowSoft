@@ -172,13 +172,34 @@ const useTravels = () => {
     }
   }
 
+  // Function for deleting a travel document if its entry's kilometers are deleted
+  const deleteTravelByEntry = async (data) => {
+    try {
+      const q = query(
+        collection(db, 'travels'),
+        where("entryId", "==", data.id)
+      )
+      // If no travel doc with given entryId is found, return
+      const querySnapshot = await getDocs(q)
+      if (querySnapshot.empty) {
+        return
+      }
+      // Each travel doc has a unique entryId, so we know there will be only one doc
+      const docSnap = querySnapshot.docs[0]
+      await deleteDoc(doc(db, 'travels', docSnap.id))
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   return {
     travels,
     addTravel,
     incremetProjectKm,
     updateEntryKm,
     onEntryEditTravel,
-    deleteTravel
+    deleteTravel,
+    deleteTravelByEntry
   }
 }
 
