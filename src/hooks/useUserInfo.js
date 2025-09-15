@@ -10,17 +10,20 @@ const useUserInfo = () => {
 
   const currentUser = useAtomValue(currentUserAtom)
   useEffect(() => {
-    const fetchUserInfo = async () => {
-      const userRef = doc(db, 'users', currentUser)
-      const userDoc = await getDoc(userRef)
-      if (userDoc.exists()) {
-        setUserInfo({id: userDoc.id, ...userDoc.data()})
-      } else {
-        console.log('jotain meni vikaan')
+    try {
+      const fetchUserInfo = async () => {
+        const userRef = doc(db, 'users', currentUser)
+        const userDoc = await getDoc(userRef)
+        if (userDoc.exists()) {
+          setUserInfo({id: userDoc.id, ...userDoc.data()})
+        } else {
+          console.log('jotain meni vikaan')
+        }
       }
+      fetchUserInfo()
+    } catch (e) {
+      console.error(e)
     }
-
-    fetchUserInfo()
   }, [])
 
   return {
