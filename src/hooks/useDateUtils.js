@@ -56,13 +56,21 @@ const useDateUtils = () => {
     return `${year}-${month}-${day}`
   }
 
+  // Function that converts a "HH:MM" string into a Date object for the given day
+  // Keeps year/month/day from 'date' and sets the time from 'timeString'
+  const time = (timeString, date) => {
+    const [hours, minutes] = timeString.split(':').map(Number)
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate(), hours, minutes)
+  }
+
   return {
     currentMonth,
     currentYear,
     daysInAMonth,
     nextMonth,
     previousMonth,
-    dateToInputValue
+    dateToInputValue,
+    time
   }
 }
 
