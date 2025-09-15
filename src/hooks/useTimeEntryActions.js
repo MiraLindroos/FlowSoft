@@ -36,22 +36,7 @@ const useTimeEntryActions = () => {
         handleProjectChanged(originalEntry, data, totalHours, start)
         // If project hasn't changed but the hours or the kilometers have
       } else if (hoursDiff !== 0 || kmDiff !== 0) {
-        // Let's increment the selected project's hours or kilometers with the difference
-        incremetHoursKm(data.projectId, hoursDiff, kmDiff)
-
-        if (kmDiff !== 0) {
-          // If data.kilometers in greater than 0, edit travel doc
-          if (data.kilometers > 0) {
-            onEntryEditTravel({
-              ...data,
-              date: start,
-              entryId: data.id
-            })
-            // Else delete travel doc since there are no travelled kilometers for the entry anymore
-          } else {
-            deleteTravelByEntry(data)
-          }
-        }
+        handleHoursKmDiff(data, hoursDiff, kmDiff, start)
       }
       // Update the entry data with the current data
       saveTimeEntry({
@@ -95,6 +80,25 @@ const useTimeEntryActions = () => {
         date: start,
         entryId: data.id
       })
+    }
+  }
+  // Function for handling changes in hours or kilometers
+  const handleHoursKmDiff = (data, hoursDiff, kmDiff, start) => {
+    // Let's increment the selected project's hours or kilometers with the difference
+    incremetHoursKm(data.projectId, hoursDiff, kmDiff)
+
+    if (kmDiff !== 0) {
+      // If data.kilometers in greater than 0, edit travel doc
+      if (data.kilometers > 0) {
+        onEntryEditTravel({
+          ...data,
+          date: start,
+          entryId: data.id
+        })
+        // Else delete travel doc since there are no travelled kilometers for the entry anymore
+      } else {
+        deleteTravelByEntry(data)
+      }
     }
   }
 
