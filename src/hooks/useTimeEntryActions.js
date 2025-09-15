@@ -47,26 +47,10 @@ const useTimeEntryActions = () => {
       })
       // If entry doesn't have id yet, we will create a new document for the entry
     } else {
-      const entryId = await saveTimeEntry({
-        ...data,
-        startTime: start,
-        endTime: end,
-        hours: totalHours,
-      })
-
-      // Increment the selected project's hours and kilometers
-      incremetHoursKm(data.projectId, totalHours, data.kilometers)
-
-      // If user enters kilometers for the entry, let's create a document for the kilometers as well
-      if (entryId && data.kilometers > 0) {
-        addTravel({
-          ...data,
-          date: start,
-          entryId: entryId
-        })
-      }
+      await handleNewEntry(data, start, end, totalHours)
     }
   }
+
   // Function for handling project change
   const handleProjectChanged = (originalEntry, data, totalHours, start) => {
     // We have to decrement the hours and kilometers from the original given project
@@ -82,6 +66,7 @@ const useTimeEntryActions = () => {
       })
     }
   }
+
   // Function for handling changes in hours or kilometers
   const handleHoursKmDiff = (data, hoursDiff, kmDiff, start) => {
     // Let's increment the selected project's hours or kilometers with the difference
@@ -99,6 +84,27 @@ const useTimeEntryActions = () => {
       } else {
         deleteTravelByEntry(data)
       }
+    }
+  }
+
+  // Function for handling new Entry
+  const handleNewEntry = async (data, start, end, totalHours) => {
+    const entryId = await saveTimeEntry({
+      ...data,
+      startTime: start,
+      endTime: end,
+      hours: totalHours,
+    })
+    // Increment the selected project's hours and kilometers
+    incremetHoursKm(data.projectId, totalHours, data.kilometers)
+
+    // If user enters kilometers for the entry, let's create a document for the kilometers as well
+    if (entryId && data.kilometers > 0) {
+      addTravel({
+        ...data,
+        date: start,
+        entryId: entryId
+      })
     }
   }
 
