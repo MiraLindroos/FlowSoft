@@ -117,6 +117,7 @@ const useTravels = () => {
     }
   }
 
+  // Function for editing travel doc based on edits from time entry
   const onEntryEditTravel = async (data) => {
     try {
       const q = query(
