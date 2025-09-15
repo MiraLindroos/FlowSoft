@@ -120,15 +120,18 @@ const useTravels = () => {
   // Function for editing travel doc based on edits from time entry
   const onEntryEditTravel = async (data) => {
     try {
+      // From 'travels', find the document that has the entry's id
       const q = query(
         collection(db, 'travels'),
         where("entryId", "==", data.entryId)
       )
       const querySnapshot = await getDocs(q)
+      // If no doc for such entryId, create a new travel doc
       if (querySnapshot.empty) {
         addTravel({...data, id: null})
         return
       }
+      // Since every entryId is unique, we know there is only one doc with the entryId
       const docSnap = querySnapshot.docs[0]
       const docRef = doc(db, 'travels', docSnap.id)
 
@@ -155,6 +158,7 @@ const useTravels = () => {
     }
   }
 
+  // Delete travel doc and decrement kilometers from the selected project
   const deleteTravel = async (travel) => {
     try {
       await toast.promise(
