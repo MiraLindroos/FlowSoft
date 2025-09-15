@@ -69,6 +69,14 @@ const TimeManagement = () => {
         decrementHoursKm(originalEntry.projectId, originalEntry.hours, originalEntry.kilometers)
         // Then we have to add to the current selected project the entry's totalHours and kilometers
         incremetHoursKm(data.projectId, totalHours, data.kilometers)
+        // If project changes and the entry has kilometers, update the travel doc's project as well
+        if (data.kilometers > 0) {
+          onEntryEditTravel({
+            ...data,
+            date: start,
+            entryId: data.id
+          })
+        }
         // If project hasn't changed but the hours or the kilometers have
       } else if (hoursDiff !== 0 || kmDiff !== 0) {
         // Let's increment the selected project's hours or kilometers with the difference
