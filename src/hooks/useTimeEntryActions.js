@@ -4,7 +4,7 @@ import useTravels from "./useTravels"
 
 const useTimeEntryActions = () => {
   const { currentMonth, currentYear, time } = useDateUtils()
-  const { saveTimeEntry, decrementHoursKm, incremetHoursKm } = useCalendarTimeEntries(currentMonth, currentYear)
+  const { saveTimeEntry, decrementHoursKm, incrementHoursKm } = useCalendarTimeEntries(currentMonth, currentYear)
   const { addTravel, onEntryEditTravel, deleteTravelByEntry } = useTravels()
 
 
@@ -56,7 +56,7 @@ const useTimeEntryActions = () => {
     // We have to decrement the hours and kilometers from the original given project
     decrementHoursKm(originalEntry.projectId, originalEntry.hours, originalEntry.kilometers)
     // Then we have to add to the current selected project the entry's totalHours and kilometers
-    incremetHoursKm(data.projectId, totalHours, data.kilometers)
+    incrementHoursKm(data.projectId, totalHours, data.kilometers)
     // If project changes and the entry has kilometers, update the travel doc's project as well
     if (data.kilometers > 0) {
       onEntryEditTravel({
@@ -70,7 +70,7 @@ const useTimeEntryActions = () => {
   // Function for handling changes in hours or kilometers
   const handleHoursKmDiff = (data, hoursDiff, kmDiff, start) => {
     // Let's increment the selected project's hours or kilometers with the difference
-    incremetHoursKm(data.projectId, hoursDiff, kmDiff)
+    incrementHoursKm(data.projectId, hoursDiff, kmDiff)
 
     if (kmDiff !== 0) {
       // If data.kilometers in greater than 0, edit travel doc
@@ -96,7 +96,7 @@ const useTimeEntryActions = () => {
       hours: totalHours,
     })
     // Increment the selected project's hours and kilometers
-    incremetHoursKm(data.projectId, totalHours, data.kilometers)
+    incrementHoursKm(data.projectId, totalHours, data.kilometers)
 
     // If user enters kilometers for the entry, let's create a document for the kilometers as well
     if (entryId && data.kilometers > 0) {

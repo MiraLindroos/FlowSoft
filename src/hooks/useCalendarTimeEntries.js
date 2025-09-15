@@ -86,7 +86,7 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
 
   // Increment the selected project's hours when a time entry is added OR
   // entry's project is changed OR entry's hours or kilometers change
-  const incremetHoursKm = async (id, hours, km) => {
+  const incrementHoursKm = async (id, hours, km) => {
     try {
       const projectRef = doc(db, 'projects', id)
       await updateDoc(projectRef, {
@@ -134,7 +134,7 @@ const useCalendarTimeEntries = (currentMonth, currentYear) => {
   return {
     saveTimeEntry,
     deleteTimeEntry,
-    incremetHoursKm,
+    incrementHoursKm,
     decrementHoursKm
   }
 }
