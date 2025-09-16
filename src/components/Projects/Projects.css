@@ -5,6 +5,7 @@
 .project-range-pdf {
   display: flex;
   justify-content: space-around;
+  padding-bottom: 12px;
 }
 
 .range-info {

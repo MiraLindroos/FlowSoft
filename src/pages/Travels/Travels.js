@@ -86,20 +86,30 @@ const Travels = () => {
     <div className="travels-view">
       <h3>Matkakulut (ei vielä täysin toiminnassa)</h3>
       <div className="travel-actions">
-        <DateRange start={start} end={end} onChange={onDateChange}/>
-        <Button title={'LISÄÄ UUSI'} onClick={addTravelClick} />
-        {/* <PDFDownloadLink
-          document={
-            <Pdf
+        <div className="travel-range">
+          {/* Display message that user needs to select date range in order to create a PDF */}
+          {!end && (
+            <small className="range-info">valitse aikaväli luodaksesi PDF</small>
+          )}
+          <DateRange start={start} end={end} onChange={onDateChange}/>
+          {/* After the user has selected the range, display the download link for the PDF
+            { start && end && (
+              <PDFDownloadLink
+                document={
+                  <Pdf
 
-            />
-          }
-          fileName={`testi-matka.pdf`}
-        >
-          {({ blob, url, loading, error }) =>
-            loading ? 'Ladataan...' : 'Luo PDF'
-          }
-        </PDFDownloadLink> */}
+                  />
+                }
+                fileName={`testi-matka.pdf`}
+              >
+                {({ blob, url, loading, error }) =>
+                  loading ? 'Ladataan...' : 'Luo PDF'
+                }
+              </PDFDownloadLink>
+            )}
+          */}
+        </div>
+        <Button title={'LISÄÄ UUSI'} onClick={addTravelClick} />
       </div>
       <div className="travels-list">
         <List onDelete={onDelete} items={travels} path={'Matka'} />

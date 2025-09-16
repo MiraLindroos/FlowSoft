@@ -1,17 +1,9 @@
-.daterange {
-  padding-bottom: 10px;
-}
-
 .daterange input {
   width: 160px;
   text-align: center;
 }
 
 @media (min-width: 768px) {
-  .daterange {
-    padding-bottom: 12px;
-  }
-
   .daterange input {
     width: 170px;
   }
