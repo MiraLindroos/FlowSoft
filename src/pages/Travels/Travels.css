@@ -7,9 +7,11 @@
   padding: 10px;
 }
 
-.travel-buttons {
-  text-align: end;
+.travel-actions {
   margin-bottom: 15px;
+  display: flex;
+  justify-content: end;
+  gap: 12px;
 }
 
 .travels-list {

@@ -85,9 +85,9 @@ const Travels = () => {
   return (
     <div className="travels-view">
       <h3>Matkakulut (ei vielä täysin toiminnassa)</h3>
-      <div className="travel-buttons">
-        <Button title={'LISÄÄ UUSI'} onClick={addTravelClick} />
+      <div className="travel-actions">
         <DateRange start={start} end={end} onChange={onDateChange}/>
+        <Button title={'LISÄÄ UUSI'} onClick={addTravelClick} />
         {/* <PDFDownloadLink
           document={
             <Pdf
