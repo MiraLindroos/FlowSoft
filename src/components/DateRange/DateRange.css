@@ -1,0 +1,10 @@
+.daterange input {
+  width: 160px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .daterange input {
+    width: 170px;
+  }
+}

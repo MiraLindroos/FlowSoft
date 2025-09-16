@@ -63,6 +63,18 @@ const useDateUtils = () => {
     return new Date(date.getFullYear(), date.getMonth(), date.getDate(), hours, minutes)
   }
 
+  // Function that normalizes the dates so that start is set to 00:00 and end is set to 23:59
+  const normalizeDateRange = (dates) => {
+    const [start, end] = dates;
+    if (start) {
+      start.setHours(0, 0, 0, 0)
+    }
+    if (end) {
+      end.setHours(23, 59, 59, 999)
+    }
+    return {start, end}
+  };
+
   return {
     currentMonth,
     currentYear,
@@ -70,7 +82,8 @@ const useDateUtils = () => {
     nextMonth,
     previousMonth,
     dateToInputValue,
-    time
+    time,
+    normalizeDateRange
   }
 }
 

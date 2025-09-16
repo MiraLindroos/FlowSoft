@@ -2,12 +2,13 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from  "react-datepicker";
 import { fi } from 'date-fns/locale';
+import "./DateRange.css"
 
-const ProjectHours = ({start, end, onChange}) => {
+const DateRange = ({start, end, onChange}) => {
   registerLocale('fi', fi)
 
   return (
-    <div className="project-daterange">
+    <div className="daterange">
       <DatePicker
         selected={start}
         onChange={onChange}
@@ -21,4 +22,4 @@ const ProjectHours = ({start, end, onChange}) => {
   )
 }
 
-export default ProjectHours
+export default DateRange

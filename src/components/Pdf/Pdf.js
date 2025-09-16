@@ -34,7 +34,7 @@ const Pdf = ({project, projectsEntries = [], start, end, totalHours, totalTravel
           <Text style={[styles.text, styles.flex2]}></Text>
         </View>
       </View>
-      {/* Display Flowtec Oy - Sivu x/x on the bottom of every page */}
+      {/* Display Sivu x/x on the bottom of every page */}
       <Text style={styles.footer} render={({ pageNumber, totalPages }) => (`Sivu ${pageNumber} / ${totalPages}`)} fixed />
     </Page>
   </Document>

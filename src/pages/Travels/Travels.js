@@ -8,8 +8,15 @@ import Form from "../../components/Forms/Form"
 import { useForm, FormProvider } from "react-hook-form"
 import useAddTravelsForm from "../../hooks/useAddTravelsForm"
 import { Toaster } from "react-hot-toast"
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import Pdf from "../../components/Pdf/Pdf"
+import DateRange from "../../components/DateRange/DateRange"
+import { useState } from "react"
+import useDateUtils from "../../hooks/useDateUtils"
 
 const Travels = () => {
+  const [start, setStartDate] = useState(new Date())
+  const [end, setEndDate] = useState()
   const { travels, addTravel, deleteTravel, incremetProjectKm } = useTravels()
 
   const { addTravelFields } = useAddTravelsForm()
@@ -20,6 +27,8 @@ const Travels = () => {
     openModal,
     closeModal
   } = useModal()
+
+  const { normalizeDateRange } = useDateUtils()
 
   const methods = useForm()
 
@@ -66,10 +75,40 @@ const Travels = () => {
     })
   }
 
+  const onDateChange = (dates) => {
+    const {start, end} = normalizeDateRange(dates)
+    setStartDate(start);
+    setEndDate(end);
+    console.log(start, end)
+  };
+
   return (
     <div className="travels-view">
       <h3>Matkakulut (ei vielä täysin toiminnassa)</h3>
-      <div className="travel-buttons">
+      <div className="travel-actions">
+        <div className="travel-range">
+          {/* Display message that user needs to select date range in order to create a PDF */}
+          {!end && (
+            <small className="range-info">valitse aikaväli luodaksesi PDF</small>
+          )}
+          <DateRange start={start} end={end} onChange={onDateChange}/>
+          {/* After the user has selected the range, display the download link for the PDF
+            { start && end && (
+              <PDFDownloadLink
+                document={
+                  <Pdf
+
+                  />
+                }
+                fileName={`testi-matka.pdf`}
+              >
+                {({ blob, url, loading, error }) =>
+                  loading ? 'Ladataan...' : 'Luo PDF'
+                }
+              </PDFDownloadLink>
+            )}
+          */}
+        </div>
         <Button title={'LISÄÄ UUSI'} onClick={addTravelClick} />
       </div>
       <div className="travels-list">

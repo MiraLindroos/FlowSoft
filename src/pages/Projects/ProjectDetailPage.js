@@ -35,7 +35,7 @@ const ProjectDetailPage = () => {
 
   const methods = useForm()
 
-  const { dateToInputValue } = useDateUtils()
+  const { dateToInputValue, normalizeDateRange } = useDateUtils()
 
   const onSubmit = (data) => {
     const today = new Date()
@@ -82,13 +82,7 @@ const ProjectDetailPage = () => {
   }
 
   const onDateChange = (dates) => {
-    const [start, end] = dates;
-    if (start) {
-      start.setHours(0, 0, 0, 0)
-    }
-    if (end) {
-      end.setHours(23, 59, 59, 999)
-    }
+    const {start, end} = normalizeDateRange(dates)
     setStartDate(start);
     setEndDate(end);
     fetchProjectHours(start, end)
