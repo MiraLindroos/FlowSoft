@@ -1,6 +1,6 @@
 import Card from "../Card/Card"
 import CardSection from "../Card/CardSection"
-import ProjectHours from "./ProjectHours"
+import DateRange from "../DateRange/DateRange"
 import "./Projects.css"
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import Pdf from "../../components/Pdf/Pdf"
@@ -39,7 +39,7 @@ const ProjectDetail = ({project, projectsEntries, totalHours, totalTravels, star
             <small className="range-info">valitse aikaväli luodaksesi PDF</small>
           )}
           <div className="project-range-pdf">
-            <ProjectHours start={start} end={end} onChange={onChange} />
+            <DateRange start={start} end={end} onChange={onChange} />
             {/* After the user has selected the range, display the download link for the PDF */}
             { start && end && (
               <PDFDownloadLink
