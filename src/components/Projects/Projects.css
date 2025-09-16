@@ -2,15 +2,6 @@
   margin: 0 0 20px;
 }
 
-.project-daterange {
-  padding-bottom: 10px;
-}
-
-.project-daterange input {
-  width: 160px;
-  text-align: center;
-}
-
 .project-range-pdf {
   display: flex;
   justify-content: space-around;
@@ -29,14 +20,6 @@
   .project-detail.hours,
   .project-detail.billing {
     margin-top: 25px;
-  }
-
-  .project-daterange {
-    padding-bottom: 12px;
-  }
-
-  .project-daterange input {
-    width: 170px;
   }
 }
 
