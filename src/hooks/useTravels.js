@@ -106,12 +106,18 @@ const useTravels = () => {
   }
 
   // Update the entry kilometers when a travel is modified
-  const updateEntryKm = async (id, km) => {
+  // If travel doc's project changes, update the entry's project
+  const updateEntry = async (id, km, project, projectId) => {
     try {
       const entryRef = doc(db, 'timeEntries', id)
-      await updateDoc(entryRef, {
+      const data = {
         kilometers: km
-      })
+      }
+      if (project && projectId) {
+        data.project = project
+        data.projectId = projectId
+      }
+      await updateDoc(entryRef, data)
     } catch (e) {
       console.error(e)
     }
@@ -174,7 +180,7 @@ const useTravels = () => {
       }
       // if travel has entryId, set the entry's kilometers to 0
       if (travel.entryId) {
-        updateEntryKm(travel.entryId, 0)
+        updateEntry(travel.entryId, 0)
       }
     } catch (e) {
       console.error(e)
@@ -206,7 +212,7 @@ const useTravels = () => {
     addTravel,
     incremetProjectKm,
     decrementProjectKm,
-    updateEntryKm,
+    updateEntry,
     onEntryEditTravel,
     deleteTravel,
     deleteTravelByEntry
