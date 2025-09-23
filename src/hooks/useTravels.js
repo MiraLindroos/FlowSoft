@@ -158,7 +158,7 @@ const useTravels = () => {
     }
   }
 
-  // Delete travel doc and decrement kilometers from the selected project
+  // Delete travel doc and decrement kilometers from the selected project and entry
   const deleteTravel = async (travel) => {
     try {
       await toast.promise(
@@ -171,6 +171,10 @@ const useTravels = () => {
       )
       if (travel.projectId) {
         decrementProjectKm(travel.projectId, travel.kilometers)
+      }
+      // if travel has entryId, set the entry's kilometers to 0
+      if (travel.entryId) {
+        updateEntryKm(travel.entryId, 0)
       }
     } catch (e) {
       console.error(e)
