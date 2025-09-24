@@ -27,7 +27,7 @@ const TravelDetailPage = () => {
 
   const methods = useForm()
 
-  const { addTravel, incremetProjectKm, updateEntry, decrementProjectKm } = useTravels()
+  const { addTravel, incremetProjectKm, updateEntryKm } = useTravels()
 
   const { dateToInputValue } = useDateUtils()
 
@@ -40,22 +40,12 @@ const TravelDetailPage = () => {
     data.projectId = selectedProject.id
     // Check if kilometers have changed from original value (travel.kilometers)
     const kmDiff = data.kilometers - travel.kilometers
-    // Check if project has changed
-    const projectChanged = data.projectId !== travel.projectId
-    // If project has changed, decrement kilometers from original project and increment the new project's kilometers
-    if (projectChanged) {
-      decrementProjectKm(travel.projectId, travel.kilometers)
-      incremetProjectKm(data.projectId, data.kilometers)
-      if (travel.entryId) {
-        updateEntry(travel.entryId, data.kilometers, data.project, data.projectId)
-      }
-    }
     // If kilometers have changed -> update the selected project's kilometer count
     if (kmDiff !== 0) {
       incremetProjectKm(data.projectId, kmDiff)
       // If the travel is linked to an entry, edit the entry's kilometers
       if (travel.entryId) {
-        updateEntry(travel.entryId, data.kilometers)
+        updateEntryKm(travel.entryId, data.kilometers)
       }
     }
     addTravel(data)
@@ -68,6 +58,14 @@ const TravelDetailPage = () => {
     // Find the project option by matching the name to the travel.project
     // This is needed because the select form expects a JSON string of the whole project object as its value
     const selectedProject = projectField.options.find(option => option.name === travel.project)
+    let fields = addTravelFields
+    if (travel.entryId) {
+      fields = addTravelFields.map(f =>
+        (f.name === "project" || f.name === "date")
+          ? {...f, disabled: true}
+          : f
+        )
+    }
 
     methods.reset({ // Reset methods with travel values
       ...travel,
@@ -78,7 +76,7 @@ const TravelDetailPage = () => {
       message: `Muokkaa matkaa: ${travel.name}`,
       children:
       <FormProvider {...methods}>
-        <Form fields={addTravelFields} />
+        <Form fields={fields} />
       </FormProvider>,
       onConfirm: methods.handleSubmit((data) => onSubmit(data, travel)),
       onCancel: closeModal,
