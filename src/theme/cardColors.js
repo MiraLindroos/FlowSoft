@@ -13,7 +13,7 @@ const cardColors = {
   },
   purple: {
     backgroundColor: "#f0ebf7",
-    borderLeft: "4px solid #1a0146"
+    borderLeft: "4px solid #280e54"
   }
 }
 

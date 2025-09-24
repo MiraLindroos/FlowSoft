@@ -6,7 +6,7 @@ import useStatistics from "../../hooks/useStatistics"
 import Card from "../../components/Card/Card"
 
 const Home = () => {
-  const { weekHours, travels } = useStatistics();
+  const { weekHours, monthTravels } = useStatistics();
 
   return (
     <div className="home">
@@ -37,9 +37,9 @@ const Home = () => {
           <Card
             icon={'🚙'}
             title={'Matkat'}
-            description={'Tarkastele kuukauden matkoja (EI VIELÄ OIKEETA DATAA)'}
+            description={'Tarkastele kuluvan kuukauden matkoja'}
             variant="purple"
-          > <TravelsThisMonth data={travels} />
+          > <TravelsThisMonth data={monthTravels} />
           </Card>
         </div>
 

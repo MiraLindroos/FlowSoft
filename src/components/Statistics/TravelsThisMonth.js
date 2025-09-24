@@ -1,10 +1,10 @@
 import "./Statistics.css";
-import { CartesianGrid, LineChart, XAxis, YAxis, Tooltip, Legend, Line, ResponsiveContainer } from 'recharts'
+import { BarChart, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, Bar } from 'recharts'
 
 const TravelsThisMonth = ({data}) => {
   return (
     data.length > 0 ? <ResponsiveContainer width="100%" height="100%" minHeight={200} >
-      <LineChart
+      <BarChart
         data={data}
         margin={{
           right: 20,
@@ -12,13 +12,13 @@ const TravelsThisMonth = ({data}) => {
           bottom: 5,
         }}
       >
-        <CartesianGrid strokeDasharray="5" />
         <XAxis dataKey="date" />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="km" stroke="#013746" />
-      </LineChart>
+        <Bar dataKey="km" fill="#280e54" />
+        <Bar dataKey="raha" fill="#6d5391" />
+      </BarChart>
     </ResponsiveContainer>
     : <div className="no-travels">Ei matkoja tässä kuussa!</div>
   )

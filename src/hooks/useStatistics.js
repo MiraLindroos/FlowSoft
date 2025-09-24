@@ -5,7 +5,7 @@ import { useAtomValue } from "jotai"
 import { currentUserAtom } from "../jotai/atoms"
 import { getISOWeek } from 'date-fns'
 
-const Statistics = () => {
+const useStatistics = () => {
   const currentUser = useAtomValue(currentUserAtom)
   const [hours, setHours] = useState([])
   const [travels, setTravels] = useState([])
@@ -81,8 +81,8 @@ const Statistics = () => {
           querySnapshot.forEach((doc) => {
             travelsArray.push({...doc.data()})
           })
-          // Map the data to be e.g. [{date: '12.8.', km: '100'}, {date: '14.8.', km: '150'}]
-          const mappedTravels = travelsArray.map((travel) => ({date: travel.date.toDate().toLocaleDateString('fi-Fi', {day: 'numeric', month: 'numeric'}), km: travel.kilometers}))
+          // Map the data to be e.g. [{ km: '100', rate: ''}, { km: '150', rate: '0.6'}]
+          const mappedTravels = travelsArray.map((travel) => ({ km: travel.kilometers, rate: travel.travelRate}))
           setTravels(mappedTravels)
         })
       } catch (e) {
@@ -139,10 +139,23 @@ const Statistics = () => {
     })
   }
 
+  // Sum the kilometers
+  const totalKm = travels.map((travel) => Number(travel.km)).reduce((a, b) => a + b, 0)
+  // Calculate km * travelRate and sum them together
+  const totalEuro = travels.map(
+    (travel) => Number(travel.km) * Number(travel.rate ? travel.rate : 0.5)
+  ).reduce((a, b) => a + b, 0)
+  // Array containing the data for the travel statistic card
+  const monthTravels = [{
+    km: totalKm,
+    raha: totalEuro,
+    date: currentDate.toLocaleDateString('fi-Fi', {month: 'long'})
+  }]
+
   return {
     weekHours,
-    travels
+    monthTravels
   }
 }
 
-export default Statistics
+export default useStatistics
