@@ -35,8 +35,12 @@ const Form = ({fields}) => {
             // If field type is textarea
           ) : field.type==="textarea" ? (
             // Multiline text field
-            <textarea {...register(`${field.name}`, { required: field.required })} disabled={field.disabled} data-tooltip-content={field.disabled ? "Voit muokata kenttää vain tuntikirjauksen kautta" : undefined}
-              data-tooltip-id={`tooltip-${index}`} />
+            <textarea
+              {...register(`${field.name}`, { required: field.required })}
+              disabled={field.disabled}
+              data-tooltip-content={field.disabled ? "Voit muokata kenttää vain tuntikirjauksen kautta" : undefined}
+              data-tooltip-id={`tooltip-${index}`}
+            />
           ) : (
             // If field type is other than select or textarea
             <input 
