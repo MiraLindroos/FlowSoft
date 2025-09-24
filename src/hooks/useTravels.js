@@ -205,6 +205,7 @@ const useTravels = () => {
     travels,
     addTravel,
     incremetProjectKm,
+    decrementProjectKm,
     updateEntryKm,
     onEntryEditTravel,
     deleteTravel,

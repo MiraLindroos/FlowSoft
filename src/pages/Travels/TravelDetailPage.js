@@ -27,7 +27,7 @@ const TravelDetailPage = () => {
 
   const methods = useForm()
 
-  const { addTravel, incremetProjectKm, updateEntryKm } = useTravels()
+  const { addTravel, incremetProjectKm, updateEntryKm, decrementProjectKm } = useTravels()
 
   const { dateToInputValue } = useDateUtils()
 
@@ -38,6 +38,13 @@ const TravelDetailPage = () => {
     data.project = selectedProject.name
     // Store the project's ID
     data.projectId = selectedProject.id
+     // Check if project has changed
+    const projectChanged = data.projectId !== travel.projectId
+    // If project has changed, decrement kilometers from original project and increment the new project's kilometers
+    if (projectChanged) {
+      decrementProjectKm(travel.projectId, travel.kilometers)
+      incremetProjectKm(data.projectId, data.kilometers)
+    }
     // Check if kilometers have changed from original value (travel.kilometers)
     const kmDiff = data.kilometers - travel.kilometers
     // If kilometers have changed -> update the selected project's kilometer count
