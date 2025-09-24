@@ -148,7 +148,7 @@ const useStatistics = () => {
   // Array containing the data for the travel statistic card
   const monthTravels = [{
     km: totalKm,
-    raha: totalEuro,
+    raha: totalEuro.toFixed(2),
     date: currentDate.toLocaleDateString('fi-Fi', {month: 'long'})
   }]
 
