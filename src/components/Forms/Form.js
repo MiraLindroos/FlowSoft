@@ -1,5 +1,6 @@
 import "./Forms.css"
 import { useFormContext } from "react-hook-form"
+import { Tooltip } from 'react-tooltip'
 
 const Form = ({fields}) => {
   // useFormContext allows access to the form methods provided by FormProvider
@@ -17,7 +18,12 @@ const Form = ({fields}) => {
           {/* If field type is select */}
           {field.type==="select" ? (
             // Dropdown for selecting a project
-            <select {...register(`${field.name}`, { required: field.required })} disabled={field.disabled}>
+            <select
+              {...register(`${field.name}`, { required: field.required })}
+              disabled={field.disabled}
+              data-tooltip-content={field.disabled ? "Voit muokata kenttää vain tuntikirjauksen kautta" : undefined}
+              data-tooltip-id={`tooltip-${index}`}
+            >
               <option value="">Valitse projekti</option>
               {/* Display fields options */}
               {field.options.map((option, index) => 
@@ -29,13 +35,16 @@ const Form = ({fields}) => {
             // If field type is textarea
           ) : field.type==="textarea" ? (
             // Multiline text field
-            <textarea {...register(`${field.name}`, { required: field.required })} disabled={field.disabled} />
+            <textarea {...register(`${field.name}`, { required: field.required })} disabled={field.disabled} data-tooltip-content={field.disabled ? "Voit muokata kenttää vain tuntikirjauksen kautta" : undefined}
+              data-tooltip-id={`tooltip-${index}`} />
           ) : (
             // If field type is other than select or textarea
             <input 
               {...register(`${field.name}`, { required: field.required })}
               type={field.type}
               disabled={field.disabled}
+              data-tooltip-content={field.disabled ? "Voit muokata kenttää vain tuntikirjauksen kautta" : undefined}
+              data-tooltip-id={`tooltip-${index}`}
               // If field type is time, set the step to be 30minutes
               // and the min and max to be 06 and 20:30
               // If field type is number set the min to be 0
@@ -44,6 +53,11 @@ const Form = ({fields}) => {
               max={field.type === "time" ? "20:30" : undefined}
               />
           )}
+          {/* Display tooltip if field is disabled */}
+          {field.disabled && <Tooltip
+            id={`tooltip-${index}`}
+            style={{maxWidth: '85vw', wordWrap: 'break-word'}}
+          />}
         </div>
       )}
       <small>* merkatut kentät ei voi olla tyhjiä</small>
