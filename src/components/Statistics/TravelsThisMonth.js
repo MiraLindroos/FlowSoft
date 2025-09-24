@@ -2,8 +2,9 @@ import "./Statistics.css";
 import { BarChart, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, Bar } from 'recharts'
 
 const TravelsThisMonth = ({data}) => {
+  console.log(data[0].km)
   return (
-    data.length > 0 ? <ResponsiveContainer width="100%" height="100%" minHeight={200} >
+    data[0].km > 0 ? <ResponsiveContainer width="100%" height="100%" minHeight={200} >
       <BarChart
         data={data}
         margin={{
