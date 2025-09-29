@@ -39,6 +39,11 @@
   text-align: center;
 }
 
+.loading {
+  display: flex;
+  justify-content: center;
+}
+
 @media (min-width: 768px) {
   .projects-view {
     margin: 22px 16px;
