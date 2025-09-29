@@ -78,7 +78,7 @@ const ProjectDetailPage = () => {
   }
 
   if (!project) {
-    return <div>Ladataan projektia...</div>;
+    return <div className="loading">Ladataan projektia...</div>;
   }
 
   const onDateChange = (dates) => {
