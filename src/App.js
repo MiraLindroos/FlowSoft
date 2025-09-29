@@ -8,6 +8,7 @@ import useModal from "./hooks/useModal"
 import useSidebarAndNavbar from "./hooks/useSidebarAndNavbar"
 import useAuth from "./hooks/useAuth"
 import Modal from "./components/Modal/Modal"
+import ScrollToTop from './components/ScrollToTop/ScrollToTop'
 
 function App() {
   const {
@@ -67,6 +68,7 @@ function App() {
               />
             }
             <main className="page-content">
+              <ScrollToTop />
               <AppRoutes />
               {showModal &&
                 <Modal

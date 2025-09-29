@@ -7,7 +7,7 @@
 
 .main-content-area {
   display: flex;
-  height: calc(100vh - 50px); /* Start the content right under the navbar */
+  min-height: calc(100vh - 50px); /* Start the content right under the navbar */
 }
 
 .page-content {
@@ -27,7 +27,7 @@
 
 @media (min-width: 768px) {
   .main-content-area {
-    height: calc(100vh - 60px); /* Start the content right under the navbar */
+    min-height: calc(100vh - 60px); /* Start the content right under the navbar */
   }
   .page-content {
     padding: 5px;
